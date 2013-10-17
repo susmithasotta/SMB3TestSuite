@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PersonnelRecord>
+   <Name>
+      <givenName>John</givenName>
+      <initial>P</initial>
+      <familyName>Smith</familyName>
+   </Name>
+   <number>51</number>
+   <title>Director</title>
+   <dateOfHire>19710917</dateOfHire>
+   <nameOfSpouse>
+      <givenName>Mary</givenName>
+      <initial>T</initial>
+      <familyName>Smith</familyName>
+   </nameOfSpouse>
+   <children>
+      <ChildInformation>
+         <Name>
+            <givenName>Ralph</givenName>
+            <initial>T</initial>
+            <familyName>Smith</familyName>
+         </Name>
+         <dateOfBirth>19571111</dateOfBirth>
+      </ChildInformation>
+      <ChildInformation>
+         <Name>
+            <givenName>Susan</givenName>
+            <initial>B</initial>
+            <familyName>Jones</familyName>
+         </Name>
+         <dateOfBirth>19590717</dateOfBirth>
+      </ChildInformation>
+   </children>
+</PersonnelRecord>

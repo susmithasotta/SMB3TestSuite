@@ -1,0 +1,50 @@
+ENABLE_CSXMLDOCS                      = 1
+CSXMLDOCS_DIR                         = $(INETROOT)\$(INFRASTRUCTURE_DROP)\ProtoSDK\bin\XMLdocs
+
+!INCLUDE $(INETROOT)\build\sources.all
+
+TARGETNAME                            = Microsoft.Protocols.TestTools.StackSdk.Security.Sspi
+TARGETTYPE                            = DYNLINK
+
+MANAGED_CODE                          = 1 
+
+REFERENCES                            =   \
+                                          $(INFRA_SDK_SOURCE_PATH)\Common\$(O)\Microsoft.Protocols.TestTools.StackSdk.metadata_dll; \
+
+SOURCES                               = \
+                                        AccountCredential.cs \
+                                        CertContext.cs \
+                                        CertificateCredential.cs \
+                                        ClientSecurityContext.cs \
+                                        CredSspCred.cs \
+                                        Enums.cs \
+                                        ICredential.cs \
+                                        MachineAccountCredential.cs \
+                                        NativeMethods.cs \
+                                        SecurityBuffer.cs \
+                                        SecurityConfig.cs \
+                                        SecurityContext.cs \
+                                        SecurityPackageContextIssuerListInfo.cs \
+                                        SecurityPackageContextKeyInfo.cs \
+                                        SecurityPackageContextNativeNames.cs \
+                                        SecurityPackageContextNegotiationInfo.cs \
+                                        SecurityPackageContextSizes.cs \
+                                        SecurityPackageInfomation.cs \
+                                        ServerSecurityContext.cs \
+                                        SspiClientSecurityConfig.cs \
+                                        SspiClientSecurityContext.cs \
+                                        SspiException.cs \
+                                        SspiServerSecurityConfig.cs \
+                                        SspiServerSecurityContext.cs \
+                                        SspiStructures.cs \
+                                        SspiUtility.cs \
+
+ASSEMBLY_IDENTITY_PUBLIC_KEY_NAME     = petkey
+
+FXCOP_USER_FLAGS                      = $(FXCOP_USER_FLAGS) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\Common\$(O) \
+                                        /ruleid:-Microsoft.Usage^#CA1801:ReviewUnusedParameters \
+
+#TODO: disabled above fxcop rule temporarily. Enable them when Code Complete.
+
+BINPLACE_FLAGS                        = $(BINPLACE_FLAGS) RESIGN_KEYNAME = $(PET_KEY)

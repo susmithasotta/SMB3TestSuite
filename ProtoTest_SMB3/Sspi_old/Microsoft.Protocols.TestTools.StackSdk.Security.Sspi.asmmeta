@@ -1,0 +1,972 @@
+.assembly extern 'System'
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89)
+  .ver clr2.0
+}
+.assembly extern 'mscorlib'
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89)
+  .ver clr2.0
+}
+.assembly 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'
+{
+  .custom instance void ['mscorlib']'System.Runtime.InteropServices'.'ComVisibleAttribute'::.ctor(bool) = (01 00 00 00 00)
+  .publickey = (00 24 00 00 04 80 00 00 94 00 00 00 06 02 00 00 00 24 00 00 52 53 41 31 00 04 00 00 01 00 01 00 27 21 4B 24 74 FA DB 92 4F FE 05 6B A0 3A A2 C5 8C 86 34 06 56 D2 36 DA 85 76 39 CA 4F 0D AD 6E C0 ED 19 B3 08 B9 B3 40 D7 84 2C 40 80 13 A4 44 64 92 95 E7 65 C9 92 8E 31 38 FB 65 B9 3F 4F BF F3 02 4E 89 53 9A EC FB 55 DB D2 F6 E0 EB B7 BF D2 1F 28 23 97 EF 78 48 E3 2D F1 4B 93 6F 5B 7C 57 75 B5 79 85 C2 F1 BE 90 68 B7 0D 43 6C BA 82 2F 62 FD F6 C6 33 7E B5 8B 12 EB CB 7D 8C FD BC)
+  .hash algorithm 0x00008004
+  .ver corext
+}
+.namespace 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'
+{
+  .class public 'AccountCredential'
+    extends ['mscorlib']'System'.'Object'
+    implements 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ICredential'
+  {
+    .method public hidebysig specialname 
+      instance void '.ctor'(string 'domainName', string 'accountName', string 'password')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_AccountName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_DomainName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_Password'()
+    {
+      ret
+    }
+    .property instance string 'AccountName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential'::'get_AccountName'()
+    }
+    .property instance string 'DomainName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential'::'get_DomainName'()
+    }
+    .property instance string 'Password'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential'::'get_Password'()
+    }
+  }
+  .class public sequential sealed 'CertContext'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint32 'CertEncodingType'
+    .field public uint8[] 'CertEncoded'
+    .field public native int 'pCertInfo'
+    .field public native int 'hCertStore'
+  }
+  .class public 'CertificateCredential'
+    extends ['mscorlib']'System'.'Object'
+    implements 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ICredential'
+  {
+    .method public hidebysig specialname 
+      instance void '.ctor'(valuetype ['System']'System.Security.Cryptography.X509Certificates'.'StoreLocation' 'storeLocation', valuetype ['System']'System.Security.Cryptography.X509Certificates'.'StoreName' 'storeName', string 'certificateName')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class ['mscorlib']'System.Security.Cryptography.X509Certificates'.'X509Certificate' 'certificate')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class ['mscorlib']'System.Security.Cryptography.X509Certificates'.'X509Certificate' 'get_Certificate'()
+    {
+      ret
+    }
+    .field family class ['mscorlib']'System.Security.Cryptography.X509Certificates'.'X509Certificate' 'certificate'
+    .property instance class ['mscorlib']'System.Security.Cryptography.X509Certificates'.'X509Certificate' 'Certificate'()
+    {
+      .get instance class ['mscorlib']'System.Security.Cryptography.X509Certificates'.'X509Certificate' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'CertificateCredential'::'get_Certificate'()
+    }
+  }
+  .class public abstract 'ClientSecurityContext'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityContext'
+  {
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Initialize'(uint8[] 'token')
+    {
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+  }
+  .class public sealed 'ClientSecurityContextAttribute'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .custom instance void ['mscorlib']'System'.'FlagsAttribute'::.ctor() = (01 00 00 00)
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'AllocMemory' = uint32(0x00000100)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'Confidentiality' = uint32(0x00000010)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'Connection' = uint32(0x00000800)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'Datagram' = uint32(0x00000400)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'DceStyle' = uint32(0x00000200)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'Delegate' = uint32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'ExtendedError' = uint32(0x00004000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'Identify' = uint32(0x00020000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'Integrity' = uint32(0x00010000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'MutualAuth' = uint32(0x00000002)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'MutualCredValidataion' = uint32(0x00080000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'None' = uint32(0x00000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'ReplayDetect' = uint32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'SequenceDetect' = uint32(0x00000008)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'Stream' = uint32(0x00008000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'UseSessionKey' = uint32(0x00000020)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'UseSuppliedCreds' = uint32(0x00000080)
+  }
+  .class public interface abstract 'ICredential'
+  {
+  }
+  .class public 'MachineAccountCredential'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential'
+  {
+    .method public hidebysig specialname 
+      instance void '.ctor'(string 'domainName', string 'machineName', string 'machinePassword')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_MachineName'()
+    {
+      ret
+    }
+    .property instance string 'MachineName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'MachineAccountCredential'::'get_MachineName'()
+    }
+  }
+  .class public 'SecurityBuffer'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance void '.ctor'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'bufferType', uint8[] 'buffer')
+    {
+      ret
+    }
+    .field public uint8[] 'Buffer'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'BufferType'
+  }
+  .class public sealed 'SecurityBufferType'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'Alert' = uint32(0x00000011)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'AttrMask' = uint32(0xF0000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'ChangePassResponse' = uint32(0x0000000F)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'ChannelBindings' = uint32(0x0000000E)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'Data' = uint32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'Empty' = uint32(0x00000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'Extra' = uint32(0x00000005)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'Mechlist' = uint32(0x0000000B)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'MechlistSignature' = uint32(0x0000000C)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'Missing' = uint32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'Padding' = uint32(0x00000009)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'PkgParams' = uint32(0x00000003)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'ReadOnly' = uint32(0x80000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'ReadOnlyWithChecksum' = uint32(0x10000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'StreamHeader' = uint32(0x00000007)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'StreamTrailer' = uint32(0x00000006)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'Token' = uint32(0x00000002)
+  }
+  .class public 'SecurityConfig'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'get_SecurityType'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_SecurityType'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'value')
+    {
+      ret
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'securityPackageType')
+    {
+      ret
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'SecurityType'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityConfig'::'get_SecurityType'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityConfig'::'set_SecurityType'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType')
+    }
+  }
+  .class public abstract 'SecurityContext'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig 
+      instance uint8[] 'Sign'(uint8[] 'messageToBeSigned')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Sign'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+    }
+    .method public hidebysig 
+      instance uint8[] 'SignMessage'(uint8[] 'messageToBeSigned')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance bool 'Verify'(uint8[] 'messageToBeVerified', uint8[] 'signature')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance bool 'Verify'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+    }
+    .method public hidebysig 
+      instance bool 'VerifyMessage'(uint8[] 'messageToBeVerified', uint8[] 'signature')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance uint8[] 'Encrypt'(uint8[] 'messageToBeEncrypted', [out] uint8[]& 'signature')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Encrypt'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+    }
+    .method public hidebysig 
+      instance uint8[] 'EncryptMessage'(uint8[] 'messageToBeEncrypted')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance uint8[] 'Decrypt'(uint8[] 'messageToBeDecrypted', uint8[] 'signature')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance bool 'Decrypt'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+    }
+    .method public hidebysig 
+      instance uint8[] 'DecryptMessage'(uint8[] 'messageToBeDecrypted')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot abstract specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'get_PackageType'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract specialname 
+      instance uint8[] 'get_Token'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract specialname 
+      instance bool 'get_NeedContinueProcessing'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract specialname 
+      instance uint32 'get_SequenceNumber'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract specialname 
+      instance void 'set_SequenceNumber'(uint32 'value')
+    {
+    }
+    .method public virtual hidebysig newslot abstract specialname 
+      instance uint8[] 'get_SessionKey'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'get_ContextSizes'()
+    {
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'ContextSizes'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityContext'::'get_ContextSizes'()
+    }
+    .property instance bool 'NeedContinueProcessing'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityContext'::'get_NeedContinueProcessing'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'PackageType'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityContext'::'get_PackageType'()
+    }
+    .property instance uint32 'SequenceNumber'()
+    {
+      .get instance uint32 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityContext'::'get_SequenceNumber'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityContext'::'set_SequenceNumber'(uint32)
+    }
+    .property instance uint8[] 'SessionKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityContext'::'get_SessionKey'()
+    }
+    .property instance uint8[] 'Token'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityContext'::'get_Token'()
+    }
+  }
+  .class public sequential sealed 'SecurityInteger'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint32 'LowPart'
+    .field public int32 'HighPart'
+  }
+  .class public sequential sealed 'SecurityPackageContextConnectionInfo'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint32 'Protocol'
+    .field public uint32 'Cipher'
+    .field public uint32 'CipherStrength'
+    .field public uint32 'Hash'
+    .field public uint32 'HashStrength'
+    .field public uint32 'Exch'
+    .field public uint32 'ExchStrength'
+  }
+  .class public sequential sealed 'SecurityPackageContextEapKeyBlock'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint8[] 'rgbKeys'
+    .field public uint8[] 'rgbIVs'
+  }
+  .class public sequential sealed 'SecurityPackageContextIssuerListInfo'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint8[][] 'Issuers'
+  }
+  .class public sequential sealed 'SecurityPackageContextKeyInfo'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public string 'SignatureAlgorithmName'
+    .field public string 'EncryptAlgorithmName'
+    .field public uint32 'KeySize'
+    .field public uint32 'SignatureAlgorithm'
+    .field public uint32 'EncryptAlgorithm'
+  }
+  .class public sequential sealed 'SecurityPackageContextLifespan'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityInteger' 'tsStart'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityInteger' 'tsExpiry'
+  }
+  .class public sequential sealed 'SecurityPackageContextNativeNames'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public string 'ClientName'
+    .field public string 'ServerName'
+  }
+  .class public sequential sealed 'SecurityPackageContextNegotiationInfo'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageInfomation' 'PackageInfo'
+    .field public uint32 'NegotiationState'
+  }
+  .class public sequential sealed 'SecurityPackageContextSizes'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint32 'MaxTokenSize'
+    .field public uint32 'MaxSignatureSize'
+    .field public uint32 'BlockSize'
+    .field public uint32 'SecurityTrailerSize'
+  }
+  .class public sequential sealed 'SecurityPackageContextStreamSizes'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint32 'Header'
+    .field public uint32 'Trailer'
+    .field public uint32 'MaximumMessage'
+    .field public uint32 'Buffers'
+    .field public uint32 'BlockSize'
+  }
+  .class public sequential sealed 'SecurityPackageInfomation'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint32 'Capabilities'
+    .field public uint16 'Version'
+    .field public uint16 'RpcId'
+    .field public uint32 'MaxToken'
+    .field public string 'Name'
+    .field public string 'Comment'
+  }
+  .class public sealed 'SecurityPackageType'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname int32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'CredSsp' = int32(0x00000005)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Kerberos' = int32(0x00000002)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Negotiate' = int32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'NetLogon' = int32(0x00000006)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Ntlm' = int32(0x00000003)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Schannel' = int32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Unknown' = int32(0x00000000)
+  }
+  .class public sealed 'SecurityTargetDataRepresentation'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'SecurityNativeDrep' = uint32(0x00000010)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'SecurityNetworkDrep' = uint32(0x00000000)
+  }
+  .class public abstract 'ServerSecurityContext'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityContext'
+  {
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Accept'(uint8[] 'token')
+    {
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+  }
+  .class public sealed 'ServerSecurityContextAttribute'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .custom instance void ['mscorlib']'System'.'FlagsAttribute'::.ctor() = (01 00 00 00)
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'AllocMemory' = uint32(0x00000100)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'Confidentiality' = uint32(0x00000010)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'Connection' = uint32(0x00000800)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'Datagram' = uint32(0x00000400)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'DceStyle' = uint32(0x00000200)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'Delegate' = uint32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'ExtendedError' = uint32(0x00008000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'Http' = uint32(0x10000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'Identify' = uint32(0x00080000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'Integrity' = uint32(0x00020000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'MutualAuth' = uint32(0x00000002)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'None' = uint32(0x00000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'ReplayDetect' = uint32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'SequenceDetect' = uint32(0x00000008)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'Stream' = uint32(0x00010000)
+  }
+  .class public 'SspiClientSecurityConfig'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityConfig'
+  {
+    .method public hidebysig specialname 
+      instance string 'get_DomainName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_AccountName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_Password'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'get_ClientCredential'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_ServerPrincipal'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'get_SecurityAttributes'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'get_TargetDataRep'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'clientCredential', string 'serverPrincipal', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'contextAttributes', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'targetDataRep')
+    {
+      ret
+    }
+    .property instance string 'AccountName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityConfig'::'get_AccountName'()
+    }
+    .property instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'ClientCredential'()
+    {
+      .get instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityConfig'::'get_ClientCredential'()
+    }
+    .property instance string 'DomainName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityConfig'::'get_DomainName'()
+    }
+    .property instance string 'Password'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityConfig'::'get_Password'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'SecurityAttributes'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityConfig'::'get_SecurityAttributes'()
+    }
+    .property instance string 'ServerPrincipal'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityConfig'::'get_ServerPrincipal'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'TargetDataRep'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityConfig'::'get_TargetDataRep'()
+    }
+  }
+  .class public 'SspiClientSecurityContext'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContext'
+    implements ['mscorlib']'System'.'IDisposable'
+  {
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'packageType', class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'clientCredential', string 'serverPrincipal', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'contextAttributes', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'targetDataRep')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'packageType', class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'CertificateCredential' 'clientCredential', string 'serverPrincipal', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'contextAttributes', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'targetDataRep')
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance void 'Finalize'()
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Sign'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance bool 'Verify'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Encrypt'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance bool 'Decrypt'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Initialize'(uint8[] 'serverToken')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot specialname 
+      instance string 'get_ServerPrincipalName'()
+    {
+      ret
+    }
+    .method public final virtual hidebysig newslot 
+      instance void 'Dispose'()
+    {
+      ret
+    }
+    .method family virtual hidebysig newslot 
+      instance void 'Dispose'(bool 'disposing')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance object 'QueryContextAttributes'(string 'contextAttribute')
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'get_PackageType'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance bool 'get_NeedContinueProcessing'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint32 'get_SequenceNumber'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance void 'set_SequenceNumber'(uint32 'value')
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint8[] 'get_SessionKey'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint8[] 'get_Token'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'get_ContextSizes'()
+    {
+      ret
+    }
+    .field family bool 'needContinueProcessing'
+    .field family valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'packageType'
+    .field family valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContextAttribute' 'securityContextAttributes'
+    .field family uint32 'sequenceNumber'
+    .field family string 'serverPrincipalName'
+    .field family uint8[] 'sessionKey'
+    .field family valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'targetDataRepresentaion'
+    .field family uint8[] 'token'
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'ContextSizes'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityContext'::'get_ContextSizes'()
+    }
+    .property instance bool 'NeedContinueProcessing'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityContext'::'get_NeedContinueProcessing'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'PackageType'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityContext'::'get_PackageType'()
+    }
+    .property instance uint32 'SequenceNumber'()
+    {
+      .get instance uint32 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityContext'::'get_SequenceNumber'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityContext'::'set_SequenceNumber'(uint32)
+    }
+    .property instance string 'ServerPrincipalName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityContext'::'get_ServerPrincipalName'()
+    }
+    .property instance uint8[] 'SessionKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityContext'::'get_SessionKey'()
+    }
+    .property instance uint8[] 'Token'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiClientSecurityContext'::'get_Token'()
+    }
+  }
+  .class public serializable 'SspiException'
+    extends ['mscorlib']'System'.'Exception'
+  {
+    .method family hidebysig specialname 
+      instance void '.ctor'(class ['mscorlib']'System.Runtime.Serialization'.'SerializationInfo' 'info', valuetype ['mscorlib']'System.Runtime.Serialization'.'StreamingContext' 'context')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(string 'message')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(string 'message', class ['mscorlib']'System'.'Exception' 'innerException')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(string 'message', uint32 'errorCode')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'GetObjectData'(class ['mscorlib']'System.Runtime.Serialization'.'SerializationInfo' 'info', valuetype ['mscorlib']'System.Runtime.Serialization'.'StreamingContext' 'context')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint32 'get_ErrorCode'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance string 'get_Message'()
+    {
+      ret
+    }
+    .property instance uint32 'ErrorCode'()
+    {
+      .get instance uint32 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiException'::'get_ErrorCode'()
+    }
+    .property instance string 'Message'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiException'::'get_Message'()
+    }
+  }
+  .class public 'SspiServerSecurityConfig'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityConfig'
+  {
+    .method public hidebysig specialname 
+      instance string 'get_DomainName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_AccountName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_Password'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'get_ClientCredential'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_ServerPrincipal'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'get_SecurityAttributes'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'get_TargetDataRep'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'clientCredential', string 'serverPrincipal', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'contextAttributes', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'targetDataRep')
+    {
+      ret
+    }
+    .property instance string 'AccountName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityConfig'::'get_AccountName'()
+    }
+    .property instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'ClientCredential'()
+    {
+      .get instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityConfig'::'get_ClientCredential'()
+    }
+    .property instance string 'DomainName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityConfig'::'get_DomainName'()
+    }
+    .property instance string 'Password'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityConfig'::'get_Password'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'SecurityAttributes'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityConfig'::'get_SecurityAttributes'()
+    }
+    .property instance string 'ServerPrincipal'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityConfig'::'get_ServerPrincipal'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'TargetDataRep'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityConfig'::'get_TargetDataRep'()
+    }
+  }
+  .class public 'SspiServerSecurityContext'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContext'
+    implements ['mscorlib']'System'.'IDisposable'
+  {
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'packageType', class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'serverCredential', string 'serverPrincipal', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'contextAttributes', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'targetDataRep')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'packageType', class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'CertificateCredential' 'serverCredential', string 'serverPrincipal', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'contextAttributes', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'targetDataRep')
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance void 'Finalize'()
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Sign'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance bool 'Verify'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Encrypt'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance bool 'Decrypt'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Accept'(uint8[] 'clientToken')
+    {
+      ret
+    }
+    .method public final virtual hidebysig newslot 
+      instance void 'Dispose'()
+    {
+      ret
+    }
+    .method family virtual hidebysig newslot 
+      instance void 'Dispose'(bool 'disposing')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance object 'QueryContextAttributes'(string 'contextAttribute')
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'get_PackageType'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance bool 'get_NeedContinueProcessing'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint32 'get_SequenceNumber'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance void 'set_SequenceNumber'(uint32 'value')
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint8[] 'get_SessionKey'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint8[] 'get_Token'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'get_ContextSizes'()
+    {
+      ret
+    }
+    .field family bool 'needContinueProcessing'
+    .field family valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'packageType'
+    .field family valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContextAttribute' 'securityContextAttributes'
+    .field family uint32 'sequenceNumber'
+    .field family string 'serverPrincipalName'
+    .field family uint8[] 'sessionKey'
+    .field family valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityTargetDataRepresentation' 'targetDataRepresentaion'
+    .field family uint8[] 'token'
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'ContextSizes'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityContext'::'get_ContextSizes'()
+    }
+    .property instance bool 'NeedContinueProcessing'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityContext'::'get_NeedContinueProcessing'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'PackageType'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityContext'::'get_PackageType'()
+    }
+    .property instance uint32 'SequenceNumber'()
+    {
+      .get instance uint32 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityContext'::'get_SequenceNumber'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityContext'::'set_SequenceNumber'(uint32)
+    }
+    .property instance uint8[] 'SessionKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityContext'::'get_SessionKey'()
+    }
+    .property instance uint8[] 'Token'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SspiServerSecurityContext'::'get_Token'()
+    }
+  }
+  .class public abstract sealed 'SspiUtility'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public static hidebysig 
+      uint8[] 'ConcatenateSecurityBuffers'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'targetType')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'ConcatenateReadWriteSecurityBuffers'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'targetType')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      void 'UpdateSecurityBuffers'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBufferType' 'targetType', uint8[] 'buffer')
+    {
+      ret
+    }
+  }
+}
+

@@ -1,0 +1,3604 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Protocols.TestTools.StackSdk.Messages</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel">
+            <summary>
+            A wrapper class for a stream.
+            This class allows reading and writing values which are automatically marshalled.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost,System.IO.Stream)">
+            <summary>
+            Constructs a typed stream which uses underlying stream and default marshaling configuration
+            for block protocols.
+            </summary>
+            <param name="host">The message runtime host.</param>
+            <param name="stream">The NetworkStream object.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost,System.IO.Stream,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration)">
+            <summary>
+            Constructs a channel which uses underlying stream and given marshaler configuration.
+            </summary>
+            <param name="host">The message runtime host.</param>
+            <param name="stream">The general stream object.</param>
+            <param name="marshalingConfig">The marshaling configuration.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.Close">
+            <summary>
+            Closes this channel.
+            This method resets the marshaler and closes the stream.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.Dispose">
+            <summary>
+            Implements <see cref="M:System.IDisposable.Dispose"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.Finalize">
+            <summary>
+            Finalizes this object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.Dispose(System.Boolean)">
+            <summary>
+            Releases resources.
+            </summary>
+            <remarks>
+            Dispose(bool disposing) executes in two distinct scenarios.
+            If the parameter 'disposing' equals true, the method is called directly
+            or indirectly by a user's code. Managed and unmanaged resources
+            can be disposed.
+            If the parameter 'disposing' equals false, the method is called by the 
+            runtime from the inside of the finalizer and you should not refer to 
+            other objects. Therefore, only unmanaged resources can be disposed.
+            </remarks>
+            <param name="disposing">Indicates if Dispose is called by user.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.Read``1">
+            <summary>
+            Reads a value of the given type T from the stream which uses the underlying marshaler to unmarshal it.
+            </summary>
+            <typeparam name="T">The type of the value to be read.</typeparam>
+            <returns>The value read from the channel.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.ReadBytes(System.Int32)">
+            <summary>
+            Reads the given number of bytes from the stream.
+            </summary>
+            <param name="count">The number of bytes which is read from the stream.</param>
+            <returns>The byte array which contains the bytes reading from the stream.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.Peek``1(System.Int32)">
+            <summary>
+            Peeks the value at given offset in the stream without changing stream position.
+            </summary>
+            <typeparam name="T">The type of the value which is peeked from the stream.</typeparam>
+            <param name="offset">The offset which the channel peeks value from.</param>
+            <returns>The value peeked from the channel.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.BeginWriteGroup">
+            <summary>
+            Begins a write group.
+            All subsequent write operations are buffered.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.EndWriteGroup">
+            <summary>
+            Ends a write group. 
+            If the number of nested write groups drops to zero, 
+            the content of the write buffer is flushed to the network.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.Write``1(``0)">
+            <summary>
+            Writes a value of given type T to the stream which uses the underlying marshaler to marshal it.
+            </summary>
+            <typeparam name="T">The type of the value which is written to the stream.</typeparam>
+            <param name="value">The value which is written to the stream.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.WriteBytes(System.Byte[])">
+            <summary>
+            Writes the given bytes of data to the stream.
+            </summary>
+            <param name="data">The byte array which contains the data that is written to the stream.</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.Stream">
+            <summary>
+            Gets underlying stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.Marshaler">
+            <summary>
+            Returns the marshaler which is associated with this channel.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Channel.StreamRegion">
+            <summary>
+            A class which implements IRegion based on Channel.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion">
+            <summary>
+            An interface which represents a contiguous region of bytes.
+            This interface defines a set of operations to read and write in these bytes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.WriteByte(System.Byte)">
+            <summary>
+            Writes a 8 bit value.
+            </summary>
+            <param name="value">The value to be written</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.WriteInt16(System.Int16)">
+            <summary>
+            Writes a 16 bit value.
+            </summary>
+            <param name="value">The value to be written</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.WriteInt32(System.Int32)">
+            <summary>
+            Writes a 32 bit value.
+            </summary>
+            <param name="value">The value to be written</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.WriteInt64(System.Int64)">
+            <summary>
+            Writes a 64 bit value.
+            </summary>
+            <param name="value">The value to be written</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.WriteIntPtr(System.IntPtr)">
+            <summary>
+            Writes a 32/64 bit value.
+            </summary>
+            <param name="value">The value to be written</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.ReadByte">
+            <summary>
+            Reads a 8 bit value.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.ReadInt16">
+            <summary>
+            Reads a 16 bit value.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.ReadInt32">
+            <summary>
+            Reads a 32 bit value.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.ReadInt64">
+            <summary>
+            Reads a 64 bit value.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.ReadIntPtr">
+            <summary>
+            Reads a 32/64 bit value.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.TryReset">
+            <summary>
+            Resets the region to its initial offset. 
+            This method may not be supported by all regions. It returns true on success only.
+            </summary>
+            <returns>Returns true if it resets successfully.</returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.SpaceLeft">
+            <summary>
+            Gets the number of bytes left in the region, or -1 if that is unknown.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.Offset">
+            <summary>
+            Gets the number of bytes written/read so far to the region.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.NativeMemory">
+            <summary>
+            Gets the native memory which is associated with this region, or IntPtr.Zero, if it has no associated native memory.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion.UseSpaceChecking">
+            <summary>
+            Indicates whether check left space when do marshaling/unmarshaling
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.RuntimeHostProvider">
+            <summary>
+            The runtime host provider
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.RuntimeHostProvider.Initialize(System.Boolean,System.Boolean)">
+            <summary>
+            Initialize message runtime host.
+            </summary>
+            <param name="marshallerTrace">If marshaller tracing is enabled</param>
+            <param name="disablevalidation">If validation is disabled</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.RuntimeHostProvider.Cleanup">
+            <summary>
+            Cleanup message runtime host.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.RuntimeHostProvider.RuntimeHost">
+            <summary>
+            Gets runtime host.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost">
+            <summary>
+            A host which provide logger and checker function for message runtime.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.Assert(System.Boolean,System.String,System.Object[])">
+            <summary>
+            Do assert check and log error message when check condition fail.
+            </summary>
+            <param name="condition">the check condition</param>
+            <param name="message">the message</param>
+            <param name="parameters">the parameters for message format</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.Assume(System.Boolean,System.String,System.Object[])">
+            <summary>
+            Do assume check and log error message when check condition fail.
+            </summary>
+            <param name="condition">the check condition</param>
+            <param name="message">the message</param>
+            <param name="parameters">the parameters for message format</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.Debug(System.Boolean,System.String,System.Object[])">
+            <summary>
+            Do debug check and log error message when check condition fail.
+            </summary>
+            <param name="condition">the check condition</param>
+            <param name="message">the message</param>
+            <param name="parameters">the parameters for message format</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.AddLog(Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind,System.String,System.Object[])">
+            <summary>
+            Add message to logger.
+            </summary>
+            <param name="kind">the log kind of the message</param>
+            <param name="message">the message</param>
+            <param name="parameters">the parameters for message format</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.CaptureRequirement(System.String,System.Int32,System.String)">
+            <summary>
+            Capture a requirement.
+            </summary>
+            <param name="protocolName">the protocol short name</param>
+            <param name="requirementId">the requirement id</param>
+            <param name="description">the requirement description</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.MarshallerTrace">
+            <summary>
+            Gets whether enable marshaller tracing.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.DisableValidation">
+            <summary>
+            Gets whether disable validation.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.AssertChecker">
+            <summary>
+            An event which is raised when doing assert check.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.AssumeChecker">
+            <summary>
+            An event which is raised when doing assume check.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.DebugChecker">
+            <summary>
+            An event which is raised when doing debug check.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.MessageLogger">
+            <summary>
+            An event which is raised when logging a meesage.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.RequirementLogger">
+            <summary>
+            An event which is raised when capturing a requirement.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.#ctor">
+            <summary>
+            Disable default constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="marshallerTrace">is marshaller tracing enabled</param>
+            <param name="disablevalidation">is disable validation</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.Assert(System.Boolean,System.String,System.Object[])">
+            <summary>
+            Implement <see cref="M:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.Assert(System.Boolean,System.String,System.Object[])"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.Assume(System.Boolean,System.String,System.Object[])">
+            <summary>
+            Implement <see cref="M:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.Assume(System.Boolean,System.String,System.Object[])"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.Debug(System.Boolean,System.String,System.Object[])">
+            <summary>
+            Implement <see cref="M:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.Debug(System.Boolean,System.String,System.Object[])"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.AddLog(Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind,System.String,System.Object[])">
+            <summary>
+            Implement <see cref="M:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.AddLog(Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind,System.String,System.Object[])"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.CaptureRequirement(System.String,System.Int32,System.String)">
+            <summary>
+            Implement <see cref="M:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.CaptureRequirement(System.String,System.Int32,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.MarshallerTrace">
+            <summary>
+            Implement <see cref="P:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.MarshallerTrace"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.DisableValidation">
+            <summary>
+            Implement <see cref="P:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.DisableValidation"/>
+            </summary>
+        </member>
+        <member name="E:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.AssertChecker">
+            <summary>
+            Implement <see cref="E:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.AssertChecker"/>
+            </summary>
+        </member>
+        <member name="E:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.AssumeChecker">
+            <summary>
+            Implement <see cref="E:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.AssumeChecker"/>
+            </summary>
+        </member>
+        <member name="E:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.DebugChecker">
+            <summary>
+            Implement <see cref="E:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.DebugChecker"/>
+            </summary>
+        </member>
+        <member name="E:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.MessageLogger">
+            <summary>
+            Implement <see cref="E:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.MessageLogger"/>
+            </summary>
+        </member>
+        <member name="E:Microsoft.Protocols.TestTools.StackSdk.Messages.DefaultRuntimeHost.RequirementLogger">
+            <summary>
+            Implement <see cref="E:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost.RequirementLogger"/>
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.EventQueue">
+            <summary>
+            A wrapper class for the event observation queue.
+            This class can be used from programmed test suites.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.EventQueue.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost,System.Int32)">
+            <summary>
+            Initializes event queue for the given test site.
+            </summary>
+            <param name="host">The message runtime host.</param>
+            <param name="maxSize">The max queue size</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.EventQueue.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost)">
+            <summary>
+            Initializes event queue for the given test site.
+            The default max queue size is 200.
+            </summary>
+            <param name="host">The message runtime host.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.EventQueue.Expect``1(System.Reflection.EventInfo,``0)">
+            <summary>
+            Waits for the given event and using given handler to check its contents. 
+            An assertion failure is raised on test site if expected event does not occur after timeout.
+            </summary>
+            <typeparam name="T">The type of the event handler.</typeparam>
+            <param name="eventInfo">The event info of the expected event.</param>
+            <param name="handler">The event handler</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.EventQueue.ExpectOneOf``2(System.Reflection.EventInfo,``0,System.Reflection.EventInfo,``1)">
+            <summary>
+            Waits for one of the given events and uses given handlers to check contents.
+            An assertion failure is raised on test site if any expected event does not occur after timeout. 
+            </summary>
+            <typeparam name="T1">The type of the first event handler.</typeparam>
+            <typeparam name="T2">The type of the second event handler.</typeparam>
+            <param name="info1">The event info of the first expected event.</param>
+            <param name="handler1">The first event handler.</param>
+            <param name="info2">The event info of the second expected event.</param>
+            <param name="handler2">The second event handler.</param>
+            <returns>0 if the first event occurs, or 1 if the second event occurs.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.EventQueue.LogEvent(System.Reflection.EventInfo,System.Object[])">
+            <summary>
+            Logs an event occurence in the event queue.
+            </summary>
+            <param name="info">The event info to be logged.</param>
+            <param name="arguments">The extra arguments for logging.</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.EventQueue.Timeout">
+            <summary>
+            Gets or sets timeout value which is to be used when expecting events.
+            The default timeout value is 5 seconds.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.AvailableEvent">
+            <summary>
+            A type to describe an available event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.AvailableEvent.#ctor(System.Reflection.EventInfo,System.Object,System.Object[])">
+            <summary>
+            Internal constructor.
+            </summary>
+            <param name="eventInfo">The event identified by its reflection representation</param>
+            <param name="target">The target of the event (the instance object where the event belongs too)</param>
+            <param name="parameters">Parameters passed to the event</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.AvailableEvent.ToString">
+            <summary>
+            Delivers readable representation.
+            </summary>
+            <returns>the representation string</returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.AvailableEvent.Event">
+            <summary>
+            The event identified by its
+            reflection representation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.AvailableEvent.Target">
+            <summary>
+            The target of the event (the instance object where the event
+            belongs too), or null, if it is a static or an adapter event.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.AvailableEvent.Parameters">
+            <summary>
+            The parameters passed to the event.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.IdentifierBinding`1">
+            <summary>
+            An auxiliary class for implementing abstract identifier bindings.
+            </summary>
+            <typeparam name="Target">The target type to which the abstract identifier is bound.</typeparam>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost)">
+            <summary>
+            Constructs an identifier binding instance. 
+            A test site must be passed so that the binding can generate assertions and log entries.
+            </summary>
+            <param name="host">The message runtime host.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.#ctor">
+            <summary>
+            Constructs an identifier binding instance. 
+            Only use when no test site is needed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.Reset">
+            <summary>
+            Resets the identifier binding.
+            This method clears all previous definitions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.Bind(System.Int32,`0)">
+            <summary>
+            Binds the given identifier to the given target.
+            If the identifier is already mapped to a different target, 
+            or if the target is already mapped to a different identifier,
+            an assertion failure is raised on the test site.
+            </summary>
+            <param name="id">The identifier</param>
+            <param name="target">The target</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.Unbind(System.Int32)">
+            <summary>
+            Unbinds the given identifier.
+            This method does nothing if the identifier is not bound.
+            </summary>
+            <param name="id">The identifier</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.GetIdentifier(`0)">
+            <summary>
+            Gets the identifier which is associated with the given target. 
+            An assertion failure is raised on test site if the target has no binding.
+            </summary>
+            <param name="target">The target</param>
+            <returns>The identifier of the target</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.GetOrCreateIdentifier(`0)">
+            <summary>
+            Gets the identifier associated with the given target, or creates a new identifier
+            if target not bound.
+            </summary>
+            <param name="target">The target</param>
+            <returns>The identifier of the target</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.GetTarget(System.Int32)">
+            <summary>
+            Gets the target which is associated with the given identifier. 
+            An assertion failure is raised on test site if the identifier has no binding.
+            </summary>
+            <param name="id">The identifier</param>
+            <returns>The target</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.IsIdentifierBound(System.Int32)">
+            <summary>
+            Checks if the identifier is bound.
+            </summary>
+            <param name="id">The identifier</param>
+            <returns>Returns true if the identifier is bound.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.IsTargetBound(`0)">
+            <summary>
+            Checks if the target is bound.
+            </summary>
+            <param name="target">The target</param>
+            <returns>Returns true if the target is bound.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.IdentifierBinding`1.GetUnusedIdentifier">
+            <summary>
+            Gets a value for an identifier which is not used in the binding.
+            This method can be used for creating a new binding.
+            </summary>
+            <returns>Returns the unused identifier</returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.IdentifierBinding`1.Dictionary">
+            <summary>
+            Gets the current binding as a dictionary.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.RequirementCaptureEventArgs">
+            <summary>
+            The class which represent event arguments used by eventhandler API in <see cref="T:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost"/> 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.RequirementCaptureEventArgs.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.RequirementCaptureEventArgs.#ctor(System.Int32,System.String)">
+            <summary>
+            Overloaded Constructor.
+            </summary>
+            <param name="requirementId">the requirement id</param>
+            <param name="description">the description of the requirement</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.RequirementCaptureEventArgs.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            Overloaded Constructor.
+            </summary>
+            <param name="protocolName">the shot name of the protocol</param>
+            <param name="requirementId">the requirement id</param>
+            <param name="description">the description of the requirement</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.RequirementCaptureEventArgs.ProtocolName">
+            <summary>
+            Gets the protocol short name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.RequirementCaptureEventArgs.RequirementId">
+            <summary>
+            Gets the requirement id.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.RequirementCaptureEventArgs.RequirementDescription">
+            <summary>
+            Gets the requirement description.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageLogEventArgs">
+            <summary>
+            The class which represent event arguments used by eventhandler API in <see cref="T:Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost"/> 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageLogEventArgs.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageLogEventArgs.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind,System.String,System.Object[])">
+            <summary>
+            Overloaded constructor.
+            </summary>
+            <param name="kind">message log type</param>
+            <param name="message">the message to be logged</param>
+            <param name="parameters">extended parameters</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageLogEventArgs.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind,System.Boolean,System.String,System.Object[])">
+            <summary>
+            Overloaded constructor.
+            </summary>
+            <param name="kind">message log type</param>
+            <param name="condition">the check condition</param>
+            <param name="message">the error message to be logged</param>
+            <param name="parameters">extended parameters</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageLogEventArgs.Condition">
+            <summary>
+            Gets the check condition.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageLogEventArgs.Message">
+            <summary>
+            Gets the message to be logged.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageLogEventArgs.LogEntryKind">
+            <summary>
+            Gets the log entry kind of the message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageLogEventArgs.Parameters">
+            <summary>
+            Gets the parameters of the message format.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind">
+            <summary>
+            An enumeration type which represents the types of message log entries. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind.UnKnown">
+            <summary>
+            Indicates no log entry kind specified.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind.Checkpoint">
+            <summary>
+            Indicates a check point has been passed. Captured requirements should be logged as this kind.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind.CheckSucceeded">
+            <summary>
+            Indicates an assertion verification has passed.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind.CheckFailed">
+            <summary>
+            Indicates an assertion verification has failed.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind.Comment">
+            <summary>
+            A free-style log entry for comment information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind.Warning">
+            <summary>
+            A free-style log entry for warning information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.LogKind.Debug">
+            <summary>
+            A free-style log entry for debugging information. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingType">
+            <summary>
+            Marshal and Unmarshal
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingType.Marshal">
+            <summary>
+            Indicates marshal the message.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingType.Unmarshal">
+            <summary>
+            Indicates unmarshal the message.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor">
+            <summary>
+            A structure which describes a marshaling descriptor.
+            It consists of a type and a custom attribute provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.type">
+            <summary>
+            The type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.attributes">
+            <summary>
+            The custom attribute provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.containerType">
+            <summary>
+            The container type which contains the type in this marshaling descriptor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.#ctor(System.Type,System.Reflection.ICustomAttributeProvider)">
+            <summary>
+            Constructs a marshaling descriptor.
+            </summary>
+            <param name="type">The type for the marshaling descriptor.</param>
+            <param name="attributes">The custom attribute provider.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.#ctor(System.Type,System.Reflection.ICustomAttributeProvider,System.Type)">
+            <summary>
+            Constructs a marshaling descriptor.
+            </summary>
+            <param name="type">The type for the marshaling descriptor.</param>
+            <param name="attributes">The custom attribute provider.</param>
+            <param name="containerType">The container type.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.#ctor(System.Type)">
+            <summary>
+            Constructs a marshaling descriptor by using the EmptyAttributeProvider.
+            </summary>
+            <param name="type">The type for the marshaling descriptor.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.ToString">
+            <summary>
+            Gets a readable representation of the marshaling descriptor.
+            </summary>
+            <returns>Returns readable representation of the marshaling descriptor as string.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.HasAttribute(System.Reflection.ICustomAttributeProvider,System.Type)">
+            <summary>
+            A helper function for checking whether an attribute is defined.
+            </summary>
+            <param name="provider">The custom attribute provider.</param>
+            <param name="expectedType">The expected type.</param>
+            <returns>Returns true if the type has the attribute.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.TryGetAttribute``1(System.Reflection.ICustomAttributeProvider,System.Type,System.String,``0@)">
+            <summary>
+            A helper function for checking whether an attribute is defined and delivers a field value if so.
+            </summary>
+            <typeparam name="T">Type template for field value</typeparam>
+            <param name="provider">The customer attribute provider.</param>
+            <param name="expectedType">The expected type.</param>
+            <param name="fieldName">The field name.</param>
+            <param name="fieldValue">The field value.</param>
+            <returns>Returns true if gets the field value successfully.</returns>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.IsNullable">
+            <summary>
+            Indicates the type is nullable.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.Type">
+            <summary>
+            Gets the type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.Attributes">
+            <summary>
+            Gets the custom attribute provider.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor.ContainerType">
+            <summary>
+            Gets the container type.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler">
+            <summary>
+            An interface which describes a type marshaler.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler.GetSize(Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,System.Object)">
+            <summary>
+            Gets the size of the marshaled value in the native environment. 
+            If the size depends on the value and the value is unknown (null), 
+            the marshaler should return negative value to indicate this.
+            </summary>
+            <param name="marshaler">The marshaler.</param>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <param name="value">The marshaled value.</param>
+            <returns>The size of the marshaled value.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler.GetAlignment(Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor)">
+            <summary>
+            Gets the alignment of the marshaled value in the native environment.
+            </summary>
+            <param name="marshaler">The marshaler.</param>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <returns>The alignment</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler.GetNativeType(Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor)">
+            <summary>
+            Gets the native type representation, if any.
+            </summary>
+            <param name="marshaler">The marshaler.</param>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <returns>The native type representation.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler.Marshal(Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,System.Object)">
+            <summary>
+            Marshals the given value into its native representation.
+            </summary>
+            <param name="marshaler">The marshaler.</param>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <param name="value">The value to be marshaled.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler.Unmarshal(Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor)">
+            <summary>
+            Unmarshals a value from the native representation.
+            </summary>
+            <param name="marshaler">The marshaler.</param>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <returns>The unmarshaled value.</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IGenericTypeMarshaler">
+            <summary>
+            An interface which describes a generic type marshaler. 
+            It can be instantiated for given type arguments.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IGenericTypeMarshaler.Instantiate(System.Type,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler[])">
+            <summary>
+            Instantiates the generic marshaler and delivers a type marshaler.
+            </summary>
+            <param name="baseType">The instance type for the generic type marshaler.</param>
+            <param name="elementMarshalers">The array which contains the type marshalers for the given generic type.</param>
+            <returns>The type marshaler.</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration">
+            <summary>
+            A class which represents a marshaling configuration.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterMarshaler(System.Type,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler)">
+            <summary>
+            Registers a marshaler for the given type.
+            </summary>
+            <param name="type">The type to be marshaled.</param>
+            <param name="typeMarshaler">The type marshaler corresponding to the given type.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterGenericMarshaler(System.Type,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IGenericTypeMarshaler)">
+            <summary>
+            Registers a generic marshaler for the given generic type.
+            </summary>
+            <param name="genericType">The generic type to be marshaled.</param>
+            <param name="genericTypeMarshaler">The marshaler corresponding to the given generic type.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterGenericMarshalerInline(System.Type,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IGenericTypeMarshaler)">
+            <summary>
+            Registers an inline generic marshaler for the given generic type.
+            </summary>
+            <param name="genericType">The generic type to be marshaled.</param>
+            <param name="genericTypeMarshaler">The marshaler corresponding to the given generic type.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterArrayMarshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IGenericTypeMarshaler)">
+            <summary>
+            Registers a generic marshaler for array types.
+            </summary>
+            <param name="genericTypeMarshaler">The marshaler for the generic type.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterArrayMarshalerInline(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IGenericTypeMarshaler)">
+            <summary>
+            Registers an inline generic marshaler for array types.
+            </summary>
+            <param name="genericTypeMarshaler">The marshaler for the generic type.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterIndirectMarshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IGenericTypeMarshaler)">
+            <summary>
+            Registers a generic marshaler for the elements with Indirect attribute.
+            </summary>
+            <param name="genericTypeMarshaler">The marshaler for the generic type.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterStructMarshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler)">
+            <summary>
+            Registers a struct marshaler.
+            </summary>
+            <param name="typeMarshaler">The type marshaler.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterUnionMarshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler)">
+            <summary>
+            Registers an array marshaler.
+            </summary>
+            <param name="typeMarshaler">The type marshaler.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterBitMarshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler)">
+            <summary>
+            Registers a bit marshaler.
+            </summary>
+            <param name="typeMarshaler">The type marshaler</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterAsn1Marshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.EncodingRule,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler)">
+            <summary>
+            Registers a ASN1 marshaler
+            </summary>
+            <param name="rule">The encoding rule</param>
+            <param name="typeMarshaler">The type marshaler</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterStringMarshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler)">
+            <summary>
+            Registers a string marshaler
+            </summary>
+            <param name="typeMarshaler">The type marshaler</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterStringMarshalerInline(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler)">
+            <summary>
+            Registers an inline string marshaler
+            </summary>
+            <param name="typeMarshaler">The type marshaler</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterStringASCIIMarshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler)">
+            <summary>
+            Registers an ASCII string marshaler
+            </summary>
+            <param name="typeMarshaler">The type marshaler</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.RegisterStringASCIIMarshalerInline(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITypeMarshaler)">
+            <summary>
+            Registers an inline ASCII string marshaler
+            </summary>
+            <param name="typeMarshaler">The type marshaler</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.GetMarshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor)">
+            <summary>
+            Looks up marshaler for given marshaling descriptor.
+            </summary>
+            <param name="marshaler">The expected marshaler.</param>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <returns>The type marshaler.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration.GetMarshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,System.Boolean,System.Boolean)">
+            <summary>
+            Looks up marshaler for given marshaling descriptor, with or without processing indirect attribute and identifier binding attribute. 
+            </summary>
+            <param name="marshaler">The expected marshaler.</param>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <param name="processIndirect">Indicates if processing Indirect attribute.</param>
+            <param name="processBinding">Indicates if processing IdentifierBinding attribute.</param>
+            <returns>The type marshaler.</returns>
+            <remarks>Instead of overiding this method, considers registering your marshalers in the constructor
+            of a derived class.</remarks>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.NativeMarshalingConfiguration">
+            <summary>
+            A marshaling configuration which works for native code bindings, like RPC calls. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.NativeMarshalingConfiguration.#ctor">
+            <summary>
+            Constructs the native marshaling configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.NativeMarshalingConfiguration.Configuration">
+            <summary>
+            Gets the default native marshaling configuration
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BlockMarshalingConfiguration">
+            <summary>
+            A marshaling configuration which works for block protocols that exchange C-like structs. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BlockMarshalingConfiguration.#ctor">
+            <summary>
+            Constructs the block marshaling configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BlockMarshalingConfiguration.Configuration">
+            <summary>
+            Gets the default block marshaling configuration
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Asn1BufferedStream">
+            <summary>
+            A stream that provides a wrapper for Marshaler so that Asn.1 decode buffer can get bytes from Marshaler.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Asn1BerMarshaler">
+            <summary>
+            A marshaler used to marshal Asn.1 type by BER.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Asn1DerMarshaler">
+            <summary>
+            A marshaler used to marshal Asn.1 type by DER.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Asn1PerMarshaler">
+            <summary>
+            A marshaler used to marshal Asn.1 type by PER.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.InitializerAttribute">
+            <summary>
+            An attribute which indicates that an instance method of a derived class is an initializer. 
+            This initializer is going to be called by MessageUtils.Create.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.ValidatorAttribute">
+            <summary>
+            An attribute which indicates that an instance method of a derived class is a validator. 
+            This validator is going to be called by MessageUtils.Validate.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseExpression">
+            <summary>
+            The Base Expression
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression">
+            <summary>
+            Interface for all types of expressions
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression.Accept(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor)">
+            <summary>
+            Accept an expression visitor
+            </summary>
+            <param name="visitor">The expression visitor</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseExpression.Accept(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor)">
+            <summary>
+            Accept an expression visitor
+            </summary>
+            <param name="visitor">The expression visitor</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseNode">
+            <summary>
+            The Base Node
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.INode">
+            <summary>
+            Interface for all types of nodes
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.INode.AddChild(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.INode)">
+            <summary>
+            Add a child node
+            </summary>
+            <param name="child">A child node</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.INode.GetChild(System.Int32)">
+            <summary>
+            Get a child node by index
+            </summary>
+            <param name="childIndex">The child node index</param>
+            <returns>The child node</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.INode.DumpTree">
+            <summary>
+            Dump the tree to a string expression
+            </summary>
+            <returns>The string expression</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.INode.ToString">
+            <summary>
+            A String that represents the current Object.
+            </summary>
+            <returns>The string representation</returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.INode.ChildCount">
+            <summary>
+            Count of its children nodes
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.INode.Type">
+            <summary>
+            Token type
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.INode.Text">
+            <summary>
+            Node text
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseNode.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseNode.GetChild(System.Int32)">
+            <summary>
+            Get a child node by index
+            </summary>
+            <param name="childIndex">The specific index</param>
+            <returns>The child node</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseNode.AddChild(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.INode)">
+            <summary>
+            Add a child node
+            </summary>
+            <param name="child">The child node</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseNode.ToString">
+            <summary>
+            A String that represents the current Object.
+            </summary>
+            <returns>The string representation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseNode.DumpTree">
+            <summary>
+            Convert the tree (based on the base node) to a string expression
+            </summary>
+            <returns>The tree's string expression</returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseNode.ChildCount">
+            <summary>
+            Children count of the base node
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseNode.Type">
+            <summary>
+            Token type
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseNode.Text">
+            <summary>
+            Node text
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType">
+            <summary>
+            Binary Expression Type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.And">
+            <summary>
+            The AND operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.Or">
+            <summary>
+            The "||" operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.Equal">
+            <summary>
+            The "==" operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.NotEqual">
+            <summary>
+            The "!=" operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.LesserOrEqual">
+            <summary>
+            The compare operation (less than or equal to)
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.GreaterOrEqual">
+            <summary>
+            The compare operation (greater than or equal to)
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.Lesser">
+            <summary>
+            The compare operation (less than)
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.Greater">
+            <summary>
+            The compare operation (greater than)
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.Minus">
+            <summary>
+            The "-" operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.Plus">
+            <summary>
+            The "+" operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.Mod">
+            <summary>
+            The "%" operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.Div">
+            <summary>
+            The "/" operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.Multiply">
+            <summary>
+            The "*" operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.ShiftLeft">
+            <summary>
+            The shift left operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.ShiftRight">
+            <summary>
+            The shift right operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.BitAnd">
+            <summary>
+            The Bit AND operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.BitOr">
+            <summary>
+            The "|" operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType.BitXor">
+            <summary>
+            The "^" operation
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpression">
+            <summary>
+            Binary Expression
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpression.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression)">
+            <summary>
+            Binary expression
+            </summary>
+            <param name="type">Binary expression type</param>
+            <param name="leftExpression">The left expression</param>
+            <param name="rightExpression">The right expression</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpression.Accept(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor)">
+            <summary>
+            Accept an expression visitor
+            </summary>
+            <param name="visitor">The expression visitor</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpression.Type">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpression.LeftExpression">
+            <summary>
+            Left expression
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpression.RightExpression">
+            <summary>
+            Right expression
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ConditionalExpression">
+            <summary>
+            Conditional Expression
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ConditionalExpression.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression)">
+            <summary>
+            Conditional expression
+            </summary>
+            <param name="firstExpression">First expression</param>
+            <param name="secondExpression">Second expression</param>
+            <param name="thirdExpression">Third expression</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ConditionalExpression.Accept(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor)">
+            <summary>
+            Accept an expression visitor
+            </summary>
+            <param name="visitor">The expression visitor</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ConditionalExpression.FirstExpression">
+            <summary>
+            First expression
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ConditionalExpression.SecondExpression">
+            <summary>
+            Second expression
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ConditionalExpression.ThirdExpression">
+            <summary>
+            Third expression
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.LengthMode">
+            <summary>
+            Length Mode
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.LengthMode.Bit">
+            <summary>
+            Marshaling in Bit Mode
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.LengthMode.Byte">
+            <summary>
+            Marshaling in Byte Mode
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.DatatypeInfoProvider">
+            <summary>
+            Datatype Info Provider
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.DatatypeInfoProvider.IsPredefinedDatatype(System.String)">
+            <summary>
+            Check if the given data type is predefined.
+            </summary>
+            <param name="datatypeName">Name of the data type</param>
+            <returns>True if it is predefined</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.DatatypeInfoProvider.isPredefinedModifier(System.String)">
+            <summary>
+            Check if the given type modifier is predefined.
+            </summary>
+            <param name="modifier">The given type modifier</param>
+            <returns>True if it is predefined</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.DatatypeInfoProvider.GetRpcDatatypeLength(System.String)">
+            <summary>
+            Get RPC data type length
+            </summary>
+            <param name="datatypeName">Name of the data type</param>
+            <returns>The RPC data type length</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.DatatypeInfoProvider.GetDatatypeLength(System.String,System.String@,System.String@)">
+            <summary>
+            Get data type length.
+            </summary>
+            <param name="datatypeName">Name of the data type</param>
+            <param name="length">The data type length (in string format)</param>
+            <param name="mode">The length mode (in string format)</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionBuilder">
+            <summary>
+            The Expression Builder
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionBuilder.Build(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BaseNode)">
+            <summary>
+            Build expression based on the input base node
+            </summary>
+            <param name="node">The input base node</param>
+            <returns>The expression built</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionEvaluatorException">
+            <summary>
+            Expression Evaluator Exception
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionEvaluatorException.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionEvaluatorException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="message">Message description</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionEvaluatorException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="message">Message description</param>
+            <param name="innerException">The inner exception</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionEvaluatorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="info">The serialization info</param>
+            <param name="context">The streaming context</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ScannerState">
+            <summary>
+            The Scanner State
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ScannerState.Space">
+            <summary>
+            Scan by Space
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ScannerState.Number">
+            <summary>
+            Scan by Number
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ScannerState.Identifier">
+            <summary>
+            Scan by Identifier
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ScannerState.Operator">
+            <summary>
+            Scan by Operator
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer">
+            <summary>
+            The Expression Lexer
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="expression">The expression</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.GetNextToken">
+            <summary>
+            Get the next token
+            </summary>
+            <returns>The next token</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.Tokenize(System.String)">
+            <summary>
+            Tokenize the input expression
+            </summary>
+            <param name="expression">The input expression</param>
+            <returns>Tokens</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.IsIdentifier(System.Char,System.Boolean)">
+            <summary>
+            Check if the input char is an identifier
+            </summary>
+            <param name="ch">The input char</param>
+            <param name="start">Whether the char is at the beginning of an expression</param>
+            <returns>True if the input char is an identifier</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.IsNumber(System.Char,System.Boolean)">
+            <summary>
+            Check if the input char is a number
+            </summary>
+            <param name="ch">The input char</param>
+            <param name="start">Whether the char is at the beginning of an expression</param>
+            <returns>True if the input char is a number</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.IsWhitespace(System.Char)">
+            <summary>
+            Check if the input char is a white space
+            </summary>
+            <param name="ch">The input char</param>
+            <returns>True if the input char is a white space</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.IsOperator(System.Char)">
+            <summary>
+            Check if the input char is an operator
+            </summary>
+            <param name="ch">The input char</param>
+            <returns>True if the input char is an operator</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.IsSeparator(System.Char)">
+            <summary>
+            Check if the input char is a separator
+            </summary>
+            <param name="ch">The input char</param>
+            <returns>True if the input char is a seperator</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.IsSupportedOperator(System.String)">
+            <summary>
+            Check if the input operator is supported
+            </summary>
+            <param name="op">The input operator (in string format)</param>
+            <returns>True if the input operator is supported</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.MakeOperatorToken(System.String)">
+            <summary>
+            Make token for the input operator 
+            </summary>
+            <param name="op">The input operator (in string format)</param>
+            <returns>The token made based on the input operator</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.MakeNumberToken(System.String)">
+            <summary>
+            Make token for the input number
+            </summary>
+            <param name="number">The input number (in string format)</param>
+            <returns>The token made based on the input number</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.MakeIdentifierToken(System.String)">
+            <summary>
+            Make token for the input identifier
+            </summary>
+            <param name="identifier">The input identifier (in string format)</param>
+            <returns>The token made based on the input identifier</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.MakeSeparatorToken(System.String)">
+            <summary>
+            Make token for the input separator
+            </summary>
+            <param name="separator">The input separator (in string format)</param>
+            <returns>The token made based on the input separator</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.MakeInvalidToken(System.String)">
+            <summary>
+            Make invalid token for the input string
+            </summary>
+            <param name="invalid">The input string</param>
+            <returns>The token made based on the input string</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer.MakeTokenFromState(System.String,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ScannerState)">
+            <summary>
+            Make token from token string and scanner state
+            </summary>
+            <param name="token">The input token string</param>
+            <param name="state">The scanner state</param>
+            <returns>The token made based on the scanner state</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionNode">
+            <summary>
+            Expression Node
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionNode.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionNode.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IToken)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="token">Token of the expression node</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionNode.ToString">
+            <summary>
+            A String that represents the current Object.
+            </summary>
+            <returns>The string representation</returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionNode.Type">
+            <summary>
+            Token type
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionNode.Text">
+            <summary>
+            Node text
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser">
+            <summary>
+            The Expression Parser
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITokenStream,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stream">Stream of tokens</param>
+            <param name="context">Evaluation context</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Parse">
+            <summary>
+            Parse
+            </summary>
+            <returns>An expression node</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.GetNextToken">
+            <summary>
+            Get the next token
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Expect(System.String)">
+            <summary>
+            Expect a token
+            </summary>
+            <param name="expectedToken">The expected token</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Try(System.String)">
+            <summary>
+            Try get the input token's next token
+            </summary>
+            <param name="token">The input token</param>
+            <returns>True if the next token can be got</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.LazyOr">
+            <summary>
+            The Lazy OR operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.LazyAnd">
+            <summary>
+            The Lazy AND operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.BitOr">
+            <summary>
+            The Bit OR operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.BitXor">
+            <summary>
+            The Bit XOR operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.BitAnd">
+            <summary>
+            The Bit AND operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Relation">
+            <summary>
+            The compare operation
+            (equals to, equals not, 
+            less than, less than or equals to, 
+            greater than, greater than or equals to)
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Shift">
+            <summary>
+            The bit shift operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Add">
+            <summary>
+            The Add operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Multiply">
+            <summary>
+            The Multiply operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Unary">
+            <summary>
+            The Unary operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Sizeof">
+            <summary>
+            The Sizeof operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Literal">
+            <summary>
+            The Literal operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.Primary">
+            <summary>
+            The Primary operation
+            </summary>
+            <returns>An expression node created based on the operation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.TryConvertNumber(System.String,System.Int32@)">
+            <summary>
+            Try convert a string to an interger
+            </summary>
+            <param name="representation">The input string</param>
+            <param name="value">The integer</param>
+            <returns>True if conversion succeeded</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionParser.TryConvertType(System.String,System.Type@)">
+            <summary>
+            Try convert a string to a specific type
+            </summary>
+            <param name="representation">The input string</param>
+            <param name="type">A specific type</param>
+            <returns>True if the conversion succeeded</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor">
+            <summary>
+            Interface for all expression visitors
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression)">
+            <summary>
+            Visit an expression
+            </summary>
+            <param name="expression">The expression to be visited</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpression)">
+            <summary>
+            Visit a unary expression
+            </summary>
+            <param name="expression">The expression to be visited</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpression)">
+            <summary>
+            Visit a binary expression
+            </summary>
+            <param name="expression">The expression to be visited</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ConditionalExpression)">
+            <summary>
+            Visit a conditional expression
+            </summary>
+            <param name="expression">The expression to be visited</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpression)">
+            <summary>
+            Visit a value expression
+            </summary>
+            <param name="expression">The expression to be visited</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.FunctionExpression)">
+            <summary>
+            Visit a function expression
+            </summary>
+            <param name="expression">The expression to be visited</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor">
+            <summary>
+            Expression Visitor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext)">
+            <summary>
+            Expression visitor
+            </summary>
+            <param name="context">Evaluation context</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression)">
+            <summary>
+            Visit an expression (method not implemented)
+            </summary>
+            <param name="expression">The expression</param>
+            <exception cref="T:System.NotImplementedException">Thrown if this method is called</exception>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpression)">
+            <summary>
+            Visit a binary expression
+            </summary>
+            <param name="expression">The binary expression</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the input parameter is null</exception>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpression)">
+            <summary>
+            Visit a value expression
+            </summary>
+            <param name="expression">The expression</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the input parameter is null</exception>        
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.FunctionExpression)">
+            <summary>
+            Visit a function expression
+            </summary>
+            <param name="expression">The expression</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the input parameter is null</exception>        
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpression)">
+            <summary>
+            Visit a unary expression
+            </summary>
+            <param name="expression">The expression</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the input parameter is null</exception>        
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor.Visit(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ConditionalExpression)">
+            <summary>
+            Visit a conditional expression
+            </summary>
+            <param name="expression">The expression</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the input parameter is null</exception>        
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor.GetBinaryOperatorString(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BinaryExpressionType)">
+            <summary>
+            Get binary operator string by expression type
+            </summary>
+            <param name="type">The binary expression type</param>
+            <returns>The binary operator string</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor.GetUnaryOperatorString(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpressionType)">
+            <summary>
+            Get unary operator string by unary expression type
+            </summary>
+            <param name="type">The unary expression type</param>
+            <returns>The unary operator string</returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionVisitor.EvaluationResult">
+            <summary>
+            Evaluation result
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.FunctionExpression">
+            <summary>
+            Function Expression
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.FunctionExpression.#ctor(System.String,System.String,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="functionName">Function name</param>
+            <param name="text">Function text</param>
+            <param name="expression">Function expression</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.FunctionExpression.Accept(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor)">
+            <summary>
+            Accept an expression visitor
+            </summary>
+            <param name="visitor">The expression visitor</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.FunctionExpression.FunctionName">
+            <summary>
+            Function name
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.FunctionExpression.Expression">
+            <summary>
+            Function expression
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.FunctionExpression.Text">
+            <summary>
+            Expression text
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext">
+            <summary>
+            An interface which the evaluation-enabled class must derived from.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext.TryResolveSymbol(System.String,System.Int32@)">
+            <summary>
+            Trys to resolve a given symbol.
+            </summary>
+            <param name="symbol">The symbol to be resolved</param>
+            <param name="value">The value</param>
+            <returns>Returns true if it resolves the symbol successfully.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext.TryResolveCustomType(System.String,System.String@)">
+            <summary>
+            Trys to resolve a custom type.
+            </summary>
+            <param name="typeName">The custom type to be resolved</param>
+            <param name="typeInfo">The infomation(typename or size, etc.) of the custom type</param>
+            <returns>Returns true if it resolves the type successfully.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext.TryResolveDereference(System.String,System.Int32@,System.Int32@)">
+            <summary>
+            Trys to resolve a given pointer.
+            </summary>
+            <param name="variable">The pointer to be resolved</param>
+            <param name="value">The dereferened value</param>
+            <param name="pointerValue">The pointer value</param>
+            <returns>True if the given pointer is resolved</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext.ReportError(System.String)">
+            <summary>
+            Reports the error when evaluating the symbol.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext.Variables">
+            <summary>
+            Provides defined variables.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType">
+            <summary>
+            Token Type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.EndOfFile">
+            <summary>
+            End of file
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Invalid">
+            <summary>
+            Token invalid
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Unknown">
+            <summary>
+            Token unknown
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Empty">
+            <summary>
+            Token empty
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Plus">
+            <summary>
+            Plus "+"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Minus">
+            <summary>
+            Minus "-"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Multiply">
+            <summary>
+            Multiply "*"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Divide">
+            <summary>
+            Divide "/"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Mod">
+            <summary>
+            Mod "%"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.ShiftLeft">
+            <summary>
+            Shift left
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.ShiftRight">
+            <summary>
+            Shift right
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Equal">
+            <summary>
+            Equals to "=="
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.NotEqual">
+            <summary>
+            Not equals to "!="
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Lesser">
+            <summary>
+            Less than
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Greater">
+            <summary>
+            Greater than
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.LesserOrEqual">
+            <summary>
+            Less than or equals to
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.GreaterOrEqual">
+            <summary>
+            Greater than or equals to
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.BitXor">
+            <summary>
+            Bit XOR "^"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.BitAnd">
+            <summary>
+            Bit AND
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.BitOr">
+            <summary>
+            Bit OR "|"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.And">
+            <summary>
+            Conditional AND
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Or">
+            <summary>
+            Conditional OR "||"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Conditional">
+            <summary>
+            Conditional question mark "?"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Colon">
+            <summary>
+            Colon ":"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Integer">
+            <summary>
+            Integer
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.String">
+            <summary>
+            String
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Separator">
+            <summary>
+            Separator
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.SizeOf">
+            <summary>
+            SizeOf
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Bracket">
+            <summary>
+            Bracket
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Comma">
+            <summary>
+            Comma
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Variable">
+            <summary>
+            Variable
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Primary">
+            <summary>
+            Primary
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Function">
+            <summary>
+            Function
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Not">
+            <summary>
+            Not "!"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.BitNot">
+            <summary>
+            Bit Not "~"
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Negative">
+            <summary>
+            Negative
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Positive">
+            <summary>
+            Positive
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType.Dereference">
+            <summary>
+            Dereference "*"
+            (the dereference operator, which allows reading and writing to a pointer)
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IToken">
+            <summary>
+            Interface for all tokens
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IToken.Type">
+            <summary>
+            The token type
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IToken.Text">
+            <summary>
+            Token text
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITokenStream">
+            <summary>
+            Interface for token streams
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ITokenStream.NextToken">
+            <summary>
+            Get the next token in stream
+            </summary>
+            <returns>The next token</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.LengthAttribute">
+            <summary>
+            An attribute which indicates the length of a runtime value. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.LengthAttribute.#ctor(System.String)">
+            <summary>
+            Constructs a length attribute by using the given length expression.
+            </summary>
+            <param name="expression">The length expression</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SizeAttribute">
+            <summary>
+            An attribute which indicates the size of a runtime value. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SizeAttribute.#ctor(System.String)">
+            <summary>
+            Constructs a size attribute by using the given size expression.
+            </summary>
+            <param name="expression">The size expression.</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StaticSizeAttribute">
+            <summary>
+            An attribute which indicates the static size of a runtime value. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StaticSizeAttribute.#ctor(System.Int32)">
+            <summary>
+            Constructs a static size attribute by using the given static size.
+            </summary>
+            <param name="size">The static size.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StaticSizeAttribute.#ctor(System.Int32,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StaticSizeMode)">
+            <summary>
+            Constructs a static size attribute by using given static size and static size mode.
+            </summary>
+            <param name="size">The static size.</param>
+            <param name="mode">The mode for calculating the size.</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StaticSizeMode">
+            <summary>
+            An enumeration type which defines the mode for evaluating the static size expression.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StaticSizeMode.Bytes">
+            <summary>
+            Indicates to evaluate static size of bytes.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StaticSizeMode.Elements">
+            <summary>
+            Indicates to evaluate static size of elements.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SwitchAttribute">
+            <summary>
+            An attribute which indicates the switch expression of a runtime value. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SwitchAttribute.#ctor(System.String)">
+            <summary>
+            Constructs a switch attribute by using the given switch expression.
+            </summary>
+            <param name="expression">The switch expression</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.CaseAttribute">
+            <summary>
+            An attribute which indicates the case of a union.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.CaseAttribute.#ctor(System.String)">
+            <summary>
+            Constructs a case attribute by using the given case expression.
+            </summary>
+            <param name="expression">The case expression.</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.CaseDefaultAttribute">
+            <summary>
+            An attribute which indicates the default case of the union. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.CaseDefaultAttribute.#ctor">
+            <summary>
+            Constructs a case default attribute.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.RangeAttribute">
+            <summary>
+            An attribute which indicates the range expression of a runtime value. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.RangeAttribute.#ctor(System.String)">
+            <summary>
+            Constructs a range attribute by using the given range expression.
+            </summary>
+            <param name="expression">The range expression.</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StringEncoding">
+            <summary>
+            An enum type which specifies the encoding type for string.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StringEncoding.Unicode">
+            <summary>
+            Unicode encoding
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StringEncoding.ASCII">
+            <summary>
+            ASCII encoding
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StringAttribute">
+            <summary>
+            An attribute which indicates the string property of a runtime value. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StringAttribute.#ctor">
+            <summary>
+            Constructs a string attribute.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StringAttribute.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.StringEncoding)">
+            <summary>
+            Constructs a string attribute with specified encoding type.
+            </summary>
+            <param name="encodingType">The string encoding type</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UniqueAttribute">
+            <summary>
+            An attribute which indicates the unique property of a runtime value. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UniqueAttribute.#ctor">
+            <summary>
+            Constructs a unique attribute.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.HandleAttribute">
+            <summary>
+            An attribute which indicates the handle property of a runtime value. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.HandleAttribute.#ctor">
+            <summary>
+            Constructs a handle attribute.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnionAttribute">
+            <summary>
+            An attribute which indicates the union property of a struct value. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnionAttribute.#ctor(System.String)">
+            <summary>
+            Constructs a union attribute by using the given switch type expression.
+            </summary>
+            <param name="switchTypeExpression">The switch type expression.</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IndirectAttribute">
+            <summary>
+            An attribute which indicates that a value should be marshaled by a pointer to the value. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IndirectAttribute.#ctor">
+            <summary>
+            Constructs an indirect attribute.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.CustomMarshalerAttribute">
+            <summary>
+            An attribute which indicates a customized marshaler. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.CustomMarshalerAttribute.#ctor(System.Type)">
+            <summary>
+            Constructs a custom marshaler attribute by using the given type.
+            </summary>
+            <param name="type">The type which is the custom marshaler for.</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IdentifierBindingAttribute">
+            <summary>
+            An attribute which associates an identifier binding (type IdentifierBinding)
+            with a parameter or a field. This attribute allows binding abstraction of values on the wire to integer
+            identifiers automatically. Entities to which this attribute is attached must have integer type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IdentifierBindingAttribute.#ctor(System.String,System.Type)">
+            <summary>
+            Constructs an identifier binding attribute.
+            </summary>
+            <param name="name">A unique name for the binding. All attributes using the
+            same name in a given attribute context share the same IdentifierBinding 
+            instance in a given marshaller. 
+            </param>
+            <param name="targetType">The type to which the binding is performed. This is
+            the type of the value as it appears on the wire.</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.InlineAttribute">
+            <summary>
+            An attribute which indicates that a value should be marshaled to an inlined array. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.InlineAttribute.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BitAttribute">
+            <summary>
+            An attribute which indicates a value should be marshaled to a bit or a bit array.
+            The type of the field with bit attribute must be int or int[].
+            The value of int 0 indicates bit 0, and the value of int 1 indicates bit 1.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.BitAttribute.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConditionAttribute">
+            <summary>
+            An attribute which specifies an method to determine whether a field should be marshaled/unmarshaled.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConditionAttribute.#ctor(System.String)">
+            <summary>
+            Constructs an instance of MarshalingConditionAttribute object.
+            </summary>
+            <param name="methodName">The method name</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConditionAttribute.MethodName">
+            <summary>
+            Gets the method name.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.EncodingRule">
+            <summary>
+            An enumeration type for indicating encoding rules
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.EncodingRule.Ber">
+            <summary>
+            Indicates a Basic Encoding Rules
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.EncodingRule.Der">
+            <summary>
+            Indicates a Distinguished Encoding Rules
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.EncodingRule.Per">
+            <summary>
+            Indicates a Packed Encoding Rules
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.AlignedAttribute">
+            <summary>
+            An attribute used to indicate PER is either aligned or unaligned.
+            If this attribute is not attached to the asn.1 type, aligned mode will be used.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.AlignedAttribute.#ctor(System.Boolean)">
+            <summary>
+            Constructs an instance of AlignedAttribute object.
+            </summary>
+            <param name="aligned">The boolean value indicating PER is either aligned or unaligned.</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Asn1Attribute">
+            <summary>
+            An attribute that indicates which ASN.1 encoding rule should be used.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Asn1Attribute.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.EncodingRule)">
+            <summary>
+            Constructs an instance of Asn1Attribute object.
+            </summary>
+            <param name="rule">The encoding rule to be used.</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.EndianType">
+            <summary>
+            Indicates the endian type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.EndianType.BigEndian">
+            <summary>
+            Indicates the big endian type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.EndianType.LittleEndian">
+            <summary>
+            Indicates the little endian type.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ByteOrderAttribute">
+            <summary>
+            An attribute that indicates the bytes order is little endian or big endian.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ByteOrderAttribute.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.EndianType)">
+            <summary>
+            Constructs an instance of ByteOrderAttribute object.
+            </summary>
+            <param name="endian">Endian type of the byte order.</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MultipleExpressionEvaluator">
+            <summary>
+            Multiple Expression Evaluator
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MultipleExpressionEvaluator.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MultipleExpressionEvaluator.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">The evaluation context</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MultipleExpressionEvaluator.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">The evaluation context</param>
+            <param name="expression">The expression</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MultipleExpressionEvaluator.Evaluate">
+            <summary>
+            Evaluate the expression
+            </summary>
+            <returns>The evaluated objects</returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MultipleExpressionEvaluator.Expression">
+            <summary>
+            The multiple expression
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MultipleExpressionEvaluator.Context">
+            <summary>
+            The evaluation context
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.RequirementAttribute">
+            <summary>
+            An attribute which indicates a requirement exists for field, struct or RPC operation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.RequirementAttribute.#ctor(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            Constructs requirement attribute.
+            </summary>
+            <param name="protocolDocName">Name of the protocol document.</param>
+            <param name="sectionNumber">Section number of requirement in document.</param>
+            <param name="requirementID">Requirement ID.</param>
+            <param name="description">Description of the requirement.</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.RequirementAttribute.RequirementID">
+            <summary>
+            Indicates requirement ID.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.RequirementAttribute.Description">
+            <summary>
+            Indicates description of the requirement.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.RequirementAttribute.ProtocolDocName">
+            <summary>
+            Indicates name of the protocol document.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.RequirementAttribute.SectionNumber">
+            <summary>
+            Indicates section number of requirement in document.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.PossibleValueRangeAttribute">
+            <summary>
+            An attribute which indicates the range of the variable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.PossibleValueRangeAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Constructs value range attribute.
+            </summary>
+            <param name="minValue">Indicates the minimum value.</param>
+            <param name="maxValue">Indicates the maximun value.</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.PossibleValueRangeAttribute.MinValue">
+            <summary>
+            Indicates minimum value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.PossibleValueRangeAttribute.MaxValue">
+            <summary>
+            Indicates maximun value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.PossibleValueAttribute">
+            <summary>
+            An attribute which indicates the possible values of the variable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.PossibleValueAttribute.#ctor(System.Type)">
+            <summary>
+            Constructs possible value attribute.
+            </summary>
+            <param name="enumType">An enum type to indicate possible values.</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.PossibleValueAttribute.EnumType">
+            <summary>
+            Indicates the type of enum.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SingleExpressionEvaluator">
+            <summary>
+            Single Expression Evaluator
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SingleExpressionEvaluator.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SingleExpressionEvaluator.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">The evaluation context</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SingleExpressionEvaluator.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IEvaluationContext,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">The evaluation context</param>
+            <param name="expression">The expression</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SingleExpressionEvaluator.Evaluate">
+            <summary>
+            Evaluate the expression
+            </summary>
+            <returns>The evaluated object</returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SingleExpressionEvaluator.Expression">
+            <summary>
+            The single expression
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.SingleExpressionEvaluator.Context">
+            <summary>
+            Evaluation context
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Token">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Token.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="type">Token type</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Token.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenType,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="type">Token type</param>
+            <param name="text">Token text</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Token.Text">
+            <summary>
+            Token text
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.Token.Type">
+            <summary>
+            Token type
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenStream">
+            <summary>
+            Token stream
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenStream.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ExpressionLexer)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="lexer">The expression lexer</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.TokenStream.NextToken">
+            <summary>
+            Get next token
+            </summary>
+            <returns>The next token</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpressionType">
+            <summary>
+            Unary Expression Type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpressionType.Not">
+            <summary>
+            Not operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpressionType.BitNot">
+            <summary>
+            Bit Not operation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpressionType.Negative">
+            <summary>
+            Negative
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpressionType.Positive">
+            <summary>
+            Positive
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpressionType.Dereference">
+            <summary>
+            Dereference
+            (the dereference operator, which allows reading and writing to a pointer)
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpression">
+            <summary>
+            Unary Expression
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpression.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpressionType,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpression)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="type">Expression type</param>
+            <param name="expression">The expression</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpression.Accept(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor)">
+            <summary>
+            Accept an expression visitor
+            </summary>
+            <param name="visitor">The expression visitor</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpression.Type">
+            <summary>
+            Expression type
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.UnaryExpression.Expression">
+            <summary>
+            Expression
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpressionType">
+            <summary>
+            Value Expression Type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpressionType.Integer">
+            <summary>
+            Integer
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpressionType.Variable">
+            <summary>
+            Variable
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpressionType.Null">
+            <summary>
+            Null
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpression">
+            <summary>
+            Value Expression
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpression.#ctor(System.String,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpressionType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="text">Expression text</param>
+            <param name="type">Expression type</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpression.Accept(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IExpressionVisitor)">
+            <summary>
+            Accept an expression visitor
+            </summary>
+            <param name="visitor">The expression visitor</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpression.Text">
+            <summary>
+            Expression text
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.ValueExpression.Type">
+            <summary>
+            Expression type
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntimeHelper">
+            <summary>
+            Provides a serie of helper methods in message runtime module
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntimeHelper.TryGetModelingSequence(System.Type,System.Type@)">
+            <summary>
+            Try use reflection to get the Microsoft.Modeling.Sequence type.
+            </summary>
+            <param name="typeArg">The type argument</param>
+            <param name="genericSequence">The Microsoft.Modeling.Sequence type</param>
+            <returns>True if succeeds; False if fails</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntimeHelper.Describe``1(``0)">
+            <summary>
+            Describes a (possibly symbolic) value.
+            </summary>
+            <typeparam name="T">type</typeparam>
+            <param name="value">(possibly symbolic) value</param>
+            <returns>description</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntimeHelper.IsStruct(System.Type)">
+            <summary>
+            Check if the given type is a Struct
+            </summary>
+            <param name="type">type to check</param>
+            <returns>True if the type is a struct; False if not.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntimeHelper.LoadXrtRuntimeAssembly">
+            <summary>
+            Load Microsoft.Xrt.Runtime.dll from file
+            </summary>
+            <returns>the loaded assembly</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntime">
+            <summary>
+            Stores static resources
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntime.AssertCheckFail">
+            <summary>
+            AssertCheckFail
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntime.AssertCheckSucceed">
+            <summary>
+            AssertCheckSucceed
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntime.AssumeCheckFail">
+            <summary>
+            AssumeCheckFail
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntime.AssumeCheckSucceed">
+            <summary>
+            AssumeCheckSucceed
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntime.DebugCheckFail">
+            <summary>
+            DebugCheckFail
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntime.DebugCheckSucceed">
+            <summary>
+            DebugCheckSucceed
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntime.MessageLogFormat">
+            <summary>
+            MessageLogFormat
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntime.ReqCaptureFormat">
+            <summary>
+            ReqCaptureFormat
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageRuntime.ReqId">
+            <summary>
+            ReqId
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils">
+            <summary>
+            A class which provides various utilities for dealing with message data structures, 
+            like initialization, validation, and so on. 
+            This class can be customized by extending it and adding methods for particular message types.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost)">
+            <summary>
+            Constructs an instance of this class by using passed test site and default marshaling
+            configuration for block protocols.
+            </summary>
+            <param name="host">The message runtime host</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration)">
+            <summary>
+            Constructs an instance of this class by using passed test site and given marshaling configuration.
+            </summary>
+            <param name="host">The message runtime host</param>
+            <param name="config">The marshaling configuration</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost,Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.MessageType)">
+            <summary>
+            Constructs an instance of this class by using passed test site and message type.
+            </summary>
+            <param name="host">The message runtime host</param>
+            <param name="type">The message type, rpc or block</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.GetSize(System.Object)">
+            <summary>
+            Returns the size (in bytes) of the given message value.
+            </summary>
+            <param name="value">The value which size is to be calcuated.</param>
+            <returns>The size (in bytes) of the given value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.Create``1">
+            <summary>
+            Creates a value of type T and calling <see cref="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.Initialize``1(``0@)"/> on it.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <returns>The initialized value.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.Initialize``1(``0@)">
+            <summary>
+            Initializes a value of type T which uses defaults derived from types and attributes.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value to be initialized.</param>
+            <returns>The initialized value.</returns>
+            <remarks>
+            This method initializes a value of the given type as follows:
+            <list type="bullet">
+              <item>
+                Fields of primitive types keep their current value (which is the standard
+                default value if the initialized value is freshly created)
+              </item>
+              <item>
+                Fields of enumeration types obtain the first value in the enumeration order.
+              </item>
+              <item>
+                Fields of arrays or sequences with size attributes are initialized to that size,
+                with elements having their standard default values. Any array or sequence
+                with size attribute has a non-null value after initialization.
+              </item>
+              <item>
+                After the above steps, the method calls any initializer method 
+                in the receiver's type which is tagged with the <see cref="T:Microsoft.Protocols.TestTools.StackSdk.Messages.InitializerAttribute"/> and
+                which has the parameter type <code> ref T</code>. Those methods can provide custom 
+                initialization code specific to the type T.
+              </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.Validate``1(``0)">
+            <summary>
+            Validates a value of type T. 
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value to be validated.</param>
+            <remarks>
+            This method validates an instance of the given type
+            as follows:
+            <list type="bullet">
+              <item>
+                Fields with enumeration type are checked whether their value is in the domain
+                of the enumeration.
+              </item>
+              <item>
+                Arrays or sequences are checked whether they are non-null, and whether size and length
+                attribute are consistent.
+              </item>
+              <item>
+                After the above steps, the method calls any validator method 
+                in the receiver's type which is tagged with the <see cref="T:Microsoft.Protocols.TestTools.StackSdk.Messages.ValidatorAttribute"/> and
+                which has the parameter type <code>ref T</code>. Those methods can provide custom 
+                validation code specific to the type T.
+              </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.Validate(System.Object,System.Reflection.ICustomAttributeProvider,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Validates the value of the object 
+            </summary>
+            <param name="value">The object value to be validated</param>
+            <param name="provider">The custom attribute provider</param>
+            <param name="symbolStore">The dictionary of symbols</param>
+            <remarks>
+            This method validates an instance of the given type
+            as follows:
+            <list type="bullet">
+              <item>
+                Fields with enumeration type are checked whether their value is in the domain
+                of the enumeration.
+              </item>
+              <item>
+                Arrays or sequences are checked whether they are non-null, and whether size and length
+                attribute are consistent.
+              </item>
+              <item>
+                After the above steps, the method calls any validator method 
+                in the receiver's type which is tagged with the <see cref="T:Microsoft.Protocols.TestTools.StackSdk.Messages.ValidatorAttribute"/> and
+                which has the parameter type <code>ref T</code>. Those methods can provide custom 
+                validation code specific to the type T.
+              </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.Validate(System.Object)">
+            <summary>
+            Validates the value of the object.
+            </summary>
+            <param name="value">The object to be validated.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.CheckEnum(System.Object)">
+            <summary>
+            Checks if the value is one of the enum values.
+            </summary>
+            <returns>Indicates if the value is in enum.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.CheckValueByEnum(System.Object,System.Type)">
+            <summary>
+            Check if the given value is defined in the specified enumeration.
+            </summary>
+            <param name="value">The given value</param>
+            <param name="type">The specified enumeration</param>
+            <returns>True for yes; False for no.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.CheckValueByRange(System.Object,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.PossibleValueRangeAttribute)">
+            <summary>
+            Check if the given value is within the possible value range.
+            </summary>
+            <param name="inValue">The given value</param>
+            <param name="possibleValueAttribute">The possible value range</param>
+            <returns>True for yes; False for no.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.ToString(System.Object)">
+            <summary>
+            Provides a printed presentation of the message value passed.
+            </summary>
+            <param name="value">The value which content is to be dumped as a string.</param>
+            <returns>The string presentation of the value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.Dispose">
+            <summary>
+            Implements <see cref="M:System.IDisposable.Dispose"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.Finalize">
+            <summary>
+            Finalizes this object
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.Dispose(System.Boolean)">
+            <summary>
+            Releases resources.
+            </summary>
+            <remarks>
+            Dispose(bool disposing) executes in two distinct scenarios.
+            If the parameter 'disposing' equals true, the method is called directly
+            or indirectly by a user's code. Managed and unmanaged resources
+            can be disposed.
+            If the parameter 'disposing' equals false, the method is called by the 
+            runtime from the inside of the finalizer and you should not refer to 
+            other objects. Therefore, only unmanaged resources can be disposed.
+            </remarks>
+            <param name="disposing">Indicates if Dispose is called by user.</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.RuntimeHost">
+            <summary>
+            Returns message runtime host which is associated with this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.RejectNullValue">
+            <summary>
+            Indicates whether report error when the value to be checked is null.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.DisableValidation">
+            <summary>
+            Indicates whether disable validation of the value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.MessageType">
+            <summary>
+            Enum use for indicating the type of message, block or rpc.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.MessageType.Block">
+            <summary>
+            Indicates a Block message.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Messages.MessageUtils.MessageType.Rpc">
+            <summary>
+            Indicates a Rpc message.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.ObservationQueue`1">
+            <summary>
+            Implements a simple thread-safe queue used for observations like events and returns.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.ObservationQueue`1.#ctor(System.Int32)">
+            <summary>
+            Constructs a queue with given maximal size.
+            </summary>
+            <param name="maxSize"></param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.ObservationQueue`1.Add(`0)">
+            <summary>
+            Adds an item to the queue. Will block if queue
+            is currently full.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.ObservationQueue`1.TryGet(System.TimeSpan,System.Boolean,`0@)">
+            <summary>
+            Try gets an item from the queue.
+            </summary>
+            <param name="timeOut"></param>
+            <param name="consume"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.ObservationQueue`1.GetEnumerator">
+            <summary>
+            Returns a copy of the queue content as a list. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.RuntimeAppLog.#cctor">
+            <summary>
+            static Constructor for ApplicationLog.
+            </summary>  
+            Failure on application log should not prevent the PTF from executing
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.RuntimeAppLog.TraceLog(System.String)">
+            <summary>
+            Write a message to Trace listeners
+            </summary>
+            <param name="message">The message to write to the log file</param>
+            Failure on application log should not prevent the PTF from executing
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler">
+            <summary>
+            The marshaler class which coordinates marshaling of values from and to native representations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration)">
+            <summary>
+            Constructs the marshaler based on test site and marshaling configuration.
+            </summary>
+            <param name="host">The message runtime host</param>
+            <param name="configuration">The marshaling configuration</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration)">
+            <summary>
+            Constructs the marshaler based on marshaling configuration, without test site.
+            </summary>
+            <param name="configuration">The marshaling configuration</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Reset">
+            <summary>
+            Resets the internal data structures of the marshaler (like identifier bindings),
+            and prepares for a next test run.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.TestAssertFail(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,System.String,System.Object[])">
+            <summary>
+            Test case assert fails with marshaling description, a given message, and additional parameters.
+            </summary>
+            <param name="desc">Marshaling descriptor</param>
+            <param name="message">The given message</param>
+            <param name="parameters">Additional parameters</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.TestAssertFail(System.String,System.Object[])">
+            <summary>
+            Test case assert fails with a given message and additional parameters.
+            </summary>
+            <param name="message">The given message</param>
+            <param name="parameters">Additional parameters</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.TestAssumeFail(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,System.String,System.Object[])">
+            <summary>
+            Test case assume fails with marshaling description, a given message, and additional parameters.
+            </summary>
+            <param name="desc">Marshaling descriptor</param>
+            <param name="message">The given message</param>
+            <param name="parameters">Additional parameters</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.TestAssumeFail(System.String,System.Object[])">
+            <summary>
+            Test case assume fails with a given message and additional parameters.
+            </summary>
+            <param name="message">The given message</param>
+            <param name="parameters">Additional parameters</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.DebugFail(System.String,System.Object[])">
+            <summary>
+            Test case debug fails with a given message and additional parameters
+            </summary>
+            <param name="message">The given message</param>
+            <param name="parameters">Additional parameters</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Trace(System.String,System.Object[])">
+            <summary>
+            Test case trace with a given message and additional parameters
+            </summary>
+            <param name="message">The given message</param>
+            <param name="parameters">Additional parameters</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.CheckBitAlignment">
+            <summary>
+            Check bit marshaling alignment
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.EnterContext">
+            <summary>
+            Enters a new context. 
+            The context contains an environment for symbol lookup in attribute expressions. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ExitContext">
+            <summary>
+            Exits context and restores the old one.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.DefineCustomType(System.String,System.Object)">
+            <summary>
+            Defines a custom and its value in the current context.
+            </summary>
+            <param name="typeName">The custom type to be defined</param>
+            <param name="value">The value corresponding to the custom type</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.DefineSymbol(System.String,System.Object)">
+            <summary>
+            Defines a symbol and its value in the current context.
+            </summary>
+            <param name="symbol">The symbol to be defined</param>
+            <param name="value">The value corresponding to the symbol</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.DefinePointerSymbol(System.String,System.Object)">
+            <summary>
+            Define a pointer symbol and its value in the current context.
+            </summary>
+            <param name="symbol">The pointerlevel symbol to be defined</param>
+            <param name="value">The value for this symbol</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.DefineSymbols(System.Reflection.FieldInfo[],System.Object)">
+            <summary>
+            Defines symbols
+            </summary>
+            <param name="fields">The fields corresponding to the symbols</param>
+            <param name="value">The values corresponding to the symbols</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.TryResolveSymbol(System.String,System.Int32@)">
+            <summary>
+            Trys to resolve a symbol to an integer value.
+            </summary>
+            <param name="symbol">The symbol to be resolved</param>
+            <param name="value">The value corresponding to the symbol</param>
+            <returns>Return true if the symbol is defined and has a value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.TryResolveCustomType(System.String,System.String@)">
+            <summary>
+            Inherit from IEvaluationContext, currently not used in Marshaler.
+            </summary>
+            <param name="typeName">The custom type to be resolved</param>
+            <param name="size">The actual size of the custom type</param>
+            <returns>Returns true if it resolves the type successfully.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.AllocateRegion(System.Int32)">
+            <summary>
+            Allocates region which is automatically freed by Dispose or 
+            a call to <see cref="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.FreeMemory">FreeMemory</see>.
+            </summary>
+            <param name="size">The size of memory to be allocated in the region</param>
+            <returns>The allocated region</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.MakeRegion(System.IntPtr,System.Int32)">
+            <summary>
+            Allocates a region from the given unmanaged memory.
+            </summary>
+            <param name="ptr">The pointer which points to native memory.</param>
+            <param name="size">The size of the unmanaged memory to be allocated in the region</param>
+            <returns>The allocated region</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.MarkMemoryForDispose(System.IntPtr)">
+            <summary>
+            Marks an externally allocated region of memory for dispose.
+            </summary>
+            <param name="ptr">The pointer which points to native memory</param>        
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.MarkForeignMemoryForDispose(System.IntPtr)">
+            <summary>
+            Marks an region of memory allocated by RPC runtime for dispose.
+            </summary>
+            <param name="ptr">The pointer which points to native memory</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Dispose">
+            <summary>
+            Disposes the marshaler and frees all allocated regions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Finalize">
+            <summary>
+            Finalizes this object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Dispose(System.Boolean)">
+            <summary>
+            Releases resources.
+            </summary>
+            <param name="disposing">Indicates if Dispose is called by user.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.FreeMemory">
+            <summary>
+            Frees allocated regions and leaves the marshaler functional for future use.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.EnterRegion(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion)">
+            <summary>
+            Enters a region into which marshaling calls should write. 
+            The current active region is to be saved.
+            </summary>
+            <param name="newRegion">The new region to be entered</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ExitRegion">
+            <summary>
+            Exits the last entered region and restores the old region.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.GetBinding(System.String)">
+            <summary>
+            Gets the identifier binding for the given binding name.
+            </summary>
+            <param name="name">The binding name.</param>
+            <returns>The identifier binding.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.WriteBit(System.Int32)">
+            <summary>
+            Writes a bit to the current region.
+            </summary>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.WriteByte(System.Byte)">
+            <summary>
+            Writes a byte to the current region.
+            </summary>
+            <param name="value">The value to be written</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.WriteInt16(System.Int16)">
+            <summary>
+            Writes a 16-bit integer to the current region.
+            </summary>
+            <param name="value">The value to be written</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.WriteInt32(System.Int32)">
+            <summary>
+            Writes a 32-bit integer to the current region.
+            </summary>
+            <param name="value">The value to be written</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.WriteInt64(System.Int64)">
+            <summary>
+            Writes a 64-bit integer to the current region.
+            </summary>
+            <param name="value">The value to be written</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.WriteIntPtr(System.IntPtr)">
+            <summary>
+            Writes an IntPtr to the current region.
+            </summary>
+            <param name="value">The value to be written</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.WriteStructure(System.Object,System.Int32)">
+            <summary>
+            Writes a managed structure to the current region.
+            </summary>
+            <param name="value">The value to be written</param>
+            <param name="size">The unmanaged size of the structure</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ReadBit">
+            <summary>
+            Reads a bit from the current region.
+            </summary>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ReadByte">
+            <summary>
+            Reads a byte from the current region.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ReadInt16">
+            <summary>
+            Reads a 16-bit integer from the current region and increments the region pointer.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ReadInt32">
+            <summary>
+            Reads a 32-bit integer from the current region and increments the region pointer.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ReadInt64">
+            <summary>
+            Reads a 64-bit integer from the current region and increments the region pointer.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ReadIntPtr">
+            <summary>
+            Reads an IntPtr from the current region and increments the region pointer.
+            </summary>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ReadStructure(System.Type,System.Int32)">
+            <summary>
+            Reads a managed structure from the current region.
+            </summary>
+            <param name="type">The type of the structure to be read from current region</param>
+            <param name="size">The number of bytes to be read from current region</param>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Skip(System.Int32)">
+            <summary>
+            Skips the given number of bytes for reading.
+            </summary>
+            <param name="bytes">The number of bytes which are skipped</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Clear(System.Int32)">
+            <summary>
+            Writes zeros for the given number of bytes.
+            </summary>
+            <param name="bytes">The number of bytes to be written.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.GetMarshaler(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor)">
+            <summary>
+            Returns the type marshaler determined by the marshaling configuration.
+            </summary>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <returns>The type marshaler.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.GetSize(System.Object)">
+            <summary>
+            Computes the size of the given value. 
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The size of the given value.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.GetSize(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,System.Object)">
+            <summary>
+            Computes the size of the given marshaling descriptor and value. 
+            It is the delegate to the configured type marshaler.
+            If the size depends on the value and the value is unknown (null), a negative value maybe returned.
+            </summary>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <param name="value">The value.</param>
+            <returns>The size of the given value.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.GetAlignment(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor)">
+            <summary>
+            Computes the alignment of the given marshaling descriptor. 
+            It is the delegate to the configured type marshaler.
+            </summary>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <returns>The alignment.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.GetNativeType(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor)">
+            <summary>
+            Gets the native type of the given marshaling descriptor, if any. 
+            It is the delegate to the configured type marshaler.
+            </summary>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <returns>The native type.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Marshal(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,System.Object)">
+            <summary>
+            Marshals the given value. 
+            It is the delegate to the configured type marshaler.
+            </summary>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <param name="value">The value to be marshaled.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.MarshalInto(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion,System.Object)">
+            <summary>
+            Marshals the given value into the specified region.
+            This method enters the region, delegates to the configured type marshaler, and exits the region.
+            </summary>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <param name="customRegion">The custom region.</param>
+            <param name="value">The value to be marshaled.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Unmarshal(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor)">
+            <summary>
+            Unmarshals the given value. 
+            It is the delegate to the configured type marshaler.
+            </summary>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <returns>The unmarshaled value.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.UnmarshalFrom(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.IRegion)">
+            <summary>
+            Unmarshals the given value from the specified region. 
+            This method enters the region, delegates to the configured type marshaler, and exits the region.
+            </summary>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <param name="customRegion">The custom region.</param>
+            <returns>The unmarshaled value.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.GetAdvocatedSize(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,System.Int32@,System.Int32@)">
+            <summary>
+            Retrieves the advocated size and length of a marshaling descriptor by inspecting the
+            attributes attached to it.
+            </summary>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <param name="size">The advocated size.</param>
+            <param name="length">The advocated length.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.GetMultipleAdvocatedSizes(Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingDescriptor,System.Collections.Generic.IList{System.Int32}@,System.Collections.Generic.IList{System.Int32}@)">
+            <summary>
+            Retrieves the advocated size list and length list of a marshaling descriptor by inspecting the
+            attributes attached to it.
+            </summary>
+            <param name="descriptor">The marshaling descriptor.</param>
+            <param name="sizes">The advocated size list.</param>
+            <param name="lengths">The advocated length list.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Evaluate(System.String)">
+            <summary>
+            Evaluates the given attribute expression to an integer value by using the current
+            context for symbol resolution.
+            </summary>
+            <param name="expression">The expression to be evaluated.</param>
+            <returns>The value for the expression.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.EvaluateMultipleExpressions(System.String)">
+            <summary>
+            Evaluates the given attribute expression to a set of integer value by using the current
+            context for symbol resolution.
+            </summary>
+            <param name="expression">The expression to be evaluated.</param>
+            <returns>The value list for the expression.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ReportError(System.String)">
+            <summary>
+            Reports error when evaluating the expression.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.EvaluateConstant(System.String)">
+            <summary>
+            Evaluates the given constant attribute expression to a list of integer values.
+            </summary>
+            <param name="expression">The expression to be evaluated.</param>
+            <returns>The list of interger values.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.TryResolveDereference(System.String,System.Int32@,System.Int32@)">
+            <summary>
+            Trys to dereference the pointer.
+            </summary>
+            <param name="variable">The pointer symbol name</param>
+            <param name="value">The dereferenced value</param>
+            <param name="pointerValue">The pointer value</param>
+            <returns>Returns </returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Host">
+            <summary>
+            Gets the associated runtime host.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.SymbolStore">
+            <summary>
+            Gets the symbol storage under current context
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.ForeignMemory">
+            <summary>
+            A container which store the pointers allocated by the RPC runtime.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.IsProbingUnmarshaling">
+            <summary>
+            Internal use only. 
+            State for struct and union unmarshaling.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.CurrentBitCount">
+            <summary>
+            Gets the number of bits in the bit queue.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.RegionOffset">
+            <summary>
+            Gets or set the number of bytes to the region
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.UseSpaceChecking">
+            <summary>
+            Gets or set the boolean value which indecate
+            whether check left space when do marshaling/unmarshaling
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.Variables">
+            <summary>
+            Symbols defined in the current symbol context.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.Runtime.Marshaling.Marshaler.MemoryRegion">
+            <summary>
+            Implements IRegion in memory.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Messages.ValidationChannel">
+            <summary>
+            Derived Channel which will validate the value when read and write values
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.ValidationChannel.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost,System.IO.Stream)">
+            <summary>
+            Constructs a typed stream which uses underlying stream and default marshaling configuration
+            for block protocols.
+            </summary>
+            <param name="host">The message runtime host.</param>
+            <param name="stream">The NetworkStream object.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.ValidationChannel.#ctor(Microsoft.Protocols.TestTools.StackSdk.Messages.IRuntimeHost,System.IO.Stream,Microsoft.Protocols.TestTools.StackSdk.Messages.Marshaling.MarshalingConfiguration)">
+            <summary>
+            Constructs a channel which uses underlying stream and given marshaler configuration.
+            </summary>
+            <param name="host">The message runtime host.</param>
+            <param name="stream">The general stream object.</param>
+            <param name="marshalingConfig">The marshaling configuration.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.ValidationChannel.Read``1">
+            <summary>
+            Reads a value of the given type T from the stream which uses the underlying marshaler to unmarshal it.
+            And the value will be validated.
+            </summary>
+            <typeparam name="T">The type of the value to be read.</typeparam>
+            <returns>The value read from the channel.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.ValidationChannel.Write``1(``0)">
+            <summary>
+            Writes a value of given type T to the stream which uses the underlying marshaler to marshal it.
+            And the value will be validated.
+            </summary>
+            <typeparam name="T">The type of the value which is written to the stream.</typeparam>
+            <param name="value">The value which is written to the stream.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Messages.ValidationChannel.Dispose(System.Boolean)">
+            <summary>
+            Releases resources.
+            </summary>
+            <remarks>
+            Dispose(bool disposing) executes in two distinct scenarios.
+            If the parameter 'disposing' equals true, the method is called directly
+            or indirectly by a user's code. Managed and unmanaged resources
+            can be disposed.
+            If the parameter 'disposing' equals false, the method is called by the 
+            runtime from the inside of the finalizer and you should not refer to 
+            other objects. Therefore, only unmanaged resources can be disposed.
+            </remarks>
+            <param name="disposing">Indicates if Dispose is called by user.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,5 @@
+SetOfInt DEFINITIONS ::= BEGIN
+
+SetOfInt ::= SET OF INTEGER
+
+END

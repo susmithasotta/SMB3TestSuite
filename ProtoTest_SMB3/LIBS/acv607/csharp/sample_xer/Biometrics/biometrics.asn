@@ -1,0 +1,704 @@
+
+X9-84-Biometrics { 
+   iso(1) identified-organization(3) tc68(133) country(16) x9(840) 
+      x9Standards(9) x9-84(84) module(0) biometrics(1) rev(1) } 
+   DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- EXPORTS All;
+
+IMPORTS 
+
+   -- X9.84 Biometrics Information Management and Security IDs -- 
+
+   BiometricTypes, CBEFF-Formats, IBIA-Formats, MatchingAIDs,
+   ProcessingAIDs, X9-Formats
+      FROM X9-84-Identifiers {
+         iso(1) identified-organization(3) tc68(133) country(16)
+            x9(840) x9Standards(9) x9-84(84) module(0)
+               ids(3) rev(1) }
+
+   -- X9.84 Biometrics Information Management and Security CMS --
+
+   AuthenticatedData, EncryptedData, EnvelopedData, 
+   MACAlgorithmIdentifier, SignatureAlgorithmIdentifier,
+   SignedData
+      FROM X9-84-CMS {
+         iso(1) identified-organization(3) tc68(133) country(16)
+            x9(840) x9Standards(9) x9-84(84) module(0)
+               cms(2) rev(1) } ;
+   
+
+BiometricSyntaxSets ::= SEQUENCE SIZE(1..MAX) OF BiometricSyntax
+
+BiometricSyntax ::= CHOICE {  
+   biometricObjects            BiometricObjects, 
+   integrityObjects            IntegrityObjects, 
+   privacyObjects              PrivacyObjects,
+   privacyAndIntegrityObjects  PrivacyAndIntegrityObjects
+}
+
+BiometricObjects ::= SEQUENCE SIZE(1..MAX) OF BiometricObject
+
+BiometricObject ::= SEQUENCE {
+   biometricHeader  BiometricHeader,
+   biometricData    BiometricData
+}
+
+--
+-- All of the cryptographic processing in this standard is performed
+-- on a value of type EncodedBiometricObjects. This is a sequence of
+-- one or more values of type BiometricObject in its encoded form.
+-- 
+
+EncodedBiometricObjects ::= BIOMETRIC.&Type( BiometricObjects )
+
+BiometricHeader ::= SEQUENCE {
+   version         BiometricVersion  DEFAULT hv1,
+   recordType      RecordType  OPTIONAL,
+   dataType        DataType  OPTIONAL,
+   purpose         Purpose  OPTIONAL,
+   quality         Quality  OPTIONAL,
+   validityPeriod  ValidityPeriod  OPTIONAL,
+   format          Format  OPTIONAL
+} 
+
+BiometricVersion ::= INTEGER { hv1(0) } (0..MAX)
+
+RecordType ::= BIOMETRIC.&name({BiometricTypes})
+
+DataType ::= ENUMERATED {
+   raw          (0),
+   intermediate (1),
+   processed    (2)
+}
+
+Purpose ::= ENUMERATED {
+   verify          (1),
+   identify        (2),
+   enroll          (3),
+   enrollVerify    (4),
+   enrollIdentity  (5),
+   audit           (6),
+
+   ...  -- Expect other values --
+}
+
+Quality ::= INTEGER {
+   lowest       (  0),
+   highest      (100),
+   notSet       ( -1),
+   notSupported ( -2)
+} (-2..100,...)
+
+ValidityPeriod ::= SEQUENCE {
+   notBefore  DateTime OPTIONAL,
+   notAfter   DateTime  OPTIONAL
+} 
+ (ALL EXCEPT({ -- none; at least one component is present --  }))
+
+DateTime ::= RELATIVE-OID  -- { yyyy mm dd hh mm ss z } -- 
+
+Format ::= SEQUENCE {
+   formatOwner  BIOMETRIC.&name({Owner}),
+   formatType   BIOMETRIC.&Type({Owner}{@formatOwner})  OPTIONAL
+}
+
+Owner BIOMETRIC ::= {
+   CBEFF-Formats  |  -- http://www.nist.gov -- 
+   IBIA-Formats   |  -- http://www.ibia.org -- 
+   X9-Formats,       -- http://www.x9.org   -- 
+
+   ...  -- expect additional vendor specific formats -- 
+} 
+
+-- Integrity -- 
+
+IntegrityObjects ::= SEQUENCE {
+   biometricObjects  BiometricObjects,
+   integrityBlock    IntegrityBlock
+}
+
+IntegrityBlock ::= CHOICE {
+   digitalSignature           DigitalSignature,
+   messageAuthenticationCode  MessageAuthenticationCode,
+   signedData                 SignedData,
+   authenticatedData          AuthenticatedData
+}
+
+DigitalSignature ::= SIGNATURE { EncodedBiometricObjects }
+
+MessageAuthenticationCode ::= MAC { EncodedBiometricObjects }
+
+-- Privacy -- 
+
+PrivacyObjects ::= SEQUENCE {
+   biometricHeaders  BiometricHeaders  OPTIONAL,
+   privacyBlock      PrivacyBlock
+}
+
+BiometricHeaders ::= SEQUENCE SIZE(1..MAX) OF BiometricHeader
+
+PrivacyBlock ::= CHOICE {
+   fixedKey        EncryptedData,
+   namedKey        NamedKeyEncryptedData,
+   establishedKey  EnvelopedData
+}
+
+NamedKeyEncryptedData ::= SEQUENCE {
+   keyName        OCTET STRING (SIZE(1..MAX)),
+   encryptedData  EncryptedData
+}
+
+-- Privacy and integrity -- 
+
+PrivacyAndIntegrityObjects ::= SEQUENCE {
+   biometricHeaders  BiometricHeaders  OPTIONAL,
+   privacyBlock      PrivacyBlock,
+   integrityBlock    IntegrityBlock
+}
+
+-- Authentication Information (AI) -- 
+
+BiometricInformationSets ::= 
+      SEQUENCE SIZE(1..MAX) OF BiometricInformation
+
+BiometricInformation ::= SEQUENCE {
+   processingAlgorithms  ProcessingAlgorithms  OPTIONAL,
+   matchingMethods       MatchingMethods  OPTIONAL
+}
+ (ALL EXCEPT({ -- none; at least one component is present -- }))
+
+-- Biometric processing algorithms -- 
+
+ProcessingAlgorithms ::= SEQUENCE SIZE(1..MAX) OF ProcessingInformation
+
+ProcessingInformation ::= SEQUENCE {
+   id     BIOMETRIC.&name({ProcessingAIDs}),
+   parms  BIOMETRIC.&Type({ProcessingAIDs}{@id})  OPTIONAL
+}
+
+-- Biometric matching methods -- 
+
+MatchingMethods ::= SEQUENCE SIZE(1..MAX) OF MatchingInformation 
+
+MatchingInformation ::= SEQUENCE {
+   id     BIOMETRIC.&name({MatchingAIDs}),
+   parms  BIOMETRIC.&Type({MatchingAIDs}{@id})  OPTIONAL
+}
+
+BiometricData ::= OCTET STRING(SIZE(1..MAX))
+
+-- Biometrics information object class -- 
+
+BIOMETRIC ::= CLASS {
+   &name  BIOMETRIC-IDENTIFIER  UNIQUE,
+   &Type  OPTIONAL
+}
+   WITH SYNTAX { BIOMETRIC &name [ DATA &Type ] }
+
+BIOMETRIC-IDENTIFIER ::= CHOICE {
+   oid  OBJECT IDENTIFIER,  -- complete object identifier 
+   id   RELATIVE-OID        -- object identifier fragment 
+}
+
+-- Parameterized types -- 
+
+SIGNATURE { ToBeSigned } ::= SEQUENCE { 
+   algorithmID  SignatureAlgorithmIdentifier,
+   signature    BIT STRING( CONSTRAINED BY { 
+                   -- signature on a value of --  ToBeSigned })
+}
+
+MAC { ToBeMACed } ::= SEQUENCE {
+   keyName      OCTET STRING  OPTIONAL,
+   algorithmID  MACAlgorithmIdentifier,
+   mac          OCTET STRING (CONSTRAINED BY {
+                   -- MAC or HMAC on a value of --  ToBeMACed }) 
+}
+
+END  -- X9-84-Biometrics --
+
+
+-- STUB --
+
+X9-84-CMS DEFINITIONS IMPLICIT TAGS ::= BEGIN
+
+AuthenticatedData ::= SEQUENCE {}
+
+EncryptedData ::= SEQUENCE {}
+
+EnvelopedData  ::= SEQUENCE {}
+
+MACAlgorithmIdentifier ::= AlgorithmIdentifier {{MACAlgorithms}}
+
+MACAlgorithms ALGORITHM ::= { ... }
+
+SignatureAlgorithmIdentifier ::= 
+      AlgorithmIdentifier {{SignatureAlgorithms}}
+
+SignatureAlgorithms ALGORITHM ::= { ... }
+
+SignedData ::= SEQUENCE {}
+
+ALGORITHM ::= CLASS {
+   &id    OBJECT IDENTIFIER  UNIQUE,
+   &Type  OPTIONAL
+}
+   WITH SYNTAX { OID &id [PARMS &Type] } 
+
+AlgorithmIdentifier { ALGORITHM:IOSet } ::= SEQUENCE {
+   algorithm   ALGORITHM.&id( {IOSet} ),
+   parameters  ALGORITHM.&Type( {IOSet}{@algorithm} )  OPTIONAL
+}
+
+END -- X9-84-CMS Stub --
+
+
+X9-84-Identifiers {
+   iso(1) identified-organization(3) tc68(133) country(16) x9(840) 
+      x9Standards(9) x9-84(84) module(0) ids(3) rev(1) } 
+   DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- EXPORTS All;
+
+IMPORTS
+
+   -- X9.84 Biometrics Information Management and Security --
+
+   BIOMETRIC, BiometricInformationSets
+      FROM X9-84-Biometrics {
+         iso(1) identified-organization(3) tc68(133) country(16)
+            x9(840) x9Standards(9) x9-84(84) module(0)
+               biometrics(1) rev(1) }
+
+   -- X9.84 Biometrics Information Management and Security CMS --
+
+   ALGORITHM
+      FROM X9-84-CMS {
+         iso(1) identified-organization(3) tc68(133) country(16)
+            x9(840) x9Standards(9) x9-84(84) module(0)
+               cms(2) rev(1) };
+
+
+OID ::= OBJECT IDENTIFIER  -- Alias
+
+RelOID ::= RELATIVE-OID  -- Alias
+
+-- x9-84                          { 1 3 133 16 840 9 84         }
+-- x9-84-Module                   { 1 3 133 16 840 9 84 0       }
+-- x9-84-Biometrics               { 1 3 133 16 840 9 84 0  1    }
+-- x9-84-CMS                      { 1 3 133 16 840 9 84 0  2    }
+-- x9-84-Identifiers              { 1 3 133 16 840 9 84 0  3    }
+-- biometric                      { 1 3 133 16 840 9 84 1       }
+-- id-unknown-Type                { 1 3 133 16 840 9 84 1  0    }
+-- id-body-Odor                   { 1 3 133 16 840 9 84 1  1    }
+-- id-dna                         { 1 3 133 16 840 9 84 1  2    }
+-- id-ear-Shape                   { 1 3 133 16 840 9 84 1  3    }
+-- id-facial-Features             { 1 3 133 16 840 9 84 1  4    }
+-- id-finger-Image                { 1 3 133 16 840 9 84 1  5    }
+-- id-finger-Geometry             { 1 3 133 16 840 9 84 1  6    }
+-- id-hand-Geometry               { 1 3 133 16 840 9 84 1  7    }
+-- id-iris-Features               { 1 3 133 16 840 9 84 1  8    }
+-- id-keystroke-Dynamics          { 1 3 133 16 840 9 84 1  9    }
+-- id-palm                        { 1 3 133 16 840 9 84 1 10    }
+-- id-retina                      { 1 3 133 16 840 9 84 1 11    }
+-- id-signature                   { 1 3 133 16 840 9 84 1 12    }
+-- id-speech-Pattern              { 1 3 133 16 840 9 84 1 13    }
+-- id-thermal-Image               { 1 3 133 16 840 9 84 1 14    }
+-- id-vein-Pattern                { 1 3 133 16 840 9 84 1 15    }
+-- id-thermal-Face-Image          { 1 3 133 16 840 9 84 1 16    }
+-- id-thermal-Hand-Image          { 1 3 133 16 840 9 84 1 17    }
+-- id-lip-Movement                { 1 3 133 16 840 9 84 1 18    }
+-- id-gait                        { 1 3 133 16 840 9 84 1 19    } 
+-- processing-algorithm           { 1 3 133 16 840 9 84 2       }
+-- matching-method                { 1 3 133 16 840 9 84 3       }
+-- format-Owner                   { 1 3 133 16 840 9 84 4       }
+-- cbeff-Owner                    { 1 3 133 16 840 9 84 4  0    }
+-- ibia-Owner                     { 1 3 133 16 840 9 84 4  1    }
+-- id-ibia-SAFLINK                { 1 3 133 16 840 9 84 4  1  1 }
+-- id-ibia-Bioscrypt              { 1 3 133 16 840 9 84 4  1  2 }
+-- id-ibia-Visionics              { 1 3 133 16 840 9 84 4  1  3 }
+-- id-ibia-InfineonTechnologiesAG { 1 3 133 16 840 9 84 4  1  4 }
+-- id-ibia-IridianTechnologies    { 1 3 133 16 840 9 84 4  1  5 }
+-- id-ibia-Veridicom              { 1 3 133 16 840 9 84 4  1  6 }
+-- id-ibia-CyberSIGN              { 1 3 133 16 840 9 84 4  1  7 }
+-- id-ibia-eCryp                  { 1 3 133 16 840 9 84 4  1  8 }
+-- id-ibia-FingerprintCardsAB     { 1 3 133 16 840 9 84 4  1  9 }
+-- id-ibia-SecuGen                { 1 3 133 16 840 9 84 4  1 10 }
+-- id-ibia-PreciseBiometric       { 1 3 133 16 840 9 84 4  1 11 }
+-- id-ibia-Identix                { 1 3 133 16 840 9 84 4  1 12 }
+-- id-ibia-DERMALOG               { 1 3 133 16 840 9 84 4  1 13 }
+-- x9-Owner                       { 1 3 133 16 840 9 84 4  2    }
+
+-- X9.84 arc; base object identifier --
+
+x9-84 OID ::= {
+   iso(1) identified-organization(3) tc68(133) country(16)
+      x9(840) x9Standards(9) x9-84(84)
+}
+
+-- X9.84 ASN.1 modules --
+
+x9-84-Module OID ::= { x9-84 modules(0) } 
+
+-- PHG added rev(1) to the following three module OIDs
+
+x9-84-Biometrics  OID ::= { x9-84-Module biometrics(1) rev(1) }
+
+x9-84-CMS         OID ::= { x9-84-Module cms(2) rev(1) }
+
+x9-84-Identifiers OID ::= { x9-84-Module ids(3) rev(1) }
+
+-- X9.84 biometric technologies --
+
+biometric OID ::= { x9-84 biometrics(1) }
+
+id-unknown-Type       OID ::= { biometric unknownType(0) }
+id-body-Odor          OID ::= { biometric bodyOdor(1) } 
+id-dna                OID ::= { biometric dna(2) }
+id-ear-Shape          OID ::= { biometric ear-Shape(3) }
+id-facial-Features    OID ::= { biometric earShape(4) }
+id-finger-Image       OID ::= { biometric facialFeatures(5) }
+id-finger-Geometry    OID ::= { biometric fingerImage(6) }
+id-hand-Geometry      OID ::= { biometric handGeometry(7) }
+id-iris-Features      OID ::= { biometric irisFeatures(8) }
+id-keystroke-Dynamics OID ::= { biometric keystrokeDynamics(9) }
+id-palm               OID ::= { biometric palm(10) }
+id-retina             OID ::= { biometric retina(11) }
+id-signature          OID ::= { biometric signature(12) }
+id-speech-Pattern     OID ::= { biometric speech-Pattern(13) }
+id-thermal-Image      OID ::= { biometric thermalImage(14) }
+id-vein-Pattern       OID ::= { biometric veinPattern(15) }
+id-thermal-Face-Image OID ::= { biometric thermalFaceImage(16) }
+id-thermal-Hand-Image OID ::= { biometric thermalHandImage(17) }
+id-lip-Movement       OID ::= { biometric lipMovement(18) }
+id-gait               OID ::= { biometric gait(19) }
+
+-- X9.84 biometric technology object identifier fragments -- 
+
+unknown-Type        RelOID ::= { unknownType(0) }
+body-Odor           RelOID ::= { bodyOdor(1) }
+dna                 RelOID ::= { dna(2) }
+ear-Shape           RelOID ::= { earShape(3) }
+facial-Features     RelOID ::= { facialFeatures(4) }
+finger-Image        RelOID ::= { fingerImage(5) }
+finger-Geometry     RelOID ::= { fingerGeometry(6) }
+hand-Geometry       RelOID ::= { handGeometry(7) }
+iris-Features       RelOID ::= { irisFeatures(8) }
+keystroke-Dynamics  RelOID ::= { keystrokeDynamics(9) }
+palm                RelOID ::= { palm(10) }
+retina              RelOID ::= { retina(11) }
+signature           RelOID ::= { signature(12) }
+speech-Pattern      RelOID ::= { speechPattern(13) }
+thermal-Image       RelOID ::= { thermalImage(14) }
+vein-Pattern        RelOID ::= { veinPattern(15) }
+thermal-Face-Image  RelOID ::= { thermalFaceImage(16) }
+thermal-Hand-Image  RelOID ::= { thermalHandImage(17) }
+lip-Movement        RelOID ::= { lipMovement(18) }
+gait                RelOID ::= { gait(19) }
+
+BiometricTypes BIOMETRIC ::= { 
+   { BIOMETRIC id : unknown-Type       } |
+   { BIOMETRIC id : body-Odor          } |
+   { BIOMETRIC id : dna                } |
+   { BIOMETRIC id : ear-Shape          } |
+   { BIOMETRIC id : facial-Features    } |
+   { BIOMETRIC id : finger-Image       } |
+   { BIOMETRIC id : finger-Geometry    } |
+   { BIOMETRIC id : hand-Geometry      } |
+   { BIOMETRIC id : iris-Features      } |
+   { BIOMETRIC id : keystroke-Dynamics } |
+   { BIOMETRIC id : palm               } |
+   { BIOMETRIC id : retina             } |
+   { BIOMETRIC id : signature          } |
+   { BIOMETRIC id : speech-Pattern     } |
+   { BIOMETRIC id : thermal-Image      } |
+   { BIOMETRIC id : vein-Pattern       } |
+   { BIOMETRIC id : thermal-Face-Image } |
+   { BIOMETRIC id : thermal-Hand-Image } |
+   { BIOMETRIC id : lip-Movement       } |
+   { BIOMETRIC id : gait               },
+
+   ...  -- expect additional biometric types --
+}
+
+
+-- X9.84 biometric processing algorithms --
+
+processing-algorithm OID ::= { x9-84 processingAlgorithms(2) }
+
+-- X9.84 biometric matching methods --
+
+matching-method OID ::= { x9-84 matchingMethods(3) }
+
+-- X9.84 vendor specific formats --
+
+format-Owner OID ::= { x9-84 format-owners(4) }
+
+cbeff-Owner OID ::= { format-Owner cbeff(0) }
+
+ibia-Owner  OID ::= { format-Owner ibia(1) }
+
+x9-Owner    OID ::= { format-Owner x9(2) }
+
+-- IBIA vendor specific formats registered at http://www.ibia.org 
+
+id-ibia-SAFLINK                OID ::= { ibia-Owner  1 }
+id-ibia-Bioscrypt              OID ::= { ibia-Owner  2 }
+id-ibia-Visionics              OID ::= { ibia-Owner  3 }
+id-ibia-InfineonTechnologiesAG OID ::= { ibia-Owner  4 }
+id-ibia-IridianTechnologies    OID ::= { ibia-Owner  5 }
+id-ibia-Veridicom              OID ::= { ibia-Owner  6 }
+id-ibia-CyberSIGN              OID ::= { ibia-Owner  7 }
+id-ibia-eCryp                  OID ::= { ibia-Owner  8 }
+id-ibia-FingerprintCardsAB     OID ::= { ibia-Owner  9 }
+id-ibia-SecuGen                OID ::= { ibia-Owner 10 }
+id-ibia-PreciseBiometric       OID ::= { ibia-Owner 11 }
+id-ibia-Identix                OID ::= { ibia-Owner 12 }
+id-ibia-DERMALOG               OID ::= { ibia-Owner 13 }
+
+-- When represented as values of type OBJECT IDENTIFIER, these
+-- IBIA vendor specific formats may be associated with any ASN.1
+-- type.   
+
+IBIAoidFormats BIOMETRIC ::= {
+   { BIOMETRIC oid : id-ibia-SAFLINK                DATA Any } |
+   { BIOMETRIC oid : id-ibia-Bioscrypt              DATA Any } |
+   { BIOMETRIC oid : id-ibia-Visionics              DATA Any } |
+   { BIOMETRIC oid : id-ibia-InfineonTechnologiesAG DATA Any } |
+   { BIOMETRIC oid : id-ibia-IridianTechnologies    DATA Any } |
+   { BIOMETRIC oid : id-ibia-Veridicom              DATA Any } |
+   { BIOMETRIC oid : id-ibia-CyberSIGN              DATA Any } |
+   { BIOMETRIC oid : id-ibia-eCryp                  DATA Any } |
+   { BIOMETRIC oid : id-ibia-FingerprintCardsAB     DATA Any } |
+   { BIOMETRIC oid : id-ibia-SecuGen                DATA Any } |
+   { BIOMETRIC oid : id-ibia-PreciseBiometric       DATA Any } |
+   { BIOMETRIC oid : id-ibia-Identix                DATA Any } |
+   { BIOMETRIC oid : id-ibia-DERMALOG               DATA Any },
+
+   ...  -- Expect additional vendor specific formats --
+}
+
+Any ::= TYPE-IDENTIFIER.&Type  -- Application constrained
+
+-- Relative object identifier representations of the identical
+-- IBIA vendor specific formats defined as OBJECT IDENTIFIER
+-- values above are used to identify these formats when they must
+-- comply with the fixed format requirements of the BioAPI 1.1
+-- specification and are associated with a two byte integer value.  
+
+ibia-SAFLINK                RelOID ::= {  1 }
+ibia-Bioscrypt              RelOID ::= {  2 }
+ibia-Visionics              RelOID ::= {  3 }
+ibia-InfineonTechnologiesAG RelOID ::= {  4 }
+ibia-IridianTechnologies    RelOID ::= {  5 }
+ibia-Veridicom              RelOID ::= {  6 }
+ibia-CyberSIGN              RelOID ::= {  7 }
+ibia-eCryp                  RelOID ::= {  8 }
+ibia-FingerprintCardsAB     RelOID ::= {  9 }
+ibia-SecuGen                RelOID ::= { 10 }
+ibia-PreciseBiometric       RelOID ::= { 11 }
+ibia-Identix                RelOID ::= { 12 }
+ibia-DERMALOG               RelOID ::= { 13 }
+
+
+IBIAidFormats BIOMETRIC ::= {
+   { BIOMETRIC id : ibia-SAFLINK                DATA BirInt16 } |
+   { BIOMETRIC id : ibia-Bioscrypt              DATA BirInt16 } |
+   { BIOMETRIC id : ibia-Visionics              DATA BirInt16 } |
+   { BIOMETRIC id : ibia-InfineonTechnologiesAG DATA BirInt16 } |
+   { BIOMETRIC id : ibia-IridianTechnologies    DATA BirInt16 } |
+   { BIOMETRIC id : ibia-Veridicom              DATA BirInt16 } |
+   { BIOMETRIC id : ibia-CyberSIGN              DATA BirInt16 } |
+   { BIOMETRIC id : ibia-eCryp                  DATA BirInt16 } |
+   { BIOMETRIC id : ibia-FingerprintCardsAB     DATA BirInt16 } |
+   { BIOMETRIC id : ibia-SecuGen                DATA BirInt16 } |
+   { BIOMETRIC id : ibia-PreciseBiometric       DATA BirInt16 } |
+   { BIOMETRIC id : ibia-Identix                DATA BirInt16 } |
+   { BIOMETRIC id : ibia-DERMALOG               DATA BirInt16 },
+
+   ...  -- Expect others --
+}
+
+BirInt16 ::= INTEGER (0..65535)
+
+
+IBIA-Formats BIOMETRIC ::= {
+
+   IBIAoidFormats  |  -- Complete object identifiers
+
+   IBIAidFormats,     -- Object identifier fragments
+
+   ...  -- Expect additional IBIA vendor specific formats --
+}
+
+id-x984BioInfo  OID ::= { cbeff-Owner x984BioInfo(0) }
+
+
+CBEFFoidFormats BIOMETRIC ::= {
+   { BIOMETRIC oid : id-x984BioInfo DATA BiometricInformationSets },
+
+   ...  -- Expect other objects --
+}
+
+x984BioInfo  RelOID ::= { x984BioInfo(0) }  -- CBEFF owner
+
+CBEFFidFormats BIOMETRIC ::= {
+   { BIOMETRIC id : x984BioInfo DATA BiometricInformationSets },
+
+   ...  -- Expect other objects --
+}
+
+CBEFF-Formats BIOMETRIC ::= {
+
+   CBEFFoidFormats  |  -- Complete object identifiers
+
+   CBEFFidFormats,     -- Object identifier fragments
+
+   ...  -- Expect additional CBEFF vendor specific formats --
+}
+
+MatchingAIDs BIOMETRIC ::= {
+
+   ...  -- Expect CBEFF assignments in BiometricInformationSets --
+}
+
+ProcessingAIDs BIOMETRIC ::= {
+
+   ...  -- Expect CBEFF assignments in BiometricInformationSets --
+}
+
+X9-Formats BIOMETRIC ::= {
+
+   ...  -- Expect additional X9 vendor specific formats --
+}
+
+-- Security object identifiers 
+
+-- id-sha1        { 1  3  14 3   2 26       }
+-- sha2Algorithm  { 2 16 840 1 101  3 4 2   }
+-- id-sha256      { 2 16 840 1 101  3 4 2 1 }
+-- id-sha384      { 2 16 840 1 101  3 4 2 2 }
+-- id-sha512      { 2 16 840 1 101  3 4 2 3 }
+
+
+-- FIPS 180-1 and FIPS 180-2 Secure Hash Algorithm --
+
+id-sha1 OID ::= { 
+   iso(1) identified-organization(3) oiw(14) secsig(3)
+      algorithm(2) 26
+}
+
+sha2Algorithm OID ::= {
+   joint-iso-itu-t(2) country(16) us(840) organization(1) gov(101)
+      csor(3) nistAlgorithm(4) hashAlgs(2)
+}
+
+id-sha256 OID ::= { sha2Algorithm sha256(1) }
+
+id-sha384 OID ::= { sha2Algorithm sha384(2) }
+
+id-sha512 OID ::= { sha2Algorithm sha512(3) }
+
+SHA-Algorithms ALGORITHM ::= {
+   { OID id-sha1    PARMS NoIV }  |
+   { OID id-sha256             }  |
+   { OID id-sha384             }  |
+   { OID id-sha512             },
+
+   ...  -- Expect others --
+}
+
+NoIV ::= NULL  -- No initialization vector
+
+-- X9.57 DSA signature generated with SHA-1 hash (DSA X9.30)
+
+dsa-with-sha1 OID ::=  {
+   iso(1) member-body(2) us(840) x9-57(10040) x9algorithm(4) 3
+}
+
+-- RSA PKCS #1 public key and signatures
+
+pkcs-1 OID ::= {
+   iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1) 1
+}
+
+-- RSA public keys
+
+rsaEncryption OID ::=  { pkcs-1 1 }
+
+-- RSA signature generated with SHA-1 hash
+
+sha1WithRSAEncryption OID  ::=  { pkcs-1 5 }
+
+-- X9.42 Diffie-Hellman Keys
+
+dhpublicnumber OID ::= {
+   iso(1) member-body(2) us(840) ansi-x942(10046) number-type(2) 1 }
+
+-- ANS X9.52 Triple DES Modes of Operation --
+
+des-ede3-cbc OBJECT IDENTIFIER ::= {
+   iso(1) member-body(2) us(840) rsadsi(113549)
+      encryptionAlgorithm(3) 7
+}
+
+CBCParameter ::= OCTET STRING (SIZE(8))
+
+-- X9.62 Elliptic Curve Keys, Signatures, and Curves
+
+ansi-X9-62 OID ::= {
+   iso(1) member-body(2) us(840) ansi-x962(10045) }
+
+-- X9.62 ECDSA signatures with SHA-1
+
+ecdsa-with-SHA1 OID ::= { ansi-X9-62 signatures(4) 1 }
+
+-- X9.62 Named elliptic curves
+
+EllipiticCurves ALGORITHM ::= { ... }
+
+ellipticCurve OID ::= { ansi-X9-62 curves(3) }
+
+c-TwoCurve OID ::= {
+        ellipticCurve characteristicTwo(0) }
+
+c2pnb163v1  OID  ::=  { c-TwoCurve  1 }
+c2pnb163v2  OID  ::=  { c-TwoCurve  2 }
+c2pnb163v3  OID  ::=  { c-TwoCurve  3 }
+c2pnb176w1  OID  ::=  { c-TwoCurve  4 }
+c2tnb191v1  OID  ::=  { c-TwoCurve  5 }
+c2tnb191v2  OID  ::=  { c-TwoCurve  6 }
+c2tnb191v3  OID  ::=  { c-TwoCurve  7 }
+c2onb191v4  OID  ::=  { c-TwoCurve  8 }
+c2onb191v5  OID  ::=  { c-TwoCurve  9 }
+c2pnb208w1  OID  ::=  { c-TwoCurve 10 }
+c2tnb239v1  OID  ::=  { c-TwoCurve 11 }
+c2tnb239v2  OID  ::=  { c-TwoCurve 12 }
+c2tnb239v3  OID  ::=  { c-TwoCurve 13 }
+c2onb239v4  OID  ::=  { c-TwoCurve 14 }
+c2onb239v5  OID  ::=  { c-TwoCurve 15 }
+c2pnb272w1  OID  ::=  { c-TwoCurve 16 }
+c2pnb304w1  OID  ::=  { c-TwoCurve 17 }
+c2tnb359v1  OID  ::=  { c-TwoCurve 18 }
+c2pnb368w1  OID  ::=  { c-TwoCurve 19 }
+c2tnb431r1  OID  ::=  { c-TwoCurve 20 }
+
+primeCurve OID ::= { ellipticCurve prime(1) }
+
+prime192v1  OID  ::=  { primeCurve  1 }
+prime192v2  OID  ::=  { primeCurve  2 }
+prime192v3  OID  ::=  { primeCurve  3 }
+prime239v1  OID  ::=  { primeCurve  4 }
+prime239v2  OID  ::=  { primeCurve  5 }
+prime239v3  OID  ::=  { primeCurve  6 }
+prime256v1  OID  ::=  { primeCurve  7 }
+
+id-data OID ::= { 
+   iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
+      pkcs7(7) data(1)
+}
+
+
+END  -- X9-84-Identifiers --
+

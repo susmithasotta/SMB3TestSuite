@@ -1,0 +1,10 @@
+c:\tsdev\Infrastructure\src\ProtoSDK\CryptoLib\objd\i386\ResolveAssemblyReference.cache
+c:\tsdev\Infrastructure\src\ProtoSDK\CryptoLib\objd\i386\_generated.cs
+c:\tsdev\Infrastructure\src\ProtoSDK\CryptoLib\objd\i386\Microsoft.Protocols.TestTools.StackSdk.Security.CryptoLib.dll
+c:\tsdev\Infrastructure\src\ProtoSDK\CryptoLib\objd\i386\Microsoft.Protocols.TestTools.StackSdk.Security.CryptoLib.pdb
+c:\tsdev\Infrastructure\src\ProtoSDK\CryptoLib\objd\i386\Microsoft.Protocols.TestTools.StackSdk.dll
+c:\tsdev\Infrastructure\src\ProtoSDK\CryptoLib\objd\i386\Microsoft.Protocols.TestTools.StackSdk.Messages.dll
+c:\tsdev\Infrastructure\src\ProtoSDK\CryptoLib\objd\i386\Microsoft.Protocols.TestTools.StackSdk.pdb
+c:\tsdev\Infrastructure\src\ProtoSDK\CryptoLib\objd\i386\Microsoft.Protocols.TestTools.StackSdk.xml
+c:\tsdev\Infrastructure\src\ProtoSDK\CryptoLib\objd\i386\Microsoft.Protocols.TestTools.StackSdk.Messages.pdb
+c:\tsdev\Infrastructure\src\ProtoSDK\CryptoLib\objd\i386\Microsoft.Protocols.TestTools.StackSdk.Messages.xml

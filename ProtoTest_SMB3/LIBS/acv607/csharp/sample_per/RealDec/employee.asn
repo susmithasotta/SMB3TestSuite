@@ -1,0 +1,9 @@
+RealDec DEFINITIONS ::= BEGIN
+
+PersonnelRecord ::= [APPLICATION 0] IMPLICIT SEQUENCE {
+   bits BIT STRING,
+   nr3a REAL,
+   nr3b REAL,
+   nr3c REAL
+   }
+END

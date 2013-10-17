@@ -1,0 +1,43 @@
+ENABLE_CSXMLDOCS                      = 1
+CSXMLDOCS_DIR                         = $(INETROOT)\$(INFRASTRUCTURE_DROP)\ProtoSDK\bin\XMLdocs
+
+!INCLUDE $(INETROOT)\build\sources.all
+
+TARGETNAME                            = Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp
+TARGETTYPE                            = DYNLINK
+
+MANAGED_CODE                          = 1 
+
+REFERENCES                            =   \
+                                          $(INFRA_SDK_SOURCE_PATH)\Common\$(O)\Microsoft.Protocols.TestTools.StackSdk.metadata_dll; \
+                                          $(INFRA_SDK_SOURCE_PATH)\CryptoLib\$(O)\Microsoft.Protocols.TestTools.StackSdk.Security.CryptoLib.metadata_dll; \
+                                          $(INFRA_SDK_SOURCE_PATH)\Sspi\$(O)\Microsoft.Protocols.TestTools.StackSdk.Security.Sspi.metadata_dll; \
+
+SOURCES                               =   \
+                                          Client\NlmpClient.cs \
+                                          Client\NlmpClientConfig.cs \
+                                          Client\NlmpClientContext.cs \
+                                          Client\NlmpClientCredential.cs \
+                                          Client\NlmpClientSecurityConfig.cs \
+                                          Client\NlmpClientSecurityContext.cs \
+                                          Messages\NlmpAuthenticatePacket.cs \
+                                          Messages\NlmpChallengePacket.cs \
+                                          Messages\NlmpEmptyPacket.cs \
+                                          Messages\NlmpNegotiatePacket.cs \
+                                          Messages\NlmpPacket.cs \
+                                          NlmpContext.cs \
+                                          NlmpMessages.cs \
+                                          NlmpUtility.cs \
+                                          Server\NlmpServer.cs \
+                                          Server\NlmpServerContext.cs \
+                                          Server\NlmpServerSecurityConfig.cs \
+                                          Server\NlmpServerSecurityContext.cs \
+
+ASSEMBLY_IDENTITY_PUBLIC_KEY_NAME     = petkey
+
+FXCOP_USER_FLAGS                      = $(FXCOP_USER_FLAGS) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\Sspi\$(O) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\Common\$(O) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\CryptoLib\$(O) \
+
+BINPLACE_FLAGS                        = $(BINPLACE_FLAGS) RESIGN_KEYNAME = $(PET_KEY)

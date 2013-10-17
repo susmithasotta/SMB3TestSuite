@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tokenInfo>
+   <version>v1</version>
+   <serialNumber>159752222515401240</serialNumber>
+   <manufacturerID>XY, Inc.</manufacturerID>
+   <label>Digital signature card</label>
+   <tokenflags>prnGeneration</tokenflags>
+   <seInfo>
+      <SecurityEnvironmentInfo>
+         <se>1</se>
+         <owner>1.0.0</owner>
+      </SecurityEnvironmentInfo>
+   </seInfo>
+   <supportedAlgorithms>
+      <AlgorithmInfo>
+         <reference>1</reference>
+         <algorithm>1</algorithm>
+         <parameters>
+<NULL/></parameters>
+         <supportedOperations>hash</supportedOperations>
+         <algId>1.3.14.3.2.26</algId>
+      </AlgorithmInfo>
+      <AlgorithmInfo>
+         <reference>2</reference>
+         <algorithm>2</algorithm>
+         <parameters>
+<NULL/></parameters>
+         <supportedOperations>compute-signature</supportedOperations>
+         <algId>1.3.36.3.4.3.2.1</algId>
+      </AlgorithmInfo>
+      <AlgorithmInfo>
+         <reference>3</reference>
+         <algorithm>3</algorithm>
+         <parameters>
+<NULL/></parameters>
+         <supportedOperations>compute-checksum verify-checksum</supportedOperations>
+         <algId>1.0.0</algId>
+      </AlgorithmInfo>
+      <AlgorithmInfo>
+         <reference>4</reference>
+         <algorithm>4</algorithm>
+         <parameters>
+<OCTET_STRING>0000000000000000</OCTET_STRING></parameters>
+         <supportedOperations>encipher decipher</supportedOperations>
+         <algId>1.2.840.113549.3.7</algId>
+      </AlgorithmInfo>
+   </supportedAlgorithms>
+   <issuerId>wxy</issuerId>
+   <holderId>vwx</holderId>
+</tokenInfo>

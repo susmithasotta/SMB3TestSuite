@@ -1,0 +1,196 @@
+Test DEFINITIONS ::= BEGIN
+
+OID ::= OBJECT IDENTIFIER  -- Alias
+
+RelOID ::= RELATIVE-OID  -- Alias
+
+-- Biometrics information object class
+
+BIOMETRIC ::= CLASS {
+   &name  BIOMETRIC-IDENTIFIER  UNIQUE,
+   &Type  OPTIONAL
+}
+   WITH SYNTAX { BIOMETRIC &name [ DATA &Type ] }
+
+BIOMETRIC-IDENTIFIER ::= CHOICE {
+   oid  OBJECT IDENTIFIER,  -- complete object identifier
+   id   RELATIVE-OID        -- object identifier fragment
+}
+
+-- X9.84 vendor specific formats --
+
+x9-84 OID ::= {
+   iso(1) identified-organization(3) tc68(133) country(16)
+      x9(840) x9Standards(9) x9-84(84)
+}
+
+format-Owner OID ::= { x9-84 format-owners(4) }
+
+cbeff-Owner OID ::= { format-Owner cbeff(0) }
+
+ibia-Owner  OID ::= { format-Owner ibia(1) }
+
+x9-Owner    OID ::= { format-Owner x9(2) }  -- PHG added
+
+-- IBIA vendor specific formats registered at http://www.ibia.org --
+
+id-ibia-SAFLINK                OID ::= { ibia-Owner  1 }
+id-ibia-Bioscrypt              OID ::= { ibia-Owner  2 }
+id-ibia-Visionics              OID ::= { ibia-Owner  3 }
+id-ibia-InfineonTechnologiesAG OID ::= { ibia-Owner  4 }
+id-ibia-IridianTechnologies    OID ::= { ibia-Owner  5 }
+id-ibia-Veridicom              OID ::= { ibia-Owner  6 }
+id-ibia-CyberSIGN              OID ::= { ibia-Owner  7 }
+id-ibia-eCryp                  OID ::= { ibia-Owner  8 }
+id-ibia-FingerprintCardsAB     OID ::= { ibia-Owner  9 }
+id-ibia-SecuGen                OID ::= { ibia-Owner 10 }
+id-ibia-PreciseBiometric       OID ::= { ibia-Owner 11 }
+id-ibia-Identix                OID ::= { ibia-Owner 12 }
+id-ibia-DERMALOG               OID ::= { ibia-Owner 13 }
+
+-- When represented as values of type OBJECT IDENTIFIER, these IBIA --
+-- vendor specific formats may be associated with any ASN.1 type.   -- 
+
+IBIAoidFormats BIOMETRIC ::= {
+   { BIOMETRIC oid : id-ibia-SAFLINK                DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-Bioscrypt              DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-Visionics              DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-InfineonTechnologiesAG DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-IridianTechnologies    DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-Veridicom              DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-CyberSIGN              DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-eCryp                  DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-FingerprintCardsAB     DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-SecuGen                DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-PreciseBiometric       DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-Identix                DATA OpenType } |
+   { BIOMETRIC oid : id-ibia-DERMALOG               DATA OpenType },
+
+   ...  -- expect additional vendor specific formats --
+}
+
+OpenType ::= TYPE-IDENTIFIER.&Type  -- Application constrained
+
+-- Relative object identifier representations of the identical IBIA  --
+-- vendor specific formats defined as OBJECT IDENTIFIER values above --
+-- are used to identify these formats when they must comply with the --
+-- fixed format requirements of the BioAPI 1.1 specification and are --
+-- associated with a two byte integer value.                         -- 
+
+ibia-SAFLINK                RelOID ::= {  1 }
+ibia-Bioscrypt              RelOID ::= {  2 }
+ibia-Visionics              RelOID ::= {  3 }
+ibia-InfineonTechnologiesAG RelOID ::= {  4 }
+ibia-IridianTechnologies    RelOID ::= {  5 }
+ibia-Veridicom              RelOID ::= {  6 }
+ibia-CyberSIGN              RelOID ::= {  7 }
+ibia-eCryp                  RelOID ::= {  8 }
+ibia-FingerprintCardsAB     RelOID ::= {  9 }
+ibia-SecuGen                RelOID ::= { 10 }
+ibia-PreciseBiometric       RelOID ::= { 11 }
+ibia-Identix                RelOID ::= { 12 }
+ibia-DERMALOG               RelOID ::= { 13 }
+
+
+IBIAidFormats BIOMETRIC ::= {
+   { BIOMETRIC id : ibia-SAFLINK                DATA BirInt16 } |
+   { BIOMETRIC id : ibia-Bioscrypt              DATA BirInt16 } |
+   { BIOMETRIC id : ibia-Visionics              DATA BirInt16 } |
+   { BIOMETRIC id : ibia-InfineonTechnologiesAG DATA BirInt16 } |
+   { BIOMETRIC id : ibia-IridianTechnologies    DATA BirInt16 } |
+   { BIOMETRIC id : ibia-Veridicom              DATA BirInt16 } |
+   { BIOMETRIC id : ibia-CyberSIGN              DATA BirInt16 } |
+   { BIOMETRIC id : ibia-eCryp                  DATA BirInt16 } |
+   { BIOMETRIC id : ibia-FingerprintCardsAB     DATA BirInt16 } |
+   { BIOMETRIC id : ibia-SecuGen                DATA BirInt16 } |
+   { BIOMETRIC id : ibia-PreciseBiometric       DATA BirInt16 } |
+   { BIOMETRIC id : ibia-Identix                DATA BirInt16 } |
+   { BIOMETRIC id : ibia-DERMALOG               DATA BirInt16 },
+
+   ...  -- expect others --
+}
+
+BirInt16 ::= INTEGER (0..65535)
+
+
+IBIA-Formats BIOMETRIC ::= {
+
+   IBIAoidFormats |    -- Complete object identifiers
+
+   IBIAidFormats,     -- Object identifier fragments
+
+   ...  -- expect additional IBIA vendor specific formats --
+}
+
+id-x984BioInfo  OID ::= { cbeff-Owner x984BioInfo(0) }
+
+
+CBEFFoidFormats BIOMETRIC ::= {
+   { BIOMETRIC oid : id-x984BioInfo DATA BiometricInfo },
+
+   ...  -- expect others --
+}
+
+x984BioInfo  RelOID ::= { x984BioInfo(0) }  -- CBEFF owner
+
+CBEFFidFormats BIOMETRIC ::= {
+   { BIOMETRIC id : x984BioInfo DATA BiometricInfo },
+
+   ...  -- expect others --
+}
+
+CBEFF-Formats BIOMETRIC ::= {
+
+   CBEFFoidFormats |   -- Complete object identifiers
+
+   CBEFFidFormats,     -- Object identifier fragments
+
+   ...  -- expect additional CBEFF vendor specific formats --
+}
+
+Format ::= SEQUENCE {
+   formatOwner  BIOMETRIC.&name({Owner}),
+   formatType   BIOMETRIC.&Type({Owner}{@formatOwner})  OPTIONAL
+}
+
+Owner BIOMETRIC ::= {
+   CBEFF-Formats  |  -- http://www.nist.gov --
+   IBIA-Formats   |  -- http://www.ibia.org --
+   X9-Formats,       -- http://www.x9.org --
+
+   ...  -- expect additional vendor specific formats --
+} 
+
+-- Authentication Information (AI)
+
+BiometricInfo ::= SEQUENCE SIZE(1..MAX) OF BioInformation
+
+BioInformation ::= SEQUENCE {
+   processingInfo  ProcessingInfo  OPTIONAL,
+   matchingInfo    MatchingInfo  OPTIONAL
+}
+ (ALL EXCEPT({-- none; at least one component shall be present --}))
+
+-- Biometric processing algorithms
+
+ProcessingInfo ::= SEQUENCE SIZE(1..MAX) OF ProcessingInformation
+
+ProcessingInformation ::= SEQUENCE {
+   id	    BIOMETRIC.&name({ProcessingAIDs}),
+   parms  BIOMETRIC.&Type({ProcessingAIDs}{@id})  OPTIONAL
+}
+
+ProcessingAIDs BIOMETRIC ::= { ... }
+
+-- Biometric matching methods
+
+MatchingInfo ::= SEQUENCE SIZE(1..MAX) OF MatchingInformation 
+
+MatchingInformation ::= SEQUENCE {
+   id	    BIOMETRIC.&name({MatchingAIDs}),
+   parms  BIOMETRIC.&Type({MatchingAIDs}{@id})  OPTIONAL
+}
+
+MatchingAIDs BIOMETRIC ::= { ... }
+
+END

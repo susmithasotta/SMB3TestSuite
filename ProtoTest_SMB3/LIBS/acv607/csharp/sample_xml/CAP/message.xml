@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cap:alert xmlns:cap="http://www.incident.com/cap/1.0">
+   <cap:identifier>43b080713727</cap:identifier>
+   <cap:sender>hsas@dhs.gov</cap:sender>
+   <cap:sent>2003-04-02T14:39:01-05:00</cap:sent>
+   <cap:status>Actual</cap:status>
+   <cap:msgType>Alert</cap:msgType>
+   <cap:scope>Public</cap:scope>
+   <cap:info>
+      <cap:category>Security</cap:category>
+      <cap:event>Homeland Security Advisory System Update</cap:event>
+      <cap:urgency>Immediate</cap:urgency>
+      <cap:severity>Severe</cap:severity>
+      <cap:certainty>Likely</cap:certainty>
+      <cap:senderName>U.S. Government, Department of Homeland Security</cap:senderName>
+      <cap:headline>Homeland Security Sets Code ORANGE</cap:headline>
+      <cap:description>The Department of Homeland Security has elevated the Homeland Security Advisory System threat level to ORANGE / High in response to intelligence which may indicate a heightened threat of terrorism.</cap:description>
+      <cap:instruction> A High Condition is declared when there is a high risk of terrorist attacks. In addition to the Protective Measures taken in the previous Threat Conditions, Federal departments and agencies should consider agency specific Protective Measures in accordance with their existing plans.</cap:instruction>
+      <cap:web>http://www.dhs.gov/dhspublic/display?theme=29</cap:web>
+      <cap:parameter>HSAS=ORANGE</cap:parameter>
+      <cap:resource>
+         <cap:resourceDesc>Image file (GIF)</cap:resourceDesc>
+         <cap:uri>http://www.dhs.gov/dhspublic/getAdvisoryImage</cap:uri>
+      </cap:resource>
+      <cap:area>
+         <cap:areaDesc>U.S. nationwide and interests worldwide</cap:areaDesc>
+      </cap:area>
+   </cap:info>
+</cap:alert>

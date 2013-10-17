@@ -1,0 +1,816 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.0  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Ethan Metsger">
+	<META NAME="CREATED" CONTENT="20060718;16024300">
+	<META NAME="CHANGEDBY" CONTENT="Ethan Metsger">
+	<META NAME="CHANGED" CONTENT="20060804;10215915">
+	<STYLE>
+	<!--
+		@page { size: 8.5in 11in; margin: 0.79in }
+		TD P { margin-bottom: 0in }
+		TD P.western { font-family: "Arial", sans-serif; font-size: 10pt }
+		H1 { margin-bottom: 0.08in }
+		H1.western { font-family: "Arial", sans-serif; font-size: 16pt }
+		H1.cjk { font-family: "MS Mincho"; font-size: 16pt }
+		H1.ctl { font-family: "Tahoma"; font-size: 16pt }
+		P { margin-bottom: 0.08in }
+		P.western { font-family: "Arial", sans-serif; font-size: 12pt }
+		H2 { margin-bottom: 0.08in }
+		H2.western { font-family: "Arial", sans-serif; font-size: 14pt; font-style: italic }
+		H2.cjk { font-family: "MS Mincho"; font-size: 14pt; font-style: italic }
+		H2.ctl { font-size: 14pt; font-style: italic }
+		H3 { margin-bottom: 0.08in }
+		H3.western { font-family: "Arial", sans-serif }
+		H3.cjk { font-family: "MS Mincho" }
+		TH P { margin-bottom: 0in }
+		TH P.western { font-family: "Arial", sans-serif; font-size: 10pt; font-style: italic }
+		TH P.cjk { font-style: italic }
+		TH P.ctl { font-style: italic }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P CLASS="western" ALIGN=CENTER STYLE="margin-top: 0.17in; page-break-after: avoid">
+<FONT SIZE=5><B>ASN1C Compiler Wizard User's Guide</B></FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-top: 0.17in; page-break-after: avoid">
+<FONT SIZE=4><I>July 2006</I></FONT></P>
+<P CLASS="western"><BR><BR>
+</P>
+<H1 CLASS="western">Introduction</H1>
+<P CLASS="western">This document provides tutorial information for
+the ASN1C Compiler Wizard, a graphical application that acts as a
+front end to Objective Systems' ASN1C command-line compiler.
+Documentation related to the ASN1C compiler and runtime library may
+be found on-line at <A HREF="http://www.obj-sys.com/docs/documents.shtml">http://www.obj-sys.com/docs/documents.shtml</A>.
+This document is not intended to be a comprehensive reference for the
+command-line tool. Consult the documentation when questions arise
+about compiler use.</P>
+<P CLASS="western" STYLE="font-weight: medium">The Compiler Wizard is
+navigated by means of <I>Next </I>and <I>Back</I> buttons. Check
+boxes, text-entry forms, and radio buttons are used to select
+compiler options. 
+</P>
+<P CLASS="western" STYLE="font-weight: medium">The Wizard contains
+several context-sensitive options, so some items may be inactive or
+invisible when others are active. For example, it is impossible to
+specify both BER and DER encoding rules simultaneously. When the
+target language is C#, function types that may be generated for C or
+C++ do not appear at all.</P>
+<H1 CLASS="western">The ASN1C Project Wizard</H1>
+<P CLASS="western"><IMG SRC="01-Project-Wizard.jpg" NAME="graphics1" ALIGN=LEFT WIDTH=38% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<P CLASS="western">Users have the option of creating and loading
+project files during each execution of the Wizard. A project saves
+all selected compilation options, allowing users to store
+commonly-used options for later retrieval. To create a new project,
+click <I>Create a new project</I>. To load a previously saved
+project, click <I>Open an existing project</I>.</P>
+<P CLASS="western" STYLE="font-style: normal">When closing, the
+Wizard will offer to save the current project, if modified, or to
+create a new one.</P>
+<H1 CLASS="western">Select Files and Directories</H1>
+<P CLASS="western"><IMG SRC="02-Select-Files-and-Directories.jpg" NAME="graphics2" ALIGN=LEFT WIDTH=38% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H2 CLASS="western">XSD and ASN.1 Files</H2>
+<P CLASS="western" ALIGN=LEFT>To add ASN.1 or XSD specifications to
+be compiled, click the <I>Browse</I> button next to the pane labeled
+<I>ASN.1 / XSD Files</I> and select files from the browse window that
+appears. To remove a file, highlight it in the list and click <I>Remove</I>.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="font-style: normal"><B>Note
+</B>ASN1C will compile both ASN.1 and XSD files, but it will not
+compile both at the same time. When attempting to add files, the
+Wizard will prevent users from adding files of both types. In order
+to add an XSD file, all ASN.1 files must be removed from the list,
+and vice versa.</P>
+<H2 CLASS="western">Import Directories</H2>
+<P CLASS="western" STYLE="font-style: normal; font-weight: medium">To
+specify directories for the compiler to search for imported
+specifications (<I>i.e.</I>, those provided by IMPORT declarations in
+ASN.1 files), click the <I>Browse</I> button next to the <I>Include /
+Import Directories </I>pane. To remove a directory, highlight it in
+the list and click <I>Remove</I>.</P>
+<H2 CLASS="western">Configuration Files</H2>
+<P CLASS="western">Configuration files are added the same way. A
+configuration file contains directives that tell the compiler how to
+treat production rules it encounters in an ASN.1 specification.
+Configuration files have a .cfg or .xml extension. The compiler
+manual describes the format of these files in detail.</P>
+<H2 CLASS="western">Output Directory</H2>
+<P CLASS="western">By default, the compiler generates code in the
+current working directory. Specifying an output directory will cause
+the compiler to write all of its files to a directory of the user's
+choosing. The output directory is selected in the same manner as the
+import directories.</P>
+<H2 CLASS="western">Generate Listing</H2>
+<P CLASS="western">By default, ASN1C does not display the contents of
+the specification it compiles. Checking <I>Generate Listing</I> will
+cause it to echo the specification to the screen.</P>
+<H2 CLASS="western">Output Warning Messages</H2>
+<P CLASS="western">The same is true of compilation warnings. Checking
+<I>Output Warning Messages</I> will cause the compiler to produce
+warning messages if any are appropriate.</P>
+<H1 CLASS="western">Code Generation Options</H1>
+<P CLASS="western"><IMG SRC="03-Code-Generation-Options.jpg" NAME="graphics3" ALIGN=LEFT WIDTH=38% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H2 CLASS="western"><I>Input File Type</I></H2>
+<P CLASS="western">ASN1C can parse ASN.1 specifications based on both
+the X.680 standard (post-1997) and the X.208 standard (pre-1997, with
+ROSE or SNMP macros). When compiling a legacy specification, select
+the <I>Legacy ASN.1</I> radio button.</P>
+<P CLASS="western" STYLE="font-style: normal">ASN1C also recognizes
+XML schema definitions (XSD files). When one or more XSD files are
+specified in the <I>Select Files and Directories</I> window, the <I>XML
+Schema</I> radio button will be active and the ASN.1 radio buttons
+will be inactive (grayed out).</P>
+<H2 CLASS="western"><I>Application Language Type</I></H2>
+<P CLASS="western" STYLE="font-style: normal">The target language may
+be <I>C</I>, <I>C++</I>, <I>C#</I>, or <I>Java</I>. In order to
+perform a simple syntax check without generating any source code,
+click <I>None</I>.</P>
+<H2 CLASS="western"><I>Additional Translations</I></H2>
+<P CLASS="western" STYLE="font-style: normal">Depending on which file
+type is selected in the <I>Select Files and Directories</I> window,
+options are also available to translate between ASN.1 specifications
+and XML Schema Definitions. If the input is an ASN.1 specification,
+the check box marked <I>Generate equivalent XML schema (XSD) file</I>
+will be active and the check box marked <I>Generate ASN.1 file based
+on X.694 (XSD input only)</I> will be inactive. The disposition of
+the check boxes is reversed when the input is an XSD file.</P>
+<H2 CLASS="western"><I>Dependencies</I></H2>
+<P CLASS="western">ASN1C can also attempt to compile all
+specifications that are imported by the given specification.  If
+different compilation options are required, a configuration may be
+created that can fine-tune some of the controls.</P>
+<H1 CLASS="western" STYLE="font-style: normal">C/C++ Code Generation
+Options</H1>
+<P CLASS="western"><IMG SRC="04-C-Code-Generation-Options-1.jpg" NAME="graphics4" ALIGN=LEFT WIDTH=50% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<P CLASS="western" STYLE="font-style: normal">Compiler options for
+the C and C++ target languages are the same.</P>
+<H2 CLASS="western"><I>Select Encoding Rules</I></H2>
+<P CLASS="western">ASN1C can generate code compliant with several
+ASN.1 standards as well as the W3C XML standard:</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=77*>
+	<COL WIDTH=179*>
+	<TR VALIGN=TOP>
+		<TH WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Encoding
+			Rules</FONT></FONT></P>
+		</TH>
+		<TH WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Description</FONT></FONT></P>
+		</TH>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>BER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Basic
+			Encoding Rules, defined in ASN.1 standard X.690.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>DER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Distinguished
+			Encoding Rules, defined in ASN.1 Standard X.690.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>CER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Canonical
+			Encoding Rules, defined in ASN.1 Standard X.690.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>PER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Packed
+			Encoding Rules, defined in ASN.1 Standard X.691.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XML
+			Encoding Rules, defined in ASN.1 Standard X.693.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XML</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XML
+			Encoding rules, as specified by the World Wide Web Consortium. </FONT></FONT>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P CLASS="western"><BR><BR>
+</P>
+<P CLASS="western">Note that only one of BER, CER, and DER may be
+selected at a time. XML and XER are also mutually exclusive options.</P>
+<H2 CLASS="western"><I>Generated Function Types</I></H2>
+<P CLASS="western">Several different functions may be generated for
+each ASN.1 or XML production. Generating these functions may result
+in a substantially larger code base, so care should be exercised when
+code size is a concern. By default, only <I>Encode</I> and <I>Decode</I>
+functions are selected. In cases where only one or the other is
+required, a smaller code base may be generated by unchecking the
+indicated boxes.</P>
+<H3 CLASS="western">Initialization</H3>
+<P CLASS="western">Check <I>Initialization</I> to generate functions
+that will initialize each ASN.1 production. This produces code that
+more efficiently initializes variables for the generated types.</P>
+<H3 CLASS="western">Memory Free</H3>
+<P CLASS="western">Check <I>Memory Free</I> to generate memory free
+functions for all generated types. Normally ASN1C handles memory
+deallocation through a custom memory free function, rtMemFree, that
+frees all of the memory used by a specific context. By selecting this
+option, it is possible to achieve finer control over memory
+deallocation.</P>
+<H3 CLASS="western">Copy Functions</H3>
+<P CLASS="western">Check <I>Copy</I> to instruct the compiler to
+create functions that perform a deep copy. This deep copy is
+performed by ASN1C memory management functions.</P>
+<H3 CLASS="western">Compare Functions</H3>
+<P CLASS="western">Check <I>Compare</I> to generate functions that
+will permit generated type variables to be compared to each other.
+These are debug functions.</P>
+<H3 CLASS="western">Test Functions</H3>
+<P CLASS="western">Check <I>Test</I> to generate test functions that
+populate generated types with random data. Use the generated encode
+functions to encode test constructs. Test functions may also serve as
+a template for how to populate generated types.</P>
+<P CLASS="western" STYLE="font-style: normal">Test functions are
+outputted to &lt;Module_Name&gt;Test.c, where &lt;Module_Name&gt; is
+the name of the ASN.1 module.</P>
+<H3 CLASS="western">Stream Functions</H3>
+<P CLASS="western">Check <I>Stream</I> to generate stream-based
+encode/decode functions instead of the typical memory-buffer based.
+These permit users to encode directly to or decode directly from a
+source or sink such as a file or socket. Stream-based encode and
+decode routines cannot be combined with memory-buffer-based routines
+in any way. 
+</P>
+<P CLASS="western" STYLE="font-style: normal">The functions will be
+written to &lt;Module_Name&gt;Print.c where &lt;Module_Name&gt; is
+the name of the module from the ASN.1 source file.</P>
+<H3 CLASS="western">Named Bit Macros</H3>
+<P CLASS="western">Check <I>Named Bit Macros</I><SPAN STYLE="font-style: normal">
+to generate functions that generate macros to set, clear, or test the
+named bit in a bit string structure. These macros offer better
+performance then using the run-time functions because all
+calculations of mask and index values are done at compile time. 
+However, this represents a substantial increase in generated code
+size.</SPAN></P>
+<H3 CLASS="western">Print Functions</H3>
+<P CLASS="western">The compiler supports three different printing
+functions: <I>Print to stdout</I>, <I>Print to string</I>, and <I>Print
+to stream</I>. When specified, the print option permits printing
+objects to standard output (the console), user-supplied text buffers
+(the string), and a user-provided stream in the form of an output
+callback function.</P>
+<P CLASS="western" STYLE="font-style: normal"><B>Note</B> Print to
+stream is not supported when using Packed Encoding Rules.</P>
+<H2 CLASS="western"><I>Space Optimization Options</I></H2>
+<P CLASS="western">The compiler may optimize code for space in
+several ways. Note that some options are not available for all
+Encoding Rules.</P>
+<H3 CLASS="western" STYLE="font-style: normal">Indefinite Length
+Processing Tests</H3>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Do not
+generate indefinite length processing code</I> to instruct the
+compiler to omit indefinite length tests in generated decode
+functions. These tests result in the generation of a large amount of
+code. If the compiled application only uses definite length encoding,
+this option can result in a much smaller code base size. 
+</P>
+<P CLASS="western" STYLE="font-style: normal"><B>Note</B> <I>Do not
+generate indefinite length processing code</I> may only be selected
+in conjunction with Basic and Distinguished Encoding Rules.</P>
+<H3 CLASS="western">Open Extension Elements</H3>
+<P CLASS="western">Check <I>Do not generate code to save/restore
+unknown extensions</I> to prevent the compiler from generating code
+to read and write elements with extensibility markers. If such
+generality is not required by the application, check this option to
+reduce the code size.</P>
+<H3 CLASS="western">Type Constraints</H3>
+<P CLASS="western">If <I>Do not generate code to check constraints</I>
+is checked, ASN.1 types with constraints will be treated as types
+without constraints.</P>
+<H3 CLASS="western">Compact Code</H3>
+<P CLASS="western">Checking <I>Generate Compact Code</I> instructs
+the compiler to create more compact code at the expense of some error
+and constraint checks. It is not recommended to select this option
+until after the application has been thoroughly tested.</P>
+<P CLASS="western" STYLE="font-style: normal"><B>Note</B> <I>Generate
+Compact Code</I> may not be used when attempting to generate code
+compatible with previous versions of the compiler.</P>
+<H2 CLASS="western"><I>Compatibility Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">ASN1C may also be
+instructed to generate code compatible with earlier versions of the
+compiler. This option may not be used in conjunction with <I>Generate
+Compact Code</I>.</P>
+<P CLASS="western"><IMG SRC="05-C-Code-Generation-Options-2.jpg" NAME="graphics5" ALIGN=LEFT WIDTH=50% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H2 CLASS="western"><I>Generated Type Modifiers</I></H2>
+<P CLASS="western">By checking <I>Generate static member variables in
+choice constructs</I>, the compiler will use static elements instead
+of pointer variables in generated structures.</P>
+<P CLASS="western" STYLE="font-style: normal">Checking <I>Generate
+short form of type names</I> will cause the compiler to used only the
+production name and final element name in a type name. Collisions are
+resolved by appending a unique number to the end of the type name. By
+default, the compiler will use intermediate names to generate final
+element names; in deeply nested types, this can result in very long
+type names.</P>
+<P CLASS="western" STYLE="font-style: normal">To resolve type name
+collisions, check <I>Automatically create unique names for duplicate
+items</I>.</P>
+<P CLASS="western" STYLE="font-style: normal">To cause the compiler
+to treat all type names as Protocol Data Units (PDUs), check the
+corresponding box. Default behavior is to treat only unreferenced
+types within a module as PDUs.</P>
+<H2 CLASS="western"><I>Table Constraint Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Generate code
+to fully encode/decode items with table constraints</I> to instruct
+the compiler to generate table constraint processing structures and
+functions. These add logic for handling types that use message tables
+for defining what is to be included in a give protocol interaction
+message. The added logic makes it possible to encode or decode these
+multi-part messages in a single step. 
+</P>
+<P CLASS="western" STYLE="font-style: normal"><B>Note </B>This option
+is not available for XML Schema or XML Encoding Rules.</P>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Enable strict
+constraint checks on all table constraint items</I> to instruct the
+compiler to generate code for strict validation of table constraints.
+Real world messages typically do not follow value field table
+constraint definitions, so this option should be used with care. It
+will increase code size and decrease performance.</P>
+<H2 CLASS="western"><I>Event Handler Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Generate code
+to invoke event handler callback functions</I> to provide support for
+user-defined event and error handlers. If pure parser functions are
+desired, also check <I>Generate pure parser</I>.</P>
+<H2 CLASS="western"><I>Output File Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">ASN1C can output
+resulting code in a variety of ways. 
+</P>
+<P CLASS="western" STYLE="font-style: normal">Select <I>Output Code
+to .c/.h files based on module names</I> to produce files for each
+ASN.1 Module. If a limit on file length is desired (<I>e.g.</I>, to
+avoid Visual C++ limits), enter the number of lines in the <I>Max
+lines per file</I> line; the default value is 50,000 lines.</P>
+<P CLASS="western" STYLE="font-style: normal">Select <I>Output each
+generated function to a separate source file</I> to produce a source
+file for each function. When C is the target language, this will
+produce a .c file for each generated function. When C++ is the target
+language, a .cpp file is generated for each control class, type, and
+C function. This may lead to smaller executable sizes by allowing the
+linker to only link required object files.</P>
+<P CLASS="western" STYLE="font-style: normal">Select <I>Output all
+code to a single .c/.h file</I> to dump all generated code to a
+single .c (or .cpp) and .h file.</P>
+<P CLASS="western"><IMG SRC="06-C-Code-Generation-Options-3.jpg" NAME="graphics6" ALIGN=LEFT WIDTH=53% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H2 CLASS="western"><I>Makefile Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">ASN1C has the ability
+to generate makefiles to permit convenient compilation of generated
+code. Both Windows- and GNU-style makefiles are supported. Static and
+dynamic linking are also supported. Check <I>Compile all code into a
+static library</I> to generate a makefile that uses static linking.
+Check <I>Compile all code into a DLL or shared object file</I> to
+generate a makefile that uses dynamic linking.  To generate a Visual
+Studio project file, check <I>Generate Visual Studio Project File</I>.</P>
+<H2 CLASS="western"><I>Library Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">By default, ASN1C
+generates statically-linked, single-threaded libraries.  To use
+shared libraries, select the <I>Generate shared libraries</I><SPAN STYLE="font-style: normal">
+radio button.  Check </SPAN><I>Generate multi-threaded libraries</I><SPAN STYLE="font-style: normal">
+if multi-threading is desired.</SPAN></P>
+<H2 CLASS="western"><I>Sample Program Generation Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Generate
+writer sample program</I> to instruct the compiler to produce a
+program that demonstrates how to populate and encode data structures.
+Check <I>Generate reader sample program</I> to instruct the compiler
+to produce a program that demonstrates how to decode and output data
+structures.</P>
+<H2 CLASS="western"><I>Other Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">To specify other
+command-line options not usable through the GUI, add them in the
+provided text line. These options are added at the end of the
+compilation command line.</P>
+<H1 CLASS="western">C# Code Generation Options</H1>
+<P CLASS="western"><IMG SRC="04-CS-Code-Generation-Options-1.jpg" NAME="graphics7" ALIGN=LEFT WIDTH=53% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H2 CLASS="western">Select Encoding Rules</H2>
+<P CLASS="western">ASN1C can generate code compliant with several
+ASN.1 standards as well as the W3C XML standard:</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=77*>
+	<COL WIDTH=179*>
+	<TR VALIGN=TOP>
+		<TH WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Encoding
+			Rules</FONT></FONT></P>
+		</TH>
+		<TH WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Description</FONT></FONT></P>
+		</TH>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>BER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Basic
+			Encoding Rules, defined in ASN.1 standard X.690.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>DER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Distinguished
+			Encoding Rules, defined in ASN.1 Standard X.690.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>CER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Canonical
+			Encoding Rules, defined in ASN.1 Standard X.690.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>PER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Packed
+			Encoding Rules, defined in ASN.1 Standard X.691.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XML
+			Encoding Rules, defined in ASN.1 Standard X.693.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XML</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XML
+			Encoding rules, as specified by the World Wide Web Consortium. </FONT></FONT>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P CLASS="western"><BR><BR>
+</P>
+<P CLASS="western">Note that only one of BER, CER, and DER may be
+selected at a time. XML and XER are also mutually exclusive options.</P>
+<H2 CLASS="western">Generated Function Types</H2>
+<P CLASS="western">Several different functions may be generated for
+each ASN.1 or XML production. Generating these functions may result
+in a substantially larger code base, so care should be exercised when
+code size is a concern. By default, only <I>Encode</I> and <I>Decode</I>
+functions are selected. In cases where only one or the other is
+required, a smaller code base may be generated by unchecking the
+indicated boxes.</P>
+<H3 CLASS="western">Compare Functions</H3>
+<P CLASS="western">Check <I>Compare</I> to generate functions that
+will permit generated type variables to be compared to each other.
+These are debug functions.</P>
+<H3 CLASS="western">Test Functions</H3>
+<P CLASS="western">Check <I>Test</I> to generate test functions that
+populate generated types with random data. Use the generated encode
+functions to encode test constructs. Test functions may also serve as
+a template for how to populate generated types.</P>
+<H3 CLASS="western">Print Functions</H3>
+<P CLASS="western" STYLE="font-style: normal">When specified, the
+print option instructs the compiler to generate code that permits
+printing objects to standard output.</P>
+<H3 CLASS="western">Stream Functions</H3>
+<P CLASS="western">Check <I>Stream</I> to generate stream-based
+encode/decode functions instead of the typical memory-buffer based.
+These permit users to encode directly to or decode directly from a
+source or sink such as a file or socket. Stream-based encode and
+decode routines cannot be combined with memory-buffer-based routines
+in any way. 
+</P>
+<H2 CLASS="western">Space Optimization Options</H2>
+<P CLASS="western">The compiler may optimize code for space in
+several ways. Note that some options are not available for all
+Encoding Rules.</P>
+<H3 CLASS="western" STYLE="font-style: normal">Indefinite Length
+Processing Tests</H3>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Do not
+generate indefinite length processing code</I> to instruct the
+compiler to omit indefinite length tests in generated decode
+functions. These tests result in the generation of a large amount of
+code. If the compiled application only uses definite length encoding,
+this option can result in a much smaller code base size. 
+</P>
+<P CLASS="western" STYLE="font-style: normal"><B>Note</B> <I>Do not
+generate indefinite length processing code</I> may only be selected
+in conjunction with Basic and Distinguished Encoding Rules.</P>
+<H3 CLASS="western">Open Extension Elements</H3>
+<P CLASS="western">Check <I>Do not generate code to save/restore
+unknown extensions</I> to prevent the compiler from generating code
+to read and write elements with extensibility markers. If such
+generality is not required by the application, check this option to
+reduce the code size.</P>
+<H3 CLASS="western">Type Constraints</H3>
+<P CLASS="western">If <I>Do not generate code to check constraints</I>
+is checked, ASN.1 types with constraints will be treated as types
+without constraints.</P>
+<H3 CLASS="western">Compact Code</H3>
+<P CLASS="western">Checking <I>Generate Compact Code</I> instructs
+the compiler to create more compact code at the expense of some error
+and constraint checks. It is not recommended to select this option
+until after the application has been thoroughly tested.</P>
+<P CLASS="western"><IMG SRC="05-CS-Code-Generation-Options-2.jpg" NAME="graphics8" ALIGN=LEFT WIDTH=50% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H2 CLASS="western">Generated C# Class Modifiers</H2>
+<P CLASS="western" STYLE="font-style: normal">Checking <I>Generate
+short form of type names</I> will cause the compiler to used only the
+production name and final element name in a type name. By default,
+the compiler will use intermediate names to generate final element
+names; in deeply nested types, this can result in very long type
+names. Collisions are resolved by appending a unique number to the
+end of the type name.</P>
+<P CLASS="western" STYLE="font-style: normal">To resolve type name
+collisions, check <I>Automatically create unique names for duplicate
+items</I>.</P>
+<P CLASS="western" STYLE="font-style: normal">To cause the compiler
+to treat all type names as Protocol Data Units (PDUs), check the
+corresponding box. Default behavior is to treat only unreferenced
+types within a module as PDUs.</P>
+<H2 CLASS="western"><I>Table Constraint Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Generate code
+to fully encode/decode items with table constraints</I> to instruct
+the compiler to generate table constraint processing structures and
+functions. These add logic for handling types that use message tables
+for defining what is to be included in a give protocol interaction
+message. The added logic makes it possible to encode or decode these
+multi-part messages in a single step. 
+</P>
+<P CLASS="western" STYLE="font-style: normal"><B>Note </B>This option
+is not available for XML Schema or XML Encoding Rules.</P>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Enable strict
+constraint checks on all table constraint items</I> to instruct the
+compiler to generate code for strict validation of table constraints.
+Real world messages typically do not follow value field table
+constraint definitions, so this option should be used with care. It
+will increase code size and decrease performance.</P>
+<H2 CLASS="western">Event Handler Options</H2>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Generate code
+to invoke event handler callback functions</I> to provide support for
+user-defined event and error handlers.</P>
+<H2 CLASS="western">Output File Options</H2>
+<P CLASS="western">To instruct the compiler to create a directory for
+each module, check <I>Output generate code to separate directories
+based on module name</I>. Hyphens (-) in a module name will be
+converted to underscores (_).</P>
+<P CLASS="western" STYLE="font-style: normal">To specify a namespace
+prefix, check <I>Specify prefix to be prepended to each namespace
+spec</I>. This option cannot be used in conjunction with <I>Specify
+fixed namespace name for all generated classes</I>. The default
+namespace for C# classes is the module name.</P>
+<H1 CLASS="western" STYLE="font-style: normal">Java Code Generation
+Options</H1>
+<P CLASS="western"><IMG SRC="05-Java-Code-Generation-Options-2.jpg" NAME="graphics9" ALIGN=LEFT WIDTH=50% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H2 CLASS="western">Select Encoding Rules</H2>
+<P CLASS="western">ASN1C can generate code compliant with several
+ASN.1 standards as well as the W3C XML standard:</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=77*>
+	<COL WIDTH=179*>
+	<TR VALIGN=TOP>
+		<TH WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Encoding
+			Rules</FONT></FONT></P>
+		</TH>
+		<TH WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Description</FONT></FONT></P>
+		</TH>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>BER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Basic
+			Encoding Rules, defined in ASN.1 standard X.690.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>DER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Distinguished
+			Encoding Rules, defined in ASN.1 Standard X.690.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>CER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Canonical
+			Encoding Rules, defined in ASN.1 Standard X.690.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>PER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Packed
+			Encoding Rules, defined in ASN.1 Standard X.691.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XML
+			Encoding Rules, defined in ASN.1 Standard X.693.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XML</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70%>
+			<P CLASS="western"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>XML
+			Encoding rules, as specified by the World Wide Web Consortium. </FONT></FONT>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P CLASS="western"><BR><BR>
+</P>
+<P CLASS="western" STYLE="font-style: normal">Note that only one of
+BER, CER, and DER may be selected at a time. XML and XER are also
+mutually exclusive options.</P>
+<H2 CLASS="western">Generated Function Types</H2>
+<P CLASS="western">Several different functions may be generated for
+each ASN.1 or XML production. Generating these functions may result
+in a substantially larger code base, so care should be exercised when
+code size is a concern. By default, only <I>Encode</I> and <I>Decode</I>
+functions are selected. In cases where only one or the other is
+required, a smaller code base may be generated by unchecking the
+indicated boxes.</P>
+<H3 CLASS="western">Get/Set</H3>
+<P CLASS="western">Check <I>Get/Set</I> to instruct the compiler to
+generate getter and setter methods for fields encapsulated in
+generated types.</P>
+<H3 CLASS="western">Compare Functions</H3>
+<P CLASS="western">Check <I>Compare</I> to generate functions that
+will permit generated type variables to be compared to each other.
+These are debug functions.</P>
+<H3 CLASS="western">Test Functions</H3>
+<P CLASS="western">Check <I>Test</I> to generate test functions that
+populate generated types with random data. Use the generated encode
+functions to encode test constructs. Test functions may also serve as
+a template for how to populate generated types.</P>
+<H3 CLASS="western">Print Functions</H3>
+<P CLASS="western" STYLE="font-style: normal">When specified, the
+print option instructs the compiler to generate code that permits
+printing objects to standard output.</P>
+<H3 CLASS="western">Stream Functions</H3>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Stream</I> to
+generate stream-based encode/decode functions instead of the typical
+memory-buffer based. These permit users to encode directly to or
+decode directly from a source or sink such as a file or socket.
+Stream-based encode and decode routines cannot be combined with
+memory-buffer-based routines in any way.</P>
+<H2 CLASS="western">Space Optimization Options</H2>
+<P CLASS="western">The compiler may optimize code for space in
+several ways. Note that some options are not available for all
+Encoding Rules.</P>
+<H3 CLASS="western" STYLE="font-style: normal">Indefinite Length
+Processing Tests</H3>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Do not
+generate indefinite length processing code</I> to instruct the
+compiler to omit indefinite length tests in generated decode
+functions. These tests result in the generation of a large amount of
+code. If the compiled application only uses definite length encoding,
+this option can result in a much smaller code base size. 
+</P>
+<P CLASS="western" STYLE="font-style: normal"><B>Note</B> <I>Do not
+generate indefinite length processing code</I> may only be selected
+in conjunction with Basic and Distinguished Encoding Rules.</P>
+<H3 CLASS="western">Open Extension Elements</H3>
+<P CLASS="western">Check <I>Do not generate code to save/restore
+unknown extensions</I> to prevent the compiler from generating code
+to read and write elements with extensibility markers. If such
+generality is not required by the application, check this option to
+reduce the code size.</P>
+<H3 CLASS="western">Type Constraints</H3>
+<P CLASS="western">If <I>Do not generate code to check constraints</I>
+is checked, ASN.1 types with constraints will be treated as types
+without constraints.</P>
+<H3 CLASS="western">Compact Code</H3>
+<P CLASS="western" STYLE="font-style: normal">Checking <I>Generate
+Compact Code</I> instructs the compiler to create more compact code
+at the expense of some error and constraint checks. It is not
+recommended to select this option until after the application has
+been thoroughly tested.</P>
+<P CLASS="western"><IMG SRC="05-Java-Code-Generation-Options-2.jpg" NAME="graphics10" ALIGN=LEFT WIDTH=50% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H2 CLASS="western">Generated Java Class Modifiers</H2>
+<P CLASS="western" STYLE="font-style: normal">Checking <I>Generate
+short form of type names</I> will cause the compiler to used only the
+production name and final element name in a type name. By default,
+the compiler will use intermediate names to generate final element
+names; in deeply nested types, this can result in very long type
+names. Collisions are resolved by appending a unique number to the
+end of the type name.</P>
+<P CLASS="western" STYLE="font-style: normal">To cause the compiler
+to treat all type names as Protocol Data Units (PDUs), check the
+corresponding box. Default behavior is to treat only unreferenced
+types within a module as PDUs.</P>
+<H2 CLASS="western">Event Handler Options</H2>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Generate code
+to invoke event handler callback functions</I> to provide support for
+user-defined event and error handlers.</P>
+<H2 CLASS="western">Output File Options</H2>
+<P CLASS="western">To instruct the compiler to create a directory for
+each module, check <I>Output generate code to separate directories
+based on module name</I>. Hyphens (-) in a module name will be
+converted to underscores (_).</P>
+<P CLASS="western" STYLE="font-style: normal">To specify a package
+prefix, check <I>Specify prefix to be prepended to each package name</I>.
+This option cannot be used in conjunction with <I>Specify fixed
+package name for all generated classes</I>. The default namespace for
+Java classes is the module name.</P>
+<P CLASS="western"><IMG SRC="06-Java-Code-Generation-Options-3.jpg" NAME="graphics11" ALIGN=LEFT WIDTH=50% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H2 CLASS="western">Compatibility Options</H2>
+<P CLASS="western">To generate code compatible with older versions of
+the compiler, check the box and select the desired compiler version
+from the drop-down list.</P>
+<H2 CLASS="western">Build Script Options</H2>
+<P CLASS="western">To automate the build process, check <I>Generate
+build script to compile all generated .java files</I>. This produces
+a UNIX-style shell script that may be easily converted into a Windows
+batch file if necessary.</P>
+<H2 CLASS="western"><I>Sample Program Generation Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">Check <I>Generate
+writer sample program</I> to instruct the compiler to produce a
+program that demonstrates how to populate and encode data structures.
+Check <I>Generate reader sample program</I> to instruct the compiler
+to produce a program that demonstrates how to decode and output data
+structures.</P>
+<H2 CLASS="western"><I>Other Options</I></H2>
+<P CLASS="western" STYLE="font-style: normal">To specify other
+command-line options not usable through the GUI, add them in the
+provided text line. These options are added at the end of the
+compilation command line.</P>
+<H1 CLASS="western">Compilation</H1>
+<P CLASS="western"><IMG SRC="07-Compile.jpg" NAME="graphics12" ALIGN=LEFT WIDTH=50% BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<P CLASS="western">The compilation command is displayed in the top
+pane. To execute the compiler, click <I>Compile</I>. Output from the
+compiler is displayed in the bottom pane. To save the current
+project, click <I>Save</I>.</P>
+<P CLASS="western" STYLE="font-style: normal">If additional changes
+are required, or to load a new project, hit <I>Back</I> until the
+necessary window appears.</P>
+<P CLASS="western" STYLE="font-style: normal">When finished, click
+<I>Finished</I> or the <B>X</B> in the upper-right-hand corner of the
+window.</P>
+</BODY>
+</HTML>

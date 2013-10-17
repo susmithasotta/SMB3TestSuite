@@ -1,0 +1,20 @@
+-- Extended choice construct
+
+ExtChoice DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+AliasAddress ::= CHOICE
+{
+ e164           IA5String (SIZE (1..128)) (FROM ("0123456789#*,")),
+ h323-ID        BMPString (SIZE (1..256)),	
+ ..., 
+ aNull          NULL,
+ url-ID		IA5String (SIZE(1..512)),
+ transportID	SET { TransportAddress, INTEGER },
+ email-ID	IA5String (SIZE(1..512)),	
+ partyNumber	PartyNumber
+}	
+
+PartyNumber ::= INTEGER
+TransportAddress ::= IA5String
+
+END

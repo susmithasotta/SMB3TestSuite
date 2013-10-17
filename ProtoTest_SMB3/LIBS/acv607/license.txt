@@ -1,0 +1,212 @@
+                SOFTWARE LICENSE AGREEMENT
+
+Objective Systems, Inc. (OSys) hereby grants the Licensee a license to use 
+the ASN1C V5.xx software.  The following conditions apply to the use 
+of the software:
+
+1.  THE SOFTWARE.  The Software to which this license applies 
+(the "Software"), is ASN1C.
+
+2.  OWNERSHIP.  Objective Systems, Inc. ("OSys") is the owner of 
+the Software and all copyrights in the Software.  The Software is 
+protected by title 17 of the United States Code (the Copyright Act), 
+and you must honor all rights established by the Copyright Act with 
+respect to the Software.  The Software embodies substantial creative 
+efforts and confidential information, ideas, and structure, which 
+have not been revealed to the public.
+
+3.  USE OF SOFTWARE.  Licensee may use the Software on only the computers 
+for which licenses were purchased.  If a run-time license with the 
+unlimited redistribution option was purchased, then applications 
+built with the run-time libraries can be executed on any number of 
+computers.  Licensee may copy the Software for support and backup purposes. 
+Nevertheless, Licensee may not: 
+(a.) use or install the Software on more than the number of computers 
+the purchased license(s) allows, 
+(b.) make any copies of the manual materials concerning the Software, 
+(c.) modify, decompile, disassemble, reverse engineer, nor create 
+derivative works from the Software nor merge it into any other 
+program, nor 
+(d.)  allow any person, including employees, to do any of these things.
+
+ 3.1 USE OF COMPILER EXECUTABLE. The Software includes one or more 
+ASN1C compiler executable programs that are used to generate computer 
+source code from application programs. The compiler is licensed on a 
+per-computer basis. Licensee may only use the compiler to generate 
+code on computers for which licenses were purchased. 
+
+ 3.2 USE OF COMPILER SOURCE CODE.  Compiler source code is not 
+included in this version of this software.
+
+ 3.3 USE OF GENERATED SOURCE CODE.  This product generates 
+source code that can be used to create new application Software. 
+Licensee may freely modify, copy, and distribute the generated 
+code without restriction.
+
+ 3.4 USE OF RUN-TIME LIBRARY BINARY CODE. The software includes 
+binary run-time libraries that may be linked with application 
+object code to form new application software.  Binary libraries 
+and/or application software derived from these libraries may only 
+be used on computers for which licenses were purchased.  Binary 
+libraries may be purchased with an 'unlimited redistribution' 
+option.  This allows Licensee to distribute value-added application 
+software that includes binary object code from these libraries to 
+an unlimited number of end users.  It does not allow the direct 
+redistribution of the libraries themselves.  Licensee will own all 
+rights to such application software, and Licensee will owe no fee 
+for users of this software and no royalties for selling such programs.
+
+ 3.5 USE OF RUN-TIME LIBRARY SOURCE CODE.  Source code may be 
+included to build binary versions of the run-time libraries.  
+The source code license grants Licensee the right to develop 
+executable programs (i.e., object code and programs) using the 
+Software.  This source code can only be used to create binary 
+libraries and/or dynamic link libraries and/or application 
+programs linked with these libraries for redistribution to 
+end users.  The limitations for redistribution to end users 
+are the same as in paragraph 3.4.  The run-time source code 
+cannot be redistribued to third parties.
+
+4.  NO ASSIGNMENT.  Licensee may not transfer, lease, assign, 
+sell, rent, loan, nor sublicense this license or otherwise 
+encumber or transfer the Software in whole or in part, to a 
+third party without the prior written consent of OSys.
+
+5.  REVISIONS.  From time to time OSys may issue revisions of the 
+Software.  Licensee shall be provided with latest revisions free 
+of charge as long as Warranty (section 6) or extended support is 
+not expired.  If Warranty or extended support is expired, Licensee 
+may purchase revisions at current posted cost minus 50% of the 
+original License cost paid by Licensee.  If a revision is received, 
+Licensee agrees to replace the Software with the revised version 
+and acknowledge that the update will be governed by the terms of 
+this License Agreement
+
+6.  WARRANTY.  OSys warrants to Licensee that the Software, if properly 
+installed and operated on a computer for which it is designed, will 
+perform substantially in accordance with the specifications set forth 
+in the manual provided with the Software.
+
+  6.1  Warranty Obligations.  During the warranty period, established 
+as the initial 60 days after the date of delivery of the OSys products, 
+OSys will repair or replace, at its sole option, without charge to 
+Licensess any portion of the Software which does not meet the requirements 
+of this warranty.  To obtain service, Licensee must notify OSys by sending 
+an e-mail message to support@obj-sys.com.  Any correspondence 
+requesting warranty service must include Licensee's license number and 
+proof of purchase.  At its option, OSys may refund the purchase 
+price for the Software instead of repairing or replacing the Software 
+within the first 60 days if Licensee identifies a major problem, which is 
+detrimental to the normal operation and performance of the OSys products 
+and it is determined by OSys that there is no solution that can be 
+implemented to solve the unique problem.
+
+  6.2	Warranty Period.  The warranty period shall commence on the 
+date the Software is purchased and continue for 60 days thereafter. 
+All requests for warranty service must be received by OSys during 
+the warranty period.  Any support exceeding the warranty period will 
+be covered by the Initial Support, which is 180 days and begins on the 
+date the OSys products are delivered. Any support exceeding the warranty 
+and the Initial Support must be arranged in a special support agreement 
+in the form of an extended support plan, which extends the initial support
+in annual increments at twenty percent (20%) of the initial license cost.  
+This entitles licensee to unlimited technical support and all latest 
+revisions of the software.
+
+  6.3	Your Responsibilities.  All warranties of the Software are 
+contingent on proper use of the Software by Licensee and do not cover 
+damage due to accident, unusual physical, electrical, or 
+electromechanical stress, neglect, misuse, failure of electric 
+power, environmental condition, transportation, operation with 
+operating systems, media, other software, or hardware not approved 
+by OSys, or tampering with or altering of the Software.  In addition, 
+Licensee assume responsibility for the selection of the Software to 
+achieve Licensee's intended results and for the installation, use, 
+and results obtained from the Software.
+
+  6.4 Bug Reports.  Any bug report has to be provied with a short, but 
+complete program that shows the problem.  Licensee provides OSys with 
+relevant data to reproduce the problem and with a complete description.  
+OSys will not start investigation before the required programs are 
+available.  OSys will not support any program that is modified by 
+Licensee.  OSys will provide Licensee with all bug fix releases for any 
+bugs contained in the licensed software and with all patches to the 
+software it provides without charge to any of it's Licensees.
+
+  6.5 Limits of Liability.  The remedies described in this Section 
+6 are exclusive of any other remedies which you might otherwise claim.  
+
+OSys SHALL NOT BE LIABLE FOR LOSS OF DATA, LOSS 
+OF PROFITS, LOST SAVINGS, SPECIAL, INCIDENTAL, 
+CONSEQUENTIAL, INDIRECT OR OTHER SIMILAR DAMAGES 
+ARISING FROM BREACH OF WARRANTY, BREACH OF CONTRACT, 
+NEGLIGENCE, OR OTHER LEGAL THEORY EVEN IF OSys OR 
+ITS AGENT HAS BEEN ADVISED OF THE POSSIBILITY OF 
+SUCH DAMAGES, OR FOR ANY OF THE ABOVEMENTIONED 
+CLAIMS BY ANY OTHER PARTY, (EXCEPT FOR THIRD 
+PARTY CLAIMS AS SET FORTH IN SECTION 6.1(A) BELOW).  
+EXCEPT AS EXPRESSLY SET FORTH HEREIN, THE SOFTWARE 
+IS LICENSED ON AN "AS IS" BASIS, WITHOUT WARRANTY 
+OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING 
+BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF 
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  
+
+Some states do not allow the exclusion or limitation of liability 
+contained herein, so the above limitations or exclusions may not 
+apply to Licensee.
+
+LICENSEE SHALL NOT BE LIABLE FOR ANY SPECIAL, 
+INCIDENTAL, CONSEQUENTIAL, INDIRECT OR OTHER SIMILAR 
+DAMAGES ARISING FROM BREACH OF WARRANTY, BREACH OF 
+CONTRACT, NEGLIGENCE, OR OTHER LEGAL THEORY EVEN IF 
+LICENSEE OR ITS AGENT HAS BEEN ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGES, OR FOR ANY CLAIM BY ANY 
+OTHER PARTY (EXCEPT FOR THIRD PARTY CLAIMS AS SET 
+FORTH IN SECTION 8 BELOW).
+
+7.  DEFAULT AND REMEDIES.  If Licensee or any of Licensee's employees 
+or agents violates or attempts to violate any provision of this Agreement 
+or any copyright laws with respect to the Software, the license of the 
+Software to Licensee shall automatically terminate.  Furthermore, OSys 
+shall be entitled to all legal and equitable remedies including an injunction of 
+any actions prohibited hereby, specific performance of Licensee's obligations 
+hereunder, remedies set forth in 17 U.S.C. 501, et seq., and recovery of 
+the costs of enforcing this Agreement including attorney's fees, expert 
+witness fees and costs.  If any provision hereof is deemed to be 
+unenforceable, then the remainder of this Agreement shall not be 
+affected, and shall be enforced as if the unenforceable provision were 
+not included herein.  The laws of Pennsylvania will govern this license 
+agreement, except as to matter pre-empted by United States law.   
+In the event of any dispute involving this license, Licensee agrees to 
+exclusive jurisdiction and venue in either state or federal courts 
+in Pennsylvania and agree that the prevailing party shall be entitled 
+to its attorney fees and costs.
+
+8.  INDEMNIFICATION.  
+
+  8.1 OSys Indemnification.  OSys hereby indemnifies Licensee, and its 
+officers, directors, agents, and employees, and forever holds it harmless 
+from and against all claims, suits, actions, proceedings, damages, loss 
+or liability, costs or expenses (including reasonable attorneys’ fees) 
+(“Damages”) brought or asserted by third parties to the extent such 
+Damages are caused by OSys’ negligence. 
+
+  8.2 Licensee Indemnification.  Licensee agrees to indemnify and hold 
+OSys, its officers, directors, agents and employees harmless from and 
+against any loss, damage, expense and liability arising from or in 
+connection with any unauthorized representation, act or agency, made by 
+or on the part of Licensee or any of Licensee’s agents, representatives, 
+employees or subcontractors.
+
+  8.3 No Consequential Damages.  Neither party shall be liable to the 
+other for any special or consequential damages, whether based upon lost 
+goodwill, lost resale profits, work stoppage, impairment of other goods 
+or otherwise.
+
+  8.4 Notice of Claims.  Each party agrees to give the other (i) prompt 
+written notice of the institution of any suit and any claims made, 
+including any claims asserted or made by any governmental authority 
+having jurisdiction, for which the other might be liable under the 
+foregoing indemnification; and (ii) the opportunity to defend, negotiate 
+and settle such claims. Each party shall provide all information in its 
+possession necessary to carry on the defense of any such suit or claim. 

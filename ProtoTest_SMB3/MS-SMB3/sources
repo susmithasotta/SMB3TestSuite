@@ -1,0 +1,114 @@
+ENABLE_CSXMLDOCS                      = 1
+CSXMLDOCS_DIR                         = $(INETROOT)\$(INFRASTRUCTURE_DROP)\ProtoSDK\bin\XMLdocs
+
+!INCLUDE $(INETROOT)\build\sources.all
+
+TARGETNAME                            = Microsoft.Protocols.TestTools.StackSdk.FileAccessService.Smb2
+TARGETTYPE                            = DYNLINK
+
+MANAGED_CODE                          = 1
+
+REFERENCES                            = \
+                                        $(INFRA_SDK_SOURCE_PATH)\Common\$(O)\Microsoft.Protocols.TestTools.StackSdk.metadata_dll; \
+                                        $(INFRA_SDK_SOURCE_PATH)\FileAccessService\$(O)\Microsoft.Protocols.TestTools.StackSdk.FileAccessService.metadata_dll; \
+                                        $(INFRA_SDK_SOURCE_PATH)\TransportStack\$(O)\Microsoft.Protocols.TestTools.StackSdk.Transport.metadata_dll; \
+                                        $(INFRA_SDK_SOURCE_PATH)\Messages\$(O)\Microsoft.Protocols.TestTools.StackSdk.Messages.metadata_dll; \
+                                        $(INFRA_SDK_SOURCE_PATH)\Sspi\$(O)\Microsoft.Protocols.TestTools.StackSdk.Security.Sspi.metadata_dll; \
+                                        $(INFRA_SDK_SOURCE_PATH)\MS-NLMP\$(O)\Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp.metadata_dll; \
+
+SOURCES                               = \
+                                        Client\Smb2Client.cs \
+                                        Client\Smb2ClientConnection.cs \
+                                        Client\Smb2ClientGlobalConfig.cs \
+                                        Client\Smb2ClientGlobalContext.cs \
+                                        Client\Smb2ClientFile.cs \
+                                        Client\Smb2ClientOpen.cs \
+                                        Client\Smb2ClientSession.cs \
+                                        Client\Smb2ClientTransport.cs \
+                                        Client\Smb2ClientTreeConnect.cs \
+                                        Client\Smb2OutStandingRequest.cs \
+                                        CustomTypes.cs \
+                                        FsccMessage.cs \
+                                        Packets\Smb2ChangeNotifyRequestPacket.cs \
+                                        Packets\Smb2ChangeNotifyResponsePacket.cs \
+                                        Packets\Smb2LeaseBreakAckPacket.cs \
+                                        Packets\Smb2LeaseBreakNotificationPacket.cs \
+                                        Packets\Smb2LeaseBreakResponsePacket.cs \
+                                        Packets\Smb2Packet.cs \
+                                        Packets\Smb2SinglePacket.cs \
+                                        Packets\Smb2StandardPacket.cs \
+                                        Packets\Smb2CancelRequestPacket.cs \
+                                        Packets\Smb2CloseRequestPacket.cs \
+                                        Packets\Smb2CloseResponsePacket.cs \
+                                        Packets\Smb2CompoundPacket.cs \
+                                        Packets\Smb2CreateRequestPacket.cs \
+                                        Packets\Smb2CreateResponsePacket.cs \
+                                        Packets\Smb2EchoRequestPacket.cs \
+                                        Packets\Smb2EchoResponsePacket.cs \
+                                        Packets\Smb2ErrorResponsePacket.cs \
+                                        Packets\Smb2FlushRequestPacket.cs \
+                                        Packets\Smb2FlushResponsePacket.cs \
+                                        Packets\Smb2IOCtlRequestPacket.cs \
+                                        Packets\Smb2IOCtlResponsePacket.cs \
+                                        Packets\Smb2OpLockBreakAckPacket.cs \
+                                        Packets\Smb2OpLockBreakNotificationPacket.cs \
+                                        Packets\Smb2OpLockBreakResponsePacket.cs \
+                                        Packets\Smb2LockRequestPacket.cs \
+                                        Packets\Smb2LockResponsePacket.cs \
+                                        Packets\Smb2LogOffRequestPacket.cs \
+                                        Packets\Smb2LogOffResponsePacket.cs \
+                                        Packets\Smb2NegotiateRequestPacket.cs \
+                                        Packets\Smb2NegotiateResponsePacket.cs \
+                                        Packets\Smb2QueryDirectoryRequestPacket.cs \
+                                        Packets\Smb2QueryDirectoryResponePacket.cs \
+                                        Packets\Smb2QueryInfoRequestPacket.cs \
+                                        Packets\Smb2QueryInfoResponsePacket.cs \
+                                        Packets\Smb2ReadRequestPacket.cs \
+                                        Packets\Smb2ReadResponsePacket.cs \
+                                        Packets\Smb2SessionSetupRequestPacket.cs \
+                                        Packets\Smb2SessionSetupResponsePacket.cs \
+                                        Packets\Smb2SetInfoRequestPacket.cs \
+                                        Packets\Smb2SetInfoResponsePacket.cs \
+                                        Packets\Smb2TreeConnectRequestPacket.cs \
+                                        Packets\Smb2TreeConnectResponsePacket.cs \
+                                        Packets\Smb2TreeDisconnectRequestPacket.cs \
+                                        Packets\Smb2TreeDisconnectResponsePacket.cs \
+                                        Packets\Smb2WriteRequestPacket.cs \
+                                        Packets\Smb2WriteResponsePacket.cs \
+                                        Packets\SmbNegotiateRequestPacket.cs \
+                                        Server\Smb2Lease.cs \
+                                        Server\Smb2LeaseTable.cs \
+                                        Server\Smb2Server.cs \
+                                        Server\Smb2ServerConnection.cs \
+                                        Server\Smb2ServerContext.cs \
+                                        Server\Smb2ServerConfig.cs \
+                                        Server\Smb2ServerOpen.cs \
+                                        Server\Smb2ServerSession.cs \
+                                        Server\Smb2ServerShare.cs \
+                                        Server\Smb2ServerTreeConnect.cs \
+                                        Smb2Consts.cs \
+                                        Smb2Decoder.cs \
+                                        Smb2Event.cs \
+                                        Smb2Message.cs \
+                                        Smb2Utility.cs \
+                                        SmbMessage.cs \
+                                
+ASSEMBLY_IDENTITY_PUBLIC_KEY_NAME     = petkey
+
+FXCOP_USER_FLAGS                      = $(FXCOP_USER_FLAGS) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\Sspi\$(O) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\Common\$(O) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\FileAccessService\$(O) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\TransportStack\$(O) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\Messages\$(O) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\MS-NLMP\$(O) \
+                                        /ruleid:-Microsoft.Design^#CA1008:EnumsShouldHaveZeroValue \
+                                        /ruleid:-Microsoft.Design^#CA1028:EnumStorageShouldBeInt32 \
+                                        /ruleid:-Microsoft.Design^#CA1065:DoNotRaiseExceptionsInUnexpectedLocations \
+                                        /ruleid:-Microsoft.Usage^#CA1801:ReviewUnusedParameters \
+                                        /ruleid:-Microsoft.Performance^#CA1811:AvoidUncalledPrivateCode \
+
+USER_CS_FLAGS                         = $(USER_CS_FLAGS) \
+                                        /warn:3
+                                        
+BINPLACE_FLAGS                        = $(BINPLACE_FLAGS) RESIGN_KEYNAME = $(PET_KEY)

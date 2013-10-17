@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reader", "Reader.csproj", "{0DEA3665-6074-4681-BDB4-73CD66E6B41C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{58FEAB91-6629-492C-A093-6A707CB2F6DE} = {58FEAB91-6629-492C-A093-6A707CB2F6DE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Writer", "Writer.csproj", "{58FEAB91-6629-492C-A093-6A707CB2F6DE}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{0DEA3665-6074-4681-BDB4-73CD66E6B41C}.Debug.ActiveCfg = Debug|.NET
+		{0DEA3665-6074-4681-BDB4-73CD66E6B41C}.Debug.Build.0 = Debug|.NET
+		{0DEA3665-6074-4681-BDB4-73CD66E6B41C}.Release.ActiveCfg = Release|.NET
+		{0DEA3665-6074-4681-BDB4-73CD66E6B41C}.Release.Build.0 = Release|.NET
+		{58FEAB91-6629-492C-A093-6A707CB2F6DE}.Debug.ActiveCfg = Debug|.NET
+		{58FEAB91-6629-492C-A093-6A707CB2F6DE}.Debug.Build.0 = Debug|.NET
+		{58FEAB91-6629-492C-A093-6A707CB2F6DE}.Release.ActiveCfg = Release|.NET
+		{58FEAB91-6629-492C-A093-6A707CB2F6DE}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

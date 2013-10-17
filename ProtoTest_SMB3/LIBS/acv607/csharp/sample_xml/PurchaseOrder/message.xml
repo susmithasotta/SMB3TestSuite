@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<purchaseOrder orderDate="2003-04-01">
+   <shipTo>
+      <name>Joe Smith</name>
+      <street>1 Morning Light Rd</street>
+      <city>Glenmoore</city>
+      <state>PA</state>
+      <zip>19343</zip>
+   </shipTo>
+   <billTo>
+      <name>Bill Jones</name>
+      <street>102 Pickering Way, Suite 506</street>
+      <city>Exton</city>
+      <state>PA</state>
+      <zip>19341</zip>
+   </billTo>
+   <comment>Need this ASAP!</comment>
+   <items>
+      <item partNum="111-AA">
+         <productName>Acme Widget</productName>
+         <quantity>50</quantity>
+         <USPrice>200</USPrice>
+      </item>
+      <item partNum="222-BB">
+         <productName>Wizbang Gadget</productName>
+         <quantity>99</quantity>
+         <USPrice>777</USPrice>
+         <comment>I would like these in the color red</comment>
+         <shipDate>2003-03-26</shipDate>
+      </item>
+   </items>
+</purchaseOrder>

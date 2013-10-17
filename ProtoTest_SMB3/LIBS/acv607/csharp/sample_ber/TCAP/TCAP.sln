@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCAP", "TCAP.csproj", "{D1D51880-60D1-4F2B-A3F1-C6F5B9BAFB1C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{D1D51880-60D1-4F2B-A3F1-C6F5B9BAFB1C}.Debug.ActiveCfg = Debug|.NET
+		{D1D51880-60D1-4F2B-A3F1-C6F5B9BAFB1C}.Debug.Build.0 = Debug|.NET
+		{D1D51880-60D1-4F2B-A3F1-C6F5B9BAFB1C}.Release.ActiveCfg = Release|.NET
+		{D1D51880-60D1-4F2B-A3F1-C6F5B9BAFB1C}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,148 @@
+ENABLE_CSXMLDOCS                      = 1
+CSXMLDOCS_DIR                         = $(INETROOT)\$(INFRASTRUCTURE_DROP)\ProtoSDK\bin\XMLdocs
+
+!INCLUDE $(INETROOT)\build\sources.all
+
+TARGETNAME                            = Microsoft.Protocols.TestTools.StackSdk.Security.Kile
+TARGETTYPE                            = DYNLINK
+
+MANAGED_CODE                          = 1
+
+REFERENCES                            = \
+                                        $(INFRA_SDK_SOURCE_PATH)\Common\$(O)\Microsoft.Protocols.TestTools.StackSdk.metadata_dll; \
+                                        $(INFRA_SDK_SOURCE_PATH)\CryptoLib\$(O)\Microsoft.Protocols.TestTools.StackSdk.Security.CryptoLib.metadata_dll; \
+                                        $(INFRA_SDK_SOURCE_PATH)\Sspi\$(O)\Microsoft.Protocols.TestTools.StackSdk.Security.Sspi.metadata_dll; \
+                                        $(INFRA_SDK_SOURCE_PATH)\TransportStack\$(O)\Microsoft.Protocols.TestTools.StackSdk.Transport.metadata_dll; \
+                                        $(EXTERNALTOOL_REF_PATH)\ASNAPI\asn1rt.dll; \
+                                        $(SDK_ROOT)\clr\clr35\System.core.dll; \
+                                        
+SOURCES                               = \
+                                        Asn1Code\AD_AND_OR.cs \
+                                        Asn1Code\AD_IF_RELEVANT.cs \
+                                        Asn1Code\AD_KDCIssued.cs \
+                                        Asn1Code\AD_MANDATORY_FOR_KDC.cs \
+                                        Asn1Code\APOptions.cs \
+                                        Asn1Code\AP_REP.cs \
+                                        Asn1Code\AP_REQ.cs \
+                                        Asn1Code\AS_REP.cs \
+                                        Asn1Code\AS_REQ.cs \
+                                        Asn1Code\Authenticator.cs \
+                                        Asn1Code\AuthorizationData.cs \
+                                        Asn1Code\AuthorizationData_element.cs \
+                                        Asn1Code\Checksum.cs \
+                                        Asn1Code\EncAPRepPart.cs \
+                                        Asn1Code\EncASRepPart.cs \
+                                        Asn1Code\EncKDCRepPart.cs \
+                                        Asn1Code\EncKrbCredPart.cs \
+                                        Asn1Code\EncKrbPrivPart.cs \
+                                        Asn1Code\EncryptedData.cs \
+                                        Asn1Code\EncryptionKey.cs \
+                                        Asn1Code\EncTGSRepPart.cs \
+                                        Asn1Code\EncTicketPart.cs \
+                                        Asn1Code\ETYPE_INFO.cs \
+                                        Asn1Code\ETYPE_INFO2.cs \
+                                        Asn1Code\ETYPE_INFO2_ENTRY.cs \
+                                        Asn1Code\ETYPE_INFO_ENTRY.cs \
+                                        Asn1Code\HostAddress.cs \
+                                        Asn1Code\HostAddresses.cs \
+                                        Asn1Code\Int32.cs \
+                                        Asn1Code\KDCOptions.cs \
+                                        Asn1Code\KDC_REP.cs \
+                                        Asn1Code\KDC_REQ.cs \
+                                        Asn1Code\KDC_REQ_BODY.cs \
+                                        Asn1Code\KERB_AD_RESTRICTION_ENTRY.cs \
+                                        Asn1Code\KERB_PA_PAC_REQUEST.cs \
+                                        Asn1Code\KerberosFlags.cs \
+                                        Asn1Code\KerberosString.cs \
+                                        Asn1Code\KerberosTime.cs \
+                                        Asn1Code\KrbCredInfo.cs \
+                                        Asn1Code\KRB_CRED.cs \
+                                        Asn1Code\KRB_ERROR.cs \
+                                        Asn1Code\KRB_PRIV.cs \
+                                        Asn1Code\KRB_SAFE.cs \
+                                        Asn1Code\KRB_SAFE_BODY.cs \
+                                        Asn1Code\LastReq.cs \
+                                        Asn1Code\LastReq_element.cs \
+                                        Asn1Code\LSAP_TOKEN_INFO_INTEGRITY.cs \
+                                        Asn1Code\METHOD_DATA.cs \
+                                        Asn1Code\Microseconds.cs \
+                                        Asn1Code\PA_DATAS.cs \
+                                        Asn1Code\PA_DATA.cs \
+                                        Asn1Code\PA_ENC_TIMESTAMP.cs \
+                                        Asn1Code\PA_ENC_TS_ENC.cs \
+                                        Asn1Code\PA_SVR_REFERRAL_DATA.cs \
+                                        Asn1Code\PrincipalName.cs \
+                                        Asn1Code\Realm.cs \
+                                        Asn1Code\TGS_REP.cs \
+                                        Asn1Code\TGS_REQ.cs \
+                                        Asn1Code\Ticket.cs \
+                                        Asn1Code\TicketFlags.cs \
+                                        Asn1Code\TransitedEncoding.cs \
+                                        Asn1Code\TYPED_DATA.cs \
+                                        Asn1Code\TYPED_DATA_element.cs \
+                                        Asn1Code\UInt32.cs \
+                                        Asn1Code\_KerberosV5Spec2Values.cs \
+                                        Asn1Code\_SeqOfInt32.cs \
+                                        Asn1Code\_SeqOfKerberosString.cs \
+                                        Asn1Code\_SeqOfKrbCredInfo.cs \
+                                        Asn1Code\_SeqOfPA_DATA.cs \
+                                        Asn1Code\_SeqOfTicket.cs \
+                                        Client\KerberosClientSecurityConfig.cs \
+                                        Client\KerberosClientSecurityContext.cs \
+                                        Client\KileClient.cs \
+                                        Client\KileClientContext.cs \
+                                        Encryption\CryptoUtility.cs \
+                                        Encryption\Checksum\HmacMd5StringChecksum.cs \
+                                        Encryption\Checksum\HmacSha1AesChecksum.cs \
+                                        Encryption\Checksum\UnkeyedChecksum.cs \
+                                        Encryption\Crypto\AesCtsHmacSha1Crypto.cs \
+                                        Encryption\Crypto\DesCbcCrypto.cs \
+                                        Encryption\Crypto\Rc4HmacCrypto.cs \
+                                        Encryption\KeyGenerator\AesKey.cs \
+                                        Encryption\KeyGenerator\DesKey.cs \
+                                        Encryption\KeyGenerator\KeyGenerator.cs \
+                                        Encryption\KeyGenerator\Rc4Key.cs \
+                                        Server\KerberosServerSecurityConfig.cs \
+                                        Server\KerberosServerSecurityContext.cs \
+                                        Server\KileServer.cs \
+                                        Server\KileServerContext.cs \
+                                        ConstValue.cs \
+                                        KileConnection.cs \
+                                        KileContext.cs \
+                                        KileDecoder.cs \
+                                        KileRole.cs \
+                                        KileUtility.cs \
+                                        Types.cs \
+
+# There're some warnings in Asn1Code. Because The code is generated automatically, we cannot change the code. 
+# So remove the warnings.
+USER_CS_FLAGS                         = $(USER_CS_FLAGS) /nowarn:1591,169,1573,1572,1587,649
+
+ASSEMBLY_IDENTITY_PUBLIC_KEY_NAME     = petkey
+
+# Disable the warnings raised by Asn1Code.
+FXCOP_USER_FLAGS                      = $(FXCOP_USER_FLAGS) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\Common\$(O) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\CryptoLib\$(O) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\Sspi\$(O) \
+                                        /directory:$(INFRA_SDK_SOURCE_PATH)\TransportStack\$(O) \
+                                        /directory:$(EXTERNALTOOL_REF_PATH)\ASNAPI \
+                                        /directory:$(SDK_ROOT)\clr\clr35 \
+                                        /ruleid:-Microsoft.Design^#CA1011:ConsiderPassingBaseTypesAsParameters \
+                                        /ruleid:-Microsoft.Design^#CA1027:MarkEnumsWithFlags \
+                                        /ruleid:-Microsoft.Design^#CA1028:EnumStorageShouldBeInt32 \
+                                        /ruleid:-Microsoft.Design^#CA1053:StaticHolderTypesShouldNotHaveConstructors \
+                                        /ruleid:-Microsoft.Maintainability^#CA1502:AvoidExcessiveComplexity \
+                                        /ruleid:-Microsoft.Maintainability^#CA1504:ReviewMisleadingFieldNames \
+                                        /ruleid:-Microsoft.Maintainability^#CA1506:AvoidExcessiveClassCoupling \
+                                        /ruleid:-Microsoft.Performance^#CA1801:AvoidUnusedParameters \
+                                        /ruleid:-Microsoft.Performance^#CA1804:RemoveUnusedLocals \
+                                        /ruleid:-Microsoft.Performance^#CA1805:DoNotInitializeUnnecessarily \
+                                        /ruleid:-Microsoft.Performance^#CA1811:AvoidUncalledPrivateCode \
+                                        /ruleid:-Microsoft.Performance^#CA1823:AvoidUnusedPrivateFields \
+                                        /ruleid:-Microsoft.Security^#CA2104:DoNotDeclareReadOnlyMutableReferenceTypes \
+                                        /ruleid:-Microsoft.Security^#CA2105:ArrayFieldsShouldNotBeReadOnly \
+                                        /ruleid:-Microsoft.Usage^#CA2214:DoNotCallOverridableMethodsInConstructors \
+                                        /ruleid:-Microsoft.Usage^#CA2217:DoNotMarkEnumsWithFlags \
+                                        
+BINPLACE_FLAGS                        = $(BINPLACE_FLAGS) RESIGN_KEYNAME = $(PET_KEY)

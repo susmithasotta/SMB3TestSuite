@@ -1,0 +1,166 @@
+-- This is a cut-down version of the H.323 ASN.1 specifications to 
+-- demonstrate the encoding of a sample component in an H.323 RAS message.
+
+H323RAS DEFINITIONS AUTOMATIC TAGS ::=
+BEGIN
+
+-- This is the main PDU type.  NULL's have been used in place of the 
+-- actual component types for many of the entries to keep the size of 
+-- specification small.
+
+RasMessage ::= CHOICE   
+{
+	gatekeeperRequest		NULL,
+	gatekeeperConfirm		NULL,
+	gatekeeperReject		NULL,
+	registrationRequest		NULL,
+	registrationConfirm		RegistrationConfirm,
+	registrationReject		NULL,
+	unregistrationRequest		NULL,
+	unregistrationConfirm		NULL,
+	unregistrationReject		NULL,
+	admissionRequest		NULL,
+	admissionConfirm		NULL,
+	admissionReject                 NULL,
+	bandwidthRequest		NULL,
+	bandwidthConfirm		NULL,
+	bandwidthReject                 NULL,
+	disengageRequest		NULL,
+	disengageConfirm		NULL,
+	disengageReject                 NULL,
+	locationRequest                 NULL,
+	locationConfirm                 NULL,
+	locationReject			NULL, 
+	infoRequest			NULL,
+	infoRequestResponse		NULL,
+	nonStandardMessage		NULL,
+	unknownMessageResponse		NULL,
+	...,
+	requestInProgress		NULL,
+	resourcesAvailableIndicate	NULL,
+	resourcesAvailableConfirm	NULL,
+	infoRequestAck			NULL,
+	infoRequestNak			NULL
+}
+
+RegistrationConfirm ::= SEQUENCE --(RCF)
+{
+	requestSeqNum		RequestSeqNum,
+	protocolIdentifier	ProtocolIdentifier,
+	nonStandardData         NonStandardParameter OPTIONAL,
+	callSignalAddress	SEQUENCE OF TransportAddress,
+	terminalAlias		SEQUENCE OF AliasAddress OPTIONAL,
+	gatekeeperIdentifier	GatekeeperIdentifier  OPTIONAL,
+	endpointIdentifier	EndpointIdentifier,
+	...,	
+	alternateGatekeeper	SEQUENCE OF AlternateGK OPTIONAL,
+	timeToLive		TimeToLive OPTIONAL,
+	tokens			NULL, -- SEQUENCE OF ClearToken OPTIONAL,
+	cryptoTokens		NULL, -- SEQUENCE OF CryptoH323Token OPTIONAL,
+	integrityCheckValue	ICV OPTIONAL,
+	willRespondToIRR	BOOLEAN,
+	preGrantedARQ		SEQUENCE
+	{
+		makeCall			BOOLEAN,
+		useGKCallSignalAddressToMakeCall BOOLEAN,
+		answerCall			BOOLEAN,
+		useGKCallSignalAddressToAnswer	BOOLEAN,
+		...,
+		irrFrequencyInCall		INTEGER (1..65535) OPTIONAL
+	} OPTIONAL
+}
+
+GatekeeperIdentifier	::=	BMPString (SIZE(1..128))
+EndpointIdentifier	::=	BMPString (SIZE(1..128))
+RequestSeqNum		::=	INTEGER (1..65535)
+ProtocolIdentifier	::=	OBJECT IDENTIFIER	
+				-- shall be set to  
+				-- {itu-t (0) recommendation (0) h (8) 2250 version (0) 2}
+TimeToLive		::=	INTEGER (1..4294967295)		--in seconds
+
+H221NonStandard ::= SEQUENCE
+{	t35CountryCode		INTEGER(0..255),	-- country, as per T.35
+	t35Extension		INTEGER(0..255),	-- assigned nationally
+	manufacturerCode	INTEGER(0..65535),	-- assigned nationally
+	...
+}
+
+NonStandardParameter ::= SEQUENCE
+{
+	nonStandardIdentifier	NonStandardIdentifier,
+	data			OCTET STRING
+}
+
+NonStandardIdentifier		::=CHOICE
+{
+	object			OBJECT IDENTIFIER,
+	h221NonStandard	H221NonStandard,
+	...
+}
+
+TransportAddress ::= CHOICE
+{
+	ipAddress	SEQUENCE
+	{
+		ip		OCTET STRING (SIZE(4)),
+		port		INTEGER(0..65535)
+	},
+	ipSourceRoute	SEQUENCE
+	{
+		ip		OCTET STRING (SIZE(4)),
+		port		INTEGER(0..65535),
+		route		SEQUENCE OF OCTET STRING(SIZE(4)),
+		routing 	CHOICE
+		{
+			strict	NULL,
+			loose	NULL,
+			...
+		},
+		...
+	},
+	ipxAddress	SEQUENCE
+	{
+		node	OCTET STRING (SIZE(6)),
+		netnum	OCTET STRING (SIZE(4)),
+		port	OCTET STRING (SIZE(2))
+	},
+	ip6Address	SEQUENCE
+	{
+		ip	OCTET STRING (SIZE(16)),
+		port	INTEGER(0..65535),
+		...
+	},
+	netBios			OCTET STRING (SIZE(16)),
+	nsap			OCTET STRING (SIZE(1..20)),
+	nonStandardAddress	NonStandardParameter,	
+	...	
+}
+
+AliasAddress ::= CHOICE
+{
+	e164		IA5String (SIZE (1..128)) (FROM ("0123456789#*,")),
+	h323-ID		BMPString (SIZE (1..256)),	-- Basic ISO/IEC 10646-1 (Unicode)
+	...,
+	url-ID		IA5String (SIZE(1..512)),	-- URL style address
+	transportID	TransportAddress,
+	email-ID	IA5String (SIZE(1..512)),	-- rfc822-compliant email address
+	partyNumber	NULL  -- PartyNumber
+}	
+
+AlternateGK ::= SEQUENCE
+{
+	rasAddress		TransportAddress,
+	gatekeeperIdentifier	GatekeeperIdentifier  OPTIONAL,
+	needToRegister		BOOLEAN,
+	priority		INTEGER (0..127),
+	...
+}
+
+ICV ::= SEQUENCE
+{
+	algorithmOID	OBJECT IDENTIFIER,  -- the algorithm used to compute the signature
+	icv		BIT STRING	-- the computed cryptographic integrity check value
+-- or signature
+}
+
+END

@@ -1,0 +1,1579 @@
+.assembly extern 'Microsoft.Protocols.TestTools.StackSdk'
+{
+  .publickeytoken = (0A 02 17 C4 2D 40 7D 5E)
+  .ver corext
+}
+.assembly extern 'System'
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89)
+  .ver clr2.0
+}
+.assembly extern 'mscorlib'
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89)
+  .ver clr2.0
+}
+.assembly 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'
+{
+  .custom instance void ['mscorlib']'System.Runtime.InteropServices'.'ComVisibleAttribute'::.ctor(bool) = (01 00 00 00 00)
+  .publickey = (00 24 00 00 04 80 00 00 94 00 00 00 06 02 00 00 00 24 00 00 52 53 41 31 00 04 00 00 01 00 01 00 27 21 4B 24 74 FA DB 92 4F FE 05 6B A0 3A A2 C5 8C 86 34 06 56 D2 36 DA 85 76 39 CA 4F 0D AD 6E C0 ED 19 B3 08 B9 B3 40 D7 84 2C 40 80 13 A4 44 64 92 95 E7 65 C9 92 8E 31 38 FB 65 B9 3F 4F BF F3 02 4E 89 53 9A EC FB 55 DB D2 F6 E0 EB B7 BF D2 1F 28 23 97 EF 78 48 E3 2D F1 4B 93 6F 5B 7C 57 75 B5 79 85 C2 F1 BE 90 68 B7 0D 43 6C BA 82 2F 62 FD F6 C6 33 7E B5 8B 12 EB CB 7D 8C FD BC)
+  .hash algorithm 0x00008004
+  .ver corext
+}
+.namespace 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'
+{
+  .class public 'Connection'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance int32 'get_GlobalIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_GlobalIndex'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_ConnectionId'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ConnectionId'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'MessageIdStatus'> 'get_CommandSequenceWindow'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_CommandSequenceWindow'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'MessageIdStatus'> 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class ['mscorlib']'System.Collections.Generic'.'Dictionary`2'<uint64,class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket'> 'get_RequestList'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_RequestList'(class ['mscorlib']'System.Collections.Generic'.'Dictionary`2'<uint64,class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket'> 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint32 'get_ClientCapabilities'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ClientCapabilities'(uint32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_NegotiateReceived'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NegotiateReceived'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(int32 'connectionId')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection' 'connection')
+    {
+      ret
+    }
+    .field family class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'> 'sessionTable'
+    .property instance uint32 'ClientCapabilities'()
+    {
+      .get instance uint32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'get_ClientCapabilities'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'set_ClientCapabilities'(uint32)
+    }
+    .property instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'MessageIdStatus'> 'CommandSequenceWindow'()
+    {
+      .get instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'MessageIdStatus'> 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'get_CommandSequenceWindow'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'set_CommandSequenceWindow'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'MessageIdStatus'>)
+    }
+    .property instance int32 'ConnectionId'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'get_ConnectionId'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'set_ConnectionId'(int32)
+    }
+    .property instance int32 'GlobalIndex'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'get_GlobalIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'set_GlobalIndex'(int32)
+    }
+    .property instance bool 'NegotiateReceived'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'get_NegotiateReceived'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'set_NegotiateReceived'(bool)
+    }
+    .property instance class ['mscorlib']'System.Collections.Generic'.'Dictionary`2'<uint64,class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket'> 'RequestList'()
+    {
+      .get instance class ['mscorlib']'System.Collections.Generic'.'Dictionary`2'<uint64,class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket'> 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'get_RequestList'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'::'set_RequestList'(class ['mscorlib']'System.Collections.Generic'.'Dictionary`2'<uint64,class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket'>)
+    }
+  }
+  .class public 'FileAccessCollection'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'> 'get_ShareList'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ShareList'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'> 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'> 'get_GlobalOpenTable'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_GlobalOpenTable'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'> 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'> 'get_GlobalTreeConnectTable'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_GlobalTreeConnectTable'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'> 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'> 'get_GlobalSessionTable'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_GlobalSessionTable'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'> 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'> 'get_ConnectionList'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ConnectionList'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'> 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_NextShareGlobalIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NextShareGlobalIndex'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_NextOpenGlobalIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NextOpenGlobalIndex'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_NextTreeConnectGlobalIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NextTreeConnectGlobalIndex'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_NextSessionGlobalIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NextSessionGlobalIndex'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_NextConnectionGlobalIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NextConnectionGlobalIndex'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .property instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'> 'ConnectionList'()
+    {
+      .get instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'> 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'get_ConnectionList'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'set_ConnectionList'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Connection'>)
+    }
+    .property instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'> 'GlobalOpenTable'()
+    {
+      .get instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'> 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'get_GlobalOpenTable'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'set_GlobalOpenTable'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'>)
+    }
+    .property instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'> 'GlobalSessionTable'()
+    {
+      .get instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'> 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'get_GlobalSessionTable'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'set_GlobalSessionTable'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'>)
+    }
+    .property instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'> 'GlobalTreeConnectTable'()
+    {
+      .get instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'> 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'get_GlobalTreeConnectTable'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'set_GlobalTreeConnectTable'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'>)
+    }
+    .property instance int32 'NextConnectionGlobalIndex'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'get_NextConnectionGlobalIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'set_NextConnectionGlobalIndex'(int32)
+    }
+    .property instance int32 'NextOpenGlobalIndex'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'get_NextOpenGlobalIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'set_NextOpenGlobalIndex'(int32)
+    }
+    .property instance int32 'NextSessionGlobalIndex'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'get_NextSessionGlobalIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'set_NextSessionGlobalIndex'(int32)
+    }
+    .property instance int32 'NextShareGlobalIndex'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'get_NextShareGlobalIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'set_NextShareGlobalIndex'(int32)
+    }
+    .property instance int32 'NextTreeConnectGlobalIndex'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'get_NextTreeConnectGlobalIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'set_NextTreeConnectGlobalIndex'(int32)
+    }
+    .property instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'> 'ShareList'()
+    {
+      .get instance class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'> 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'get_ShareList'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileAccessCollection'::'set_ShareList'(class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'>)
+    }
+  }
+  .class public abstract 'FileServiceClientTransport'
+    extends ['mscorlib']'System'.'Object'
+    implements ['mscorlib']'System'.'IDisposable'
+  {
+    .method public virtual hidebysig newslot abstract specialname 
+      instance bool 'get_IsDataAvailable'()
+    {
+    }
+    .method public final virtual hidebysig newslot 
+      instance void 'Dispose'()
+    {
+      ret
+    }
+    .method family virtual hidebysig newslot 
+      instance void 'Dispose'(bool 'disposing')
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance void 'Finalize'()
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Connect'(string 'server', string 'client', string 'domain', string 'userName', string 'password', valuetype ['mscorlib']'System'.'TimeSpan' 'timeout')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'SendDfscPayload'(uint8[] 'payload')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'ExpectDfscPayload'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout', [out] uint32& 'status', [out] uint8[]& 'payload')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Disconnect'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'ConnectShare'(string 'serverName', int32 'port', valuetype ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'IpVersion' 'ipVersion', string 'domain', string 'userName', string 'password', string 'shareName')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'ConnectShare'(string 'serverNetBiosName', string 'clientNetBiosName', string 'domain', string 'userName', string 'password', string 'shareName')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Create'(string 'fileName', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'desiredAccess', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsImpersonationLevel' 'impersonationLevel', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'fileAttribute', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateDisposition' 'createDisposition', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'createOption')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Create'(string 'directoryName', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'desiredAccess', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsImpersonationLevel' 'impersonationLevel', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'fileAttribute', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateDisposition' 'createDisposition', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'createOption')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Write'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout', uint64 'offset', uint8[] 'data')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Read'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout', uint64 'offset', uint32 'length', [out] uint8[]& 'data')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'IoControl'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout', uint32 'controlCode', uint8[] 'input', [out] uint8[]& 'output')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'IoControl'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout', valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'controlCode', uint8[] 'input', [out] uint8[]& 'output')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Close'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'DisconnetShare'()
+    {
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .property instance bool 'IsDataAvailable'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FileServiceClientTransport'::'get_IsDataAvailable'()
+    }
+  }
+  .class public abstract 'FileServiceServerTransport'
+    extends ['mscorlib']'System'.'Object'
+    implements ['mscorlib']'System'.'IDisposable'
+  {
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Start'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint' 'ExpectConnect'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint' 'ExpectConnectIpcShare'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Disconnect'(class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint' 'endpoint')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint' 'ExpectTreeDisconnect'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint' 'ExpectLogOff'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint' 'ExpectDisconnect'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout')
+    {
+    }
+    .method family virtual hidebysig newslot 
+      instance void 'Dispose'(bool 'disposing')
+    {
+      ret
+    }
+    .method public final virtual hidebysig newslot 
+      instance void 'Dispose'()
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance void 'Finalize'()
+    {
+      ret
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+  }
+  .class public sequential sealed 'FileTime'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint64 'Time'
+  }
+  .class public sealed 'FsCreateDisposition'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateDisposition' 'FILE_CREATE' = uint32(0x00000002)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateDisposition' 'FILE_OPEN' = uint32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateDisposition' 'FILE_OPEN_IF' = uint32(0x00000003)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateDisposition' 'FILE_OVERWRITE' = uint32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateDisposition' 'FILE_OVERWRITE_IF' = uint32(0x00000005)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateDisposition' 'FILE_SUPERSEDE' = uint32(0x00000000)
+  }
+  .class public sealed 'FsCreateOption'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .custom instance void ['mscorlib']'System'.'FlagsAttribute'::.ctor() = (01 00 00 00)
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_COMPLETE_IF_OPLOCKED' = uint32(0x00000100)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_DELETE_ON_CLOSE' = uint32(0x00001000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_DIRECTORY_FILE' = uint32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_NON_DIRECTORY_FILE' = uint32(0x00000040)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_NO_COMPRESSION' = uint32(0x00008000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_NO_EA_KNOWLEDGE' = uint32(0x00000200)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_NO_INTERMEDIATE_BUFFERING' = uint32(0x00000008)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_OPEN_BY_FILE_ID' = uint32(0x00002000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_OPEN_FOR_BACKUP_INTENT' = uint32(0x00004000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_OPEN_FOR_FREE_SPACE_QUERY' = uint32(0x00800000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_OPEN_NO_RECALL' = uint32(0x00400000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_OPEN_REPARSE_POINT' = uint32(0x00200000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_RANDOM_ACCESS' = uint32(0x00000800)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_RESERVE_OPFILTER' = uint32(0x00100000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_SEQUENTIAL_ONLY' = uint32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_SYNCHRONOUS_IO_ALERT' = uint32(0x00000010)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_SYNCHRONOUS_IO_NONALERT' = uint32(0x00000020)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'FILE_WRITE_THROUGH' = uint32(0x00000002)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCreateOption' 'NONE' = uint32(0x00000000)
+  }
+  .class public sealed 'FsCtlCode'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_CREATE_OR_GET_OBJECT_ID' = uint32(0x000900C0)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_DELETE_OBJECT_ID' = uint32(0x000900A0)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_DELETE_REPARSE_POINT' = uint32(0x000900AC)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_FILESYSTEM_GET_STATISTICS' = uint32(0x00090060)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_FIND_FILES_BY_SID' = uint32(0x0009008F)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_GET_COMPRESSION' = uint32(0x0009003C)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_GET_NTFS_VOLUME_DATA' = uint32(0x00090064)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_GET_OBJECT_ID' = uint32(0x0009009C)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_GET_REPARSE_POINT' = uint32(0x000900A8)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_GET_RETRIEVAL_POINTERS' = uint32(0x00090073)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_IS_PATHNAME_VALID' = uint32(0x0009002C)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_LMR_SET_LINK_TRACKING_INFORMATION' = uint32(0x001400EC)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_PIPE_PEEK' = uint32(0x0011400C)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_PIPE_TRANSCEIVE' = uint32(0x0011C017)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_PIPE_WAIT' = uint32(0x00110018)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_QUERY_ALLOCATED_RANGES' = uint32(0x000940CF)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_QUERY_FAT_BPB' = uint32(0x00090058)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_QUERY_ON_DISK_VOLUME_INFO' = uint32(0x0009013C)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_QUERY_SPARING_INFO' = uint32(0x00090138)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_READ_FILE_USN_DATA' = uint32(0x000900EB)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_RECALL_FILE' = uint32(0x00090117)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_SET_COMPRESSION' = uint32(0x0009C040)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_SET_DEFECT_MANAGEMENT' = uint32(0x00098134)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_SET_ENCRYPTION' = uint32(0x000900D7)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_SET_OBJECT_ID' = uint32(0x00090098)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_SET_OBJECT_ID_EXTENDED' = uint32(0x000900BC)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_SET_REPARSE_POINT' = uint32(0x000900A4)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_SET_SPARSE' = uint32(0x000900C4)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_SET_ZERO_DATA' = uint32(0x000980C8)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_SET_ZERO_ON_DEALLOCATION' = uint32(0x00090194)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_SIS_COPYFILE' = uint32(0x00090100)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsCtlCode' 'FSCTL_WRITE_USN_CLOSE_RECORD' = uint32(0x000900EF)
+  }
+  .class public sealed 'FsDirectoryDesiredAccess'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .custom instance void ['mscorlib']'System'.'FlagsAttribute'::.ctor() = (01 00 00 00)
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'ACCESS_SYSTEM_SECURITY' = uint32(0x01000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'DELETE' = uint32(0x00010000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'FILE_ADD_FILE' = uint32(0x00000002)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'FILE_ADD_SUBDIRECTORY' = uint32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'FILE_DELETE_CHILD' = uint32(0x00000040)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'FILE_LIST_DIRECTORY' = uint32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'FILE_READ_ATTRIBUTES' = uint32(0x00000080)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'FILE_READ_EA' = uint32(0x00000008)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'FILE_TRAVERSE' = uint32(0x00000020)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'FILE_WRITE_ATTRIBUTES' = uint32(0x00000100)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'FILE_WRITE_EA' = uint32(0x00000010)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'GENERIC_ALL' = uint32(0x10000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'GENERIC_EXECUTE' = uint32(0x20000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'GENERIC_READ' = uint32(0x80000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'GENERIC_WRITE' = uint32(0x40000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'MAXIMAL_ACCESS' = uint32(0x02000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'NONE' = uint32(0x00000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'READ_CONTROL' = uint32(0x00020000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'SYNCHRONIZE' = uint32(0x00100000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'WRITE_DAC' = uint32(0x00040000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsDirectoryDesiredAccess' 'WRITE_OWNER' = uint32(0x00080000)
+  }
+  .class public 'FsEndpoint'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpointType' 'get_EndpointType'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_EndpointType'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpointType' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class ['System']'System.Net'.'IPEndPoint' 'get_IpEndpoint'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_IpEndpoint'(class ['System']'System.Net'.'IPEndPoint' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_NetBiosEndpoint'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NetBiosEndpoint'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpointType' 'EndpointType'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpointType' 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint'::'get_EndpointType'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint'::'set_EndpointType'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpointType')
+    }
+    .property instance class ['System']'System.Net'.'IPEndPoint' 'IpEndpoint'()
+    {
+      .get instance class ['System']'System.Net'.'IPEndPoint' 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint'::'get_IpEndpoint'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint'::'set_IpEndpoint'(class ['System']'System.Net'.'IPEndPoint')
+    }
+    .property instance int32 'NetBiosEndpoint'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint'::'get_NetBiosEndpoint'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpoint'::'set_NetBiosEndpoint'(int32)
+    }
+  }
+  .class public sealed 'FsEndpointType'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname int32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpointType' 'NetBios' = int32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsEndpointType' 'Tcp' = int32(0x00000000)
+  }
+  .class public sealed 'FsFileAttribute'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .custom instance void ['mscorlib']'System'.'FlagsAttribute'::.ctor() = (01 00 00 00)
+    .field public rtspecialname specialname int32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_ARCHIVE' = int32(0x00000020)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_COMPRESSED' = int32(0x00000800)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_DIRECTORY' = int32(0x00000010)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_ENCRYPTED' = int32(0x00004000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_HIDDEN' = int32(0x00000002)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_NORMAL' = int32(0x00000080)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_NOT_CONTENT_INDEXED' = int32(0x00002000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_OFFLINE' = int32(0x00001000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_READONLY' = int32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_REPARSE_POINT' = int32(0x00000400)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_SPARSE_FILE' = int32(0x00000200)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_SYSTEM' = int32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'FILE_ATTRIBUTE_TEMPORARY' = int32(0x00000100)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileAttribute' 'NONE' = int32(0x00000000)
+  }
+  .class public sealed 'FsFileDesiredAccess'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .custom instance void ['mscorlib']'System'.'FlagsAttribute'::.ctor() = (01 00 00 00)
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'ACCESS_SYSTEM_SECURITY' = uint32(0x01000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'DELETE' = uint32(0x00010000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'FILE_APPEND_DATA' = uint32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'FILE_EXECUTE' = uint32(0x00000020)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'FILE_READ_ATTRIBUTES' = uint32(0x00000080)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'FILE_READ_DATA' = uint32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'FILE_READ_EA' = uint32(0x00000008)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'FILE_WRITE_ATTRIBUTES' = uint32(0x00000100)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'FILE_WRITE_DATA' = uint32(0x00000002)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'FILE_WRITE_EA' = uint32(0x00000010)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'GENERIC_ALL' = uint32(0x10000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'GENERIC_EXECUTE' = uint32(0x20000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'GENERIC_READ' = uint32(0x80000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'GENERIC_WRITE' = uint32(0x40000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'MAXIMAL_ACCESS' = uint32(0x02000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'NONE' = uint32(0x00000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'READ_CONTROL' = uint32(0x00020000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'SYNCHRONIZE' = uint32(0x00100000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'WRITE_DAC' = uint32(0x00040000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsFileDesiredAccess' 'WRITE_OWNER' = uint32(0x00080000)
+  }
+  .class public sealed 'FsImpersonationLevel'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsImpersonationLevel' 'Anonymous' = uint32(0x00000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsImpersonationLevel' 'Delegate' = uint32(0x00000003)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsImpersonationLevel' 'Identification' = uint32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'FsImpersonationLevel' 'Impersonation' = uint32(0x00000002)
+  }
+  .class public 'FsRapRequest'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'RapRequestParam' 'TransParameters'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'RapRequestData' 'transData'
+  }
+  .class public 'FsRapResponse'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'RapResponseData' 'TransData'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'RapResponseParam' 'TransParameters'
+    .field public uint16 'messageId'
+  }
+  .class public 'MessageIdStatus'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance uint64 'get_MessageId'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_MessageId'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_IsComsumed'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_IsComsumed'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(uint64 'messageId', bool 'isComsumed')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'MessageIdStatus' 'messageIdStatus')
+    {
+      ret
+    }
+    .property instance bool 'IsComsumed'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'MessageIdStatus'::'get_IsComsumed'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'MessageIdStatus'::'set_IsComsumed'(bool)
+    }
+    .property instance uint64 'MessageId'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'MessageIdStatus'::'get_MessageId'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'MessageIdStatus'::'set_MessageId'(uint64)
+    }
+  }
+  .class public 'Open'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance int32 'get_GlobalIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_GlobalIndex'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_Persistent'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Persistent'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_Volatile'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Volatile'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_TreeConnectId'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_TreeConnectId'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_SessionId'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_SessionId'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_ConnectionId'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ConnectionId'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_LocalOpen'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_LocalOpen'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_GrantedAccess'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_GrantedAccess'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint8 'get_OplockLevel'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_OplockLevel'(uint8 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_OplockState'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_OplockState'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_OplockTimeout'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_OplockTimeout'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_IsDurable'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_IsDurable'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_DurableOpenTimeout'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_DurableOpenTimeout'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_DurableOwner'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_DurableOwner'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_EnumerationLocation'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_EnumerationLocation'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_EnumerationSearchPattern'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_EnumerationSearchPattern'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open' 'open')
+    {
+      ret
+    }
+    .property instance int32 'ConnectionId'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_ConnectionId'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_ConnectionId'(int32)
+    }
+    .property instance uint64 'DurableOpenTimeout'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_DurableOpenTimeout'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_DurableOpenTimeout'(uint64)
+    }
+    .property instance uint64 'DurableOwner'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_DurableOwner'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_DurableOwner'(uint64)
+    }
+    .property instance string 'EnumerationLocation'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_EnumerationLocation'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_EnumerationLocation'(string)
+    }
+    .property instance string 'EnumerationSearchPattern'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_EnumerationSearchPattern'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_EnumerationSearchPattern'(string)
+    }
+    .property instance int32 'GlobalIndex'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_GlobalIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_GlobalIndex'(int32)
+    }
+    .property instance uint64 'GrantedAccess'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_GrantedAccess'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_GrantedAccess'(uint64)
+    }
+    .property instance bool 'IsDurable'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_IsDurable'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_IsDurable'(bool)
+    }
+    .property instance uint64 'LocalOpen'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_LocalOpen'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_LocalOpen'(uint64)
+    }
+    .property instance uint8 'OplockLevel'()
+    {
+      .get instance uint8 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_OplockLevel'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_OplockLevel'(uint8)
+    }
+    .property instance uint64 'OplockState'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_OplockState'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_OplockState'(uint64)
+    }
+    .property instance uint64 'OplockTimeout'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_OplockTimeout'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_OplockTimeout'(uint64)
+    }
+    .property instance uint64 'Persistent'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_Persistent'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_Persistent'(uint64)
+    }
+    .property instance uint64 'SessionId'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_SessionId'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_SessionId'(uint64)
+    }
+    .property instance uint64 'TreeConnectId'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_TreeConnectId'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_TreeConnectId'(uint64)
+    }
+    .property instance uint64 'Volatile'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'get_Volatile'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'::'set_Volatile'(uint64)
+    }
+  }
+  .class public sequential sealed 'RapRequestData'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint8[] 'RAPInData'
+  }
+  .class public sequential sealed 'RapRequestParam'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint16 'RapOPCode'
+    .field public uint8[] 'ParamDesc'
+    .field public uint8[] 'DataDesc'
+    .field public uint8[] 'RAPParamsAndAuxDesc'
+  }
+  .class public sequential sealed 'RapResponseData'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint8[] 'RAPOutData'
+  }
+  .class public sequential sealed 'RapResponseParam'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint16 'Win32ErrorCode'
+    .field public uint16 'Converter'
+    .field public uint8[] 'RAPOutParams'
+  }
+  .class public 'Session'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance int32 'get_GlobalIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_GlobalIndex'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_SessionId'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_SessionId'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_ConnectionId'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ConnectionId'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint32 'get_State'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_State'(uint32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint8[] 'get_SecurityContext'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_SecurityContext'(uint8[] 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint8[] 'get_SessionKey'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_SessionKey'(uint8[] 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_ShouldSign'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ShouldSign'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(int32 'connectionId', uint64 'sessionId')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session' 'session')
+    {
+      ret
+    }
+    .field family class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Open'> 'openTable'
+    .field family class ['mscorlib']'System.Collections.ObjectModel'.'Collection`1'<class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'> 'treeConnectTable'
+    .property instance int32 'ConnectionId'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'get_ConnectionId'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'set_ConnectionId'(int32)
+    }
+    .property instance int32 'GlobalIndex'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'get_GlobalIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'set_GlobalIndex'(int32)
+    }
+    .property instance uint8[] 'SecurityContext'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'get_SecurityContext'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'set_SecurityContext'(uint8[])
+    }
+    .property instance uint64 'SessionId'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'get_SessionId'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'set_SessionId'(uint64)
+    }
+    .property instance uint8[] 'SessionKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'get_SessionKey'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'set_SessionKey'(uint8[])
+    }
+    .property instance bool 'ShouldSign'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'get_ShouldSign'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'set_ShouldSign'(bool)
+    }
+    .property instance uint32 'State'()
+    {
+      .get instance uint32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'get_State'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Session'::'set_State'(uint32)
+    }
+  }
+  .class public 'Share'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance int32 'get_GlobalIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_GlobalIndex'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_Name'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Name'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_LocalPath'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_LocalPath'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int64 'get_ConnectSecurity'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ConnectSecurity'(int64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int64 'get_FileSecurity'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_FileSecurity'(int64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int64 'get_CscFlags'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_CscFlags'(int64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_IsDfs'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_IsDfs'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_DoAccessBasedDirectoryEnumeration'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_DoAccessBasedDirectoryEnumeration'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_AllowNamespaceCaching'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_AllowNamespaceCaching'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_ForceSharedDelete'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ForceSharedDelete'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_RestrictExclusiveOpens'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_RestrictExclusiveOpens'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share' 'share')
+    {
+      ret
+    }
+    .property instance bool 'AllowNamespaceCaching'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_AllowNamespaceCaching'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_AllowNamespaceCaching'(bool)
+    }
+    .property instance int64 'ConnectSecurity'()
+    {
+      .get instance int64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_ConnectSecurity'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_ConnectSecurity'(int64)
+    }
+    .property instance int64 'CscFlags'()
+    {
+      .get instance int64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_CscFlags'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_CscFlags'(int64)
+    }
+    .property instance bool 'DoAccessBasedDirectoryEnumeration'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_DoAccessBasedDirectoryEnumeration'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_DoAccessBasedDirectoryEnumeration'(bool)
+    }
+    .property instance int64 'FileSecurity'()
+    {
+      .get instance int64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_FileSecurity'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_FileSecurity'(int64)
+    }
+    .property instance bool 'ForceSharedDelete'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_ForceSharedDelete'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_ForceSharedDelete'(bool)
+    }
+    .property instance int32 'GlobalIndex'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_GlobalIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_GlobalIndex'(int32)
+    }
+    .property instance bool 'IsDfs'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_IsDfs'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_IsDfs'(bool)
+    }
+    .property instance string 'LocalPath'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_LocalPath'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_LocalPath'(string)
+    }
+    .property instance string 'Name'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_Name'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_Name'(string)
+    }
+    .property instance bool 'RestrictExclusiveOpens'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'get_RestrictExclusiveOpens'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'Share'::'set_RestrictExclusiveOpens'(bool)
+    }
+  }
+  .class public sequential sealed 'SmbDate'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .method public hidebysig specialname 
+      instance uint16 'get_Year'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Year'(uint16 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint16 'get_Month'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Month'(uint16 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint16 'get_Day'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Day'(uint16 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(uint16 'year', uint16 'month', uint16 'day')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance uint8[] 'ToBytes'()
+    {
+      ret
+    }
+
+    //This private field was generated by ASMMETA as a placeholder and does not exist in the actual assembly.
+    .field private int32 __Asmmeta_Private_Field
+    .property instance uint16 'Day'()
+    {
+      .get instance uint16 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbDate'::'get_Day'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbDate'::'set_Day'(uint16)
+    }
+    .property instance uint16 'Month'()
+    {
+      .get instance uint16 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbDate'::'get_Month'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbDate'::'set_Month'(uint16)
+    }
+    .property instance uint16 'Year'()
+    {
+      .get instance uint16 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbDate'::'get_Year'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbDate'::'set_Year'(uint16)
+    }
+  }
+  .class public sealed 'SmbDateBitMask'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint16 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbDateBitMask' 'DAY' = uint16(0x001F)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbDateBitMask' 'MONTH' = uint16(0x01E0)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbDateBitMask' 'NONE' = uint16(0x0000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbDateBitMask' 'YEAR' = uint16(0xFE00)
+  }
+  .class public abstract 'SmbFamilyPacket'
+    extends ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket'
+  {
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'(uint8[] 'data')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot abstract specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbVersion' 'get_Version'()
+    {
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbVersion' 'Version'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbVersion' 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbFamilyPacket'::'get_Version'()
+    }
+  }
+  .class public sequential sealed 'SmbTime'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .method public hidebysig specialname 
+      instance uint16 'get_Hour'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Hour'(uint16 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint16 'get_Minutes'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Minutes'(uint16 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint16 'get_Seconds'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Seconds'(uint16 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(uint16 'hour', uint16 'minutes', uint16 'seconds')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance uint8[] 'ToBytes'()
+    {
+      ret
+    }
+
+    //This private field was generated by ASMMETA as a placeholder and does not exist in the actual assembly.
+    .field private int32 __Asmmeta_Private_Field
+    .property instance uint16 'Hour'()
+    {
+      .get instance uint16 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbTime'::'get_Hour'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbTime'::'set_Hour'(uint16)
+    }
+    .property instance uint16 'Minutes'()
+    {
+      .get instance uint16 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbTime'::'get_Minutes'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbTime'::'set_Minutes'(uint16)
+    }
+    .property instance uint16 'Seconds'()
+    {
+      .get instance uint16 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbTime'::'get_Seconds'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbTime'::'set_Seconds'(uint16)
+    }
+  }
+  .class public sealed 'SmbTimeBitMask'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint16 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbTimeBitMask' 'HOUR' = uint16(0xF800)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbTimeBitMask' 'MINUTES' = uint16(0x07E0)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbTimeBitMask' 'NONE' = uint16(0x0000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbTimeBitMask' 'SECONDS' = uint16(0x001F)
+  }
+  .class public sealed 'SmbVersion'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname int32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbVersion' 'SMB' = int32(0x00000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'SmbVersion' 'SMB2' = int32(0x00000001)
+  }
+  .class public 'TreeConnect'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance int32 'get_GlobalIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_GlobalIndex'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_TreeId'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_TreeId'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint64 'get_SessionId'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_SessionId'(uint64 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_ConnectionId'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ConnectionId'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_Share'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Share'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(int32 'connectionId', uint64 'sessionId', uint64 'treeId')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect' 'treeConnect')
+    {
+      ret
+    }
+    .property instance int32 'ConnectionId'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'::'get_ConnectionId'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'::'set_ConnectionId'(int32)
+    }
+    .property instance int32 'GlobalIndex'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'::'get_GlobalIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'::'set_GlobalIndex'(int32)
+    }
+    .property instance uint64 'SessionId'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'::'get_SessionId'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'::'set_SessionId'(uint64)
+    }
+    .property instance string 'Share'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'::'get_Share'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'::'set_Share'(string)
+    }
+    .property instance uint64 'TreeId'()
+    {
+      .get instance uint64 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'::'get_TreeId'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.FileAccessService'.'TreeConnect'::'set_TreeId'(uint64)
+    }
+  }
+}
+

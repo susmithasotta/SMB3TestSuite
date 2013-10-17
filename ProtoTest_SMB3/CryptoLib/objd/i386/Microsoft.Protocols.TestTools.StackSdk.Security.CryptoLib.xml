@@ -1,0 +1,2905 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Protocols.TestTools.StackSdk.Security.CryptoLib</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm">
+            <summary>
+            BCryptAlgorithm provides encrypting and decrypting support
+            based on Cryptography API Next Generation (CNG).<para/>
+            The CNG API provides a set of functions that perform basic 
+            cryptographic operations such as creating hashes or 
+            encrypting and decrypting data.<para/>
+            Symmetric cipher algorithms are supported, such as: 
+            RC2, RC4, DES, AES, etc. 
+            Please call BCryptAlgorithm.Algorithms to get the full list.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.GetErrorNameFromCode(System.UInt32)">
+            <summary>
+            Get error's name from code.
+            </summary>
+            <param name="status">error code.</param>
+            <returns>error name</returns>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.name">
+            <summary>
+            algorithm name
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.hAlgorithm">
+            <summary>
+            algorithm handle
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.hKey">
+            <summary>
+            key handle
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.key">
+            <summary>
+            key
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.iv">
+            <summary>
+            iv
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.#ctor(System.String)">
+            <summary>
+            Initialize an instance of BCryptAlgorithm.
+            </summary>
+            <param name="algorithm">
+            Algorithm name. Example: "AES".
+            </param>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Throw when error occurred in underlayer operation.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.BCryptSetKey(System.Byte[])">
+            <summary>
+            Set key to algorithm
+            </summary>
+            <param name="value">key</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.BCryptGetPropertyInt32(System.IntPtr,System.String)">
+            <summary>
+            Retrieve int32 property value from algorithm or key
+            </summary>
+            <param name="hObject">algorithm or key handle</param>
+            <param name="property">property name</param>
+            <returns>property value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.BCryptGetPropertyInt32Array(System.IntPtr,System.String)">
+            <summary>
+            Retrieve int32 array property value from algorithm or key
+            </summary>
+            <param name="hObject">algorithm or key handle</param>
+            <param name="property">property name</param>
+            <returns>property value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.BCryptGetPropertyByteArray(System.IntPtr,System.String)">
+            <summary>
+            Retrieve byte property value from algorithm or key
+            </summary>
+            <param name="hObject">algorithm or key handle</param>
+            <param name="property">property name</param>
+            <returns>property value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.BCryptSetPrpoertyInt32(System.IntPtr,System.String,System.Int32)">
+            <summary>
+            Set int32 property value from algorithm or key
+            </summary>
+            <param name="hObject">algorithm or key handle</param>
+            <param name="property">property name</param>
+            <param name="value">property value</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.BCryptSetPropertyByteArray(System.IntPtr,System.String,System.Byte[])">
+            <summary>
+            Set byte array property value from algorithm or key
+            </summary>
+            <param name="hObject">algorithm or key handle</param>
+            <param name="property">property name</param>
+            <param name="value">property value</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.ValidateKeyExists">
+            <summary>
+            Check if key exists
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Encrypt(System.Byte[])">
+            <summary>
+            Encrypts a block of data.
+            </summary>
+            <param name="input">
+            The input to be encrypted. 
+            </param>
+            <returns>
+            Encrypted output.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throw when input is null.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throw when Key is not set.
+            </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Throw when error occurred in underlayer operation.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Encrypt(System.Byte[],System.Byte[],System.Byte[],System.Int32,System.Byte[]@)">
+            <summary>
+            Encrypts a block of data with ciper mode info specified.
+            </summary>
+            <param name="input">
+            The input to be encrypted. 
+            </param>
+            <param name="nonce">
+            Nonce.
+            </param>
+            <param name="authData">
+            Auth data.
+            </param>
+            <param name="tagLength">
+            Length of tag.
+            </param>
+            <param name="tag">
+            Tag.
+            </param>
+            <returns>
+            Encrypted output.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Decrypt(System.Byte[])">
+            <summary>
+            Encrypts a block of data.
+            </summary>
+            <param name="input">
+            The input to be encrypted. 
+            </param>
+            <returns>
+            Encrypted output.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Decrypt(System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Encrypts a block of data with ciper mode info specified.
+            </summary>
+            <param name="input">
+            The input to be encrypted. 
+            </param>
+            <param name="nonce">
+            Nonce.
+            </param>
+            <param name="authData">
+            Auth data.
+            </param>
+            <param name="tag">
+            Tag.
+            </param>
+            <returns>
+            Encrypted output.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Dispose">
+            <summary>
+            Dispose method.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Dispose(System.Boolean)">
+            <summary>
+            Dispose method.
+            </summary>
+            <param name="disposing">
+            True to release both managed and unmanaged resources.<para/>
+            False to release unmanaged resources only.
+            </param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Finalize">
+            <summary>
+            finalizer
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Algorithms">
+            <summary>
+            Get a full list of symmetric cipher algorithms.
+            </summary>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Throw when error occurred in underlayer operation.
+            </exception>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Name">
+            <summary>
+            Gets the algorithm name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.KeyLengthList">
+            <summary>
+            The key lengths that are supported by the algorithm.
+            </summary>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Throw when error occurred in underlayer operation.
+            </exception>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.KeyLength">
+            <summary>
+            The size, in bits, of the key value of a symmetric key provider.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throw when Key is not set.
+            </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Throw when error occurred in underlayer operation.
+            </exception>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.BlockSizeList">
+            <summary>
+            A list of the block lengths supported by an encryption algorithm.
+            </summary>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Throw when error occurred in underlayer operation.
+            </exception>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.BlockSize">
+            <summary>
+            The size, in bytes, of a cipher block for the algorithm.
+            </summary>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Throw when error occurred in underlayer operation.
+            </exception>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Key">
+            <summary>
+            The key of the algorithm.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">
+            Throw when Key is null.
+            </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Throw when error occurred in underlayer operation.
+            </exception>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.IV">
+            <summary>
+            Contains the initialization vector (IV) for a key.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">
+            Throw when IV is null.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throw when Key is not set.
+            </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Throw when error occurred in underlayer operation.
+            </exception>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptAlgorithm.Mode">
+            <summary>
+            The chaining mode of the algorithm provider.
+            </summary>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Throw when error occurred in underlayer operation.
+            </exception>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo">
+            <summary>
+            The BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO structure is used with 
+            the BCryptEncrypt and BCryptDecrypt functions to contain additional 
+            information related to authenticated cipher modes.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.cbSize">
+            <summary>
+            The size, in bytes, of this structure.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.dwInfoVersion">
+            <summary>
+            The version number of the structure.
+            BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO_VERSION 1
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.pbNonce">
+            <summary>
+            A pointer to a buffer that contains a nonce.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.cbNonce">
+            <summary>
+            The size, in bytes, of the buffer pointed to by the pbNonce member. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.pbAuthData">
+            <summary>
+            A pointer to a buffer that contains the authenticated data. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.cbAuthData">
+            <summary>
+            The size, in bytes, of the buffer pointed to by the pbAuthData member. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.pbTag">
+            <summary>
+            BCryptEncrypt: The buffer will receive the authentication tag.
+            BCryptDecrypt: The buffer contains the authentication tag to be checked against.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.cbTag">
+            <summary>
+            The size, in bytes, of the pbTag buffer. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.pbMacContext">
+            <summary>
+            A pointer to a buffer that stores the partially computed MAC 
+            between calls to BCryptEncrypt and BCryptDecrypt when chaining 
+            encryption or decryption.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.cbMacContext">
+            <summary>
+            The size, in bytes, of the buffer pointed to by the pbMacContext member.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.cbAAD">
+            <summary>
+            The length, in bytes, of additional authenticated data (AAD) 
+            to be used by the BCryptEncrypt and BCryptDecrypt functions.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.cbData">
+            <summary>
+            The length, in bytes, of the payload data that was encrypted or decrypted. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BcryptAuthenticatedCipherModeInfo.dwFlags">
+            <summary>
+            This flag is used when chaining BCryptEncrypt or BCryptDecrypt function calls. 
+            If calls are not being chained, this member must be set to zero.
+            BCRYPT_AUTH_MODE_CHAIN_CALLS_FLAG 0x00000001
+            BCRYPT_AUTH_MODE_IN_PROGRESS_FLAG 0x00000002
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptCipherMode">
+            <summary>
+            Specifies the block cipher mode to use for encryption.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptCipherMode.NotAvailable">
+            <summary>
+            The provider does not support chaining.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptCipherMode.CBC">
+            <summary>
+            The Cipher Block Chaining (CBC) mode introduces feedback. Before each plain
+            text block is encrypted, it is combined with the cipher text of the previous
+            block by a bitwise exclusive OR operation. This ensures that even if the
+            plain text contains many identical blocks, they will each encrypt to a different
+            cipher text block. The initialization vector is combined with the first plain
+            text block by a bitwise exclusive OR operation before the block is encrypted.
+            If a single bit of the cipher text block is mangled, the corresponding plain
+            text block will also be mangled. In addition, a bit in the subsequent block,
+            in the same position as the original mangled bit, will be mangled.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptCipherMode.ECB">
+            <summary>
+            The Electronic Codebook (ECB) mode encrypts each block individually. This
+            means that any blocks of plain text that are identical and are in the same
+            message, or in a different message encrypted with the same key, will be transformed
+            into identical cipher text blocks. If the plain text to be encrypted contains
+            substantial repetition, it is feasible for the cipher text to be broken one
+            block at a time. Also, it is possible for an active adversary to substitute
+            and exchange individual blocks without detection. If a single bit of the
+            cipher text block is mangled, the entire corresponding plain text block will
+            also be mangled.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptCipherMode.OFB">
+            <summary>
+            The Output Feedback (OFB) mode processes small increments of plain text into
+            cipher text instead of processing an entire block at a time. This mode is
+            similar to CFB; the only difference between the two modes is the way that
+            the shift register is filled. If a bit in the cipher text is mangled, the
+            corresponding bit of plain text will be mangled. However, if there are extra
+            or missing bits from the cipher text, the plain text will be mangled from
+            that point on.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptCipherMode.CFB">
+            <summary>
+            The Cipher Feedback (CFB) mode processes small increments of plain text into
+            cipher text, instead of processing an entire block at a time. This mode uses
+            a shift register that is one block in length and is divided into sections.
+            For example, if the block size is eight bytes, with one byte processed at
+            a time, the shift register is divided into eight sections. If a bit in the
+            cipher text is mangled, one plain text bit is mangled and the shift register
+            is corrupted. This results in the next several plain text increments being
+            mangled until the bad bit is shifted out of the shift register.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptCipherMode.CTS">
+            <summary>
+            The Cipher Text Stealing (CTS) mode handles any length of plain text and
+            produces cipher text whose length matches the plain text length. This mode
+            behaves like the CBC mode for all but the last two blocks of the plain text.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptCipherMode.CCM">
+            <summary>
+            Sets the provider's chaining mode to counter with CBC-MAC mode (CCM).
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.BCryptCipherMode.GCM">
+            <summary>
+            Sets the provider's chaining mode to Galois/counter mode (GCM).
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.HmacMd5StringChecksum">
+            <summary>
+            Hmac-Md5-String Checksum
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.HmacMd5StringChecksum.GetMic(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Get Hmac-Md5-String Checksum
+            </summary>
+            <param name="key">the key</param>
+            <param name="input">input data</param>
+            <param name="usage">key usage number</param>
+            <returns>the caculated checksum</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.HmacSha1AesChecksum">
+            <summary>
+            Hmac-Sha1-Aes Checksum
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.HmacSha1AesChecksum.GetMic(System.Byte[],System.Byte[],System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType)">
+            <summary>
+            Get Hmac-Sha1-Aes Checksum
+            </summary>
+            <param name="key">the key</param>
+            <param name="input">input data</param>
+            <param name="usage">usage number</param>
+            <param name="aesKeyType">aes key type which decides key size</param>
+            <returns>the calculated checksum</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.UnkeyedChecksum">
+            <summary>
+            AES Key Generator
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.UnkeyedChecksum.GetMic(System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType)">
+            <summary>
+            Caculate a unkeyed checksum (CRC32, rsa_md4, rsa_md5, sha1)
+            </summary>
+            <param name="input">input data</param>
+            <param name="checksumType">checksum type</param>
+            <returns>the calculated checksum</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue">
+            <summary>
+            Define const values used in this project.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.BYTE_SIZE">
+            <summary>
+            (8 bits) The length of byte in bits
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.AES_BLOCK_SIZE">
+            <summary>
+            (16 bytes = 128 bits) Size of AES encryption block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.DES_BLOCK_SIZE">
+            <summary>
+            (8 bytes = 64 bits) Size of DES encryption block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.RC4_BLOCK_SIZE">
+            <summary>
+            (1 byte) Size of RC4 encryption block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.DES_CBC_BLOCK_SIZE">
+            <summary>
+            (64 bits) Block Size in DES-CBC
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.MD5_CHECKSUM_SIZE">
+            <summary>
+            (16 bytes) MD5 Checksum Size
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.CRC32_CHECKSUM_SIZE">
+            <summary>
+            (4 bytes) CRC32 Checksum Size
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.HMAC_HASH_OUTPUT_SIZE">
+            <summary>
+            (12 bytes) HMAC Hash Output Size
+            [RFC 3962, Section 6]
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.SIGNATURE_KEY">
+            <summary>
+            The signaturekey in wrap and mic token for [rfc4757].
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.FORTY_BITS">
+            <summary>
+            The fortybits in wrap and mic token for [rfc4757].
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.CONFOUNDER_SIZE">
+            <summary>
+            The size of confounder in wrap token for [rfc1964] and [rfc4757].
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.AES_256_KEY_LENGTH">
+            <summary>
+            The key length of AES256_CTS_HMAC_SHA1_96.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.AES_128_KEY_LENGTH">
+            <summary>
+            The key length of AES128_CTS_HMAC_SHA1_96.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.RC4_KEY_LENGTH">
+            <summary>
+            The key length of RC4.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.DES_KEY_LENGTH">
+            <summary>
+            The key length of DES_CBC_CRC and DES_CBC_MD5.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.ECDH_P256_Prime">
+            <summary>
+            Parameter p in p256r1 T = (p, a, b, G, n, h)
+            Refer to doc [SEC2] http://www.secg.org Section 2.4.2
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.ECDH_P256_A">
+            <summary>
+            The parameter A for ECDH_P256
+            Refer to doc [SEC2] http://www.secg.org Section 2.4.2
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.ECDH_P384_Prime">
+            <summary>
+            Parameter p in p384r1 T = (p, a, b, G, n, h)
+            Refer to doc [SEC2] http://www.secg.org Section 2.5.2
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.ECDH_P384_A">
+            <summary>
+            The parameter A for ECDH_P384
+            Refer to doc [SEC2] http://www.secg.org Section 2.5.2
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.ECDH_P521_Prime">
+            <summary>
+            Parameter p in p521r1 T = (p, a, b, G, n, h)
+            Refer to doc [SEC2] http://www.secg.org Section 2.6.2
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ConstValue.ECDH_P521_A">
+            <summary>
+            The parameter A for ECDH_P521
+            Refer to doc [SEC2] http://www.secg.org Section 2.6.2
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Crc32">
+            <summary>
+            A CRC32 Implementation
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Crc32.#cctor">
+            <summary>
+            Initialize static field
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Crc32.ComputeChecksum(System.Byte[])">
+            <summary>
+            Compute crc code for the input data, reverseChecksume as default.
+            </summary>
+            <param name="data">input data</param>
+            <returns>crc value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Crc32.ComputeChecksum(System.Byte[],System.Boolean)">
+            <summary>
+            Compute crc code for the input data
+            </summary>
+            <param name="data">input data</param>
+            <param name="reverseChecksum">Indicate whether reverse checksum before and after computing, KILE use un-reversed version
+            and Nlmp use reversed version</param>
+            <returns>crc value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Crc32.Reverse(System.UInt32,System.Byte)">
+            <summary>
+            reverse bit order of the data
+            </summary>
+            <param name="data">the data to be reversed</param>
+            <param name="bitsCount">the bit count of the data</param>
+            <returns>the reversed data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Crc32.CrcInit">
+            <summary>
+            Initialize crc table 
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode">
+            <summary>
+            The implementation of CTS mode for symmetric algorithms (such as AES, etc).
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.cipherState">
+            <summary>
+            When each block-size plain text is encrypted, 
+            the cipher should be temporarily stored as cipher state 
+            for xor operation with the next block-size plain text
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.iv">
+            <summary>
+            The Initialize Vector
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.blockSize">
+            <summary>
+            The encryption Block Size of the specific symmetric algorthim (in bytes)
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.encryptor">
+            <summary>
+            The encryptor
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.decryptor">
+            <summary>
+            The decryptor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.#ctor(System.Security.Cryptography.SymmetricAlgorithm)">
+            <summary>
+            Initialize CipherTextStealingMode with a specific symmetric algorithm
+            </summary>
+            <param name="symmetricAlgorithm">The symmetric algorithm</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.EncryptWithCBCMode(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Encrypt in CBC Mode
+            </summary>
+            <param name="inputBuffer">input buffer</param>
+            <param name="inputOffset">the offset of which the to be encrypted data begins</param>
+            <param name="inputCount">the length of to be encypted data</param>
+            <returns>the encrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.EncryptWithCTSMode(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Encrypt in CTS Mode
+            </summary>
+            <param name="inputBuffer">input buffer</param>
+            <param name="inputOffset">the offset of which the to be encrypted data begins</param>
+            <param name="inputCount">the length of to be encypted data</param>
+            <returns>the encrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.DecryptWithCBCMode(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Decrypt in CBC Mode
+            </summary>
+            <param name="inputBuffer">input buffer</param>
+            <param name="inputOffset">the offset of which the to be decrypted data begins</param>
+            <param name="inputCount">the length of to be decypted data</param>
+            <returns>the decrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.DecryptWithCTSMode(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Decrypt in CTS Mode
+            </summary>
+            <param name="inputBuffer">input buffer</param>
+            <param name="inputOffset">the offset of which the to be decrypted data begins</param>
+            <param name="inputCount">the length of to be decypted data</param>
+            <returns>the decrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.XorCipherState(System.Byte[],System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            XOR a block of data in the input buffer with current cipher state
+            (The first xorSize bytes in cipher state are used for the operation)
+            </summary>
+            <param name="inputBuffer">input buffer</param>
+            <param name="inputOffset">input offset</param>
+            <param name="cipherStateBuffer">cipher state buffer</param>
+            <param name="xorSize">the size in cipher state that used for XOR operation</param>
+            <returns>the XOR result of one block size</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.EncryptFinal(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Computes the encryption transformation for the specified region of the specified byte array.
+            </summary>
+            <param name="inputBuffer">The input on which to perform the operation on.</param>
+            <param name="inputOffset">The offset into the byte array from which to begin using data from.</param>
+            <param name="inputCount">The number of bytes in the byte array to use as data.</param>
+            <returns>The computed transformation</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when input buffer is null</exception>
+            <exception cref="T:System.ArgumentException">Thrown when invalid argument is detected</exception>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CipherTextStealingMode.DecryptFinal(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Computes the decryption transformation for the specified region of the specified byte array.
+            </summary>
+            <param name="inputBuffer">The input on which to perform the operation on.</param>
+            <param name="inputOffset">The offset into the byte array from which to begin using data from.</param>
+            <param name="inputCount">The number of bytes in the byte array to use as data.</param>
+            <returns>The computed transformation</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when input buffer is null</exception>
+            <exception cref="T:System.ArgumentException">Thrown when invalid argument is detected</exception>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesCmac128">
+            <summary>
+            Crypto Class for AES_CMAC_128
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesCmac128.EncrypteMessageByAes(System.Byte[],System.Byte[])">
+            <summary>
+            Encrypte message by AES with given secret key and key size.
+            </summary>
+            <param name="key">The secret key for the AES algorithm.</param>
+            <param name="message">Message to be encrypted.</param>
+            <returns>Message has been encrypted.</returns>      
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesCmac128.GenerateSubKey(System.Byte[],System.Byte[]@,System.Byte[]@)">
+            <summary>
+            The subkey generation algorithm
+            </summary>
+            <param name="key">128-bit key</param>
+            <param name="firstSubKey">128-bit first subkey</param>
+            <param name="secondSubKey">128-bit second subkey</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesCmac128.Padding(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            padding is the concatenation of source data and a single '1',
+            followed by the minimum number of '0's, so that the total length is equal to 128 bits.
+            </summary>
+            <param name="sourceData">The original data.</param>
+            <param name="offset">The offset where padding starts.</param>
+            <param name="length">Length for padding.</param>
+            <returns>The padded data.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesCmac128.ComputeHash(System.Byte[],System.Byte[])">
+            <summary>
+            Encrypte message By AES_CMAC_128
+            </summary>
+            <param name="key">128-bit key</param>
+            <param name="message">Message to be encrypted.</param>
+            <returns>Message has been encrypted.</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesCtsHmacSha1Crypto">
+            <summary>
+            Crypto Class for aes128-cts-hmac-sha1-96 and aes256-cts-hmac-sha1-96
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesCtsHmacSha1Crypto.Encrypt(System.Byte[],System.Byte[],System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType)">
+            <summary>
+            Encrypt in aes128-cts-hmac-sha1-96 or aes256-cts-hmac-sha1-96
+            </summary>
+            <param name="key">key data</param>
+            <param name="plain">plain data to be encrypted</param>
+            <param name="usage">key usage number</param>
+            <param name="aesKeyType">aes key type (128bit/256bit)</param>
+            <returns>the encrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesCtsHmacSha1Crypto.Encrypt(System.Byte[],System.Byte[],System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.GetToBeSignedDataFunc)">
+            <summary>
+            Encrypt in aes128-cts-hmac-sha1-96 or aes256-cts-hmac-sha1-96
+            </summary>
+            <param name="key">key data</param>
+            <param name="plain">plain data to be encrypted</param>
+            <param name="usage">key usage number</param>
+            <param name="aesKeyType">aes key type (128bit/256bit)</param>
+            <param name="getToBeSignedDateCallback">
+            A callback to get to-be-signed data. 
+            The method will use plain-text data directly if this parameter is null.
+            </param>
+            <returns>the encrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesCtsHmacSha1Crypto.Decrypt(System.Byte[],System.Byte[],System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType)">
+            <summary>
+            Decrypt in aes128-cts-hmac-sha1-96 or aes256-cts-hmac-sha1-96
+            </summary>
+            <param name="key">key data</param>
+            <param name="cipher">cipher data to be decrypted</param>
+            <param name="usage">key usage number</param>
+            <param name="aesKeyType">aes key type (128bit/256bit)</param>
+            <returns>the decrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesCtsHmacSha1Crypto.Decrypt(System.Byte[],System.Byte[],System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.GetToBeSignedDataFunc)">
+            <summary>
+            Decrypt in aes128-cts-hmac-sha1-96 or aes256-cts-hmac-sha1-96
+            </summary>
+            <param name="key">key data</param>
+            <param name="cipher">cipher data to be decrypted</param>
+            <param name="usage">key usage number</param>
+            <param name="aesKeyType">aes key type (128bit/256bit)</param>
+            <param name="getToBeSignedDateCallback">
+            A callback to get to-be-signed data. 
+            The method will use decrypted data directly if this parameter is null.
+            </param>
+            <returns>the decrypted data</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility">
+            <summary>
+            A utility class for crypto
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.GetBits(System.Byte)">
+            <summary>
+            Convert a byte to its binary presentation in char array
+            (for example, byte b = 3, which will be presented by 
+            char array {'0', '0', '0', '0', '0', '0', '1', '1'})
+            </summary>
+            <param name="b">the byte</param>
+            <returns>the byte's binary presentation</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.ConvertBitsToBytes(System.Collections.Generic.List{System.Char})">
+            <summary>
+            Convert a list of binary bits to bytes
+            (for example, char array {'0', '0', '0', '0', '0', '0', '1', '1'}
+            will be converted to byte b = 3)
+            </summary>
+            <param name="bits">bits represented by chars ('0' and '1')</param>
+            <returns>the converted byte array</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.CreateConfounder(System.UInt32)">
+            <summary>
+            Create the confounder data with random bytes
+            </summary>
+            <param name="confounderSize">expected size of the confounder data</param>
+            <returns>the confounder data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.AddPadding(System.Byte[],System.Int32)">
+            <summary>
+            Add Padding (padding mode = zeros)
+            </summary>
+            <param name="input">input data</param>
+            <param name="blockSize">round up block size</param>
+            <returns>the padded data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.ComputeCRC32(System.Byte[])">
+            <summary>
+            Compute CRC32 hash for input data
+            </summary>
+            <param name="input">input data</param>
+            <returns>the CRC32 hash data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.ComputeHmacSha1(System.Byte[],System.Byte[])">
+            <summary>
+            Compute Hmac-Sha1 hash based on a secret key and input data
+            </summary>
+            <param name="key">the secret key</param>
+            <param name="input">the to be hashed input</param>
+            <returns>the Hmac-Sha1 hash data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.ComputeMd5(System.Byte[])">
+            <summary>
+            Compute MD5 hash for input data
+            </summary>
+            <param name="input">input data</param>
+            <returns>the MD5 hash data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.ComputeMd5Hmac(System.Byte[],System.Byte[])">
+            <summary>
+             Compute Md5-Hmac hash based on a secret key and input data
+            </summary>
+            <param name="key">the secret key</param>
+            <param name="input">the to be hashed input</param>
+            <returns>the Md5-Hmac hash data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.ComputeMd4(System.Byte[])">
+            <summary>
+            Compute MD4 hash for input data
+            </summary>
+            <param name="input">input data</param>
+            <returns>the MD4 hash</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.ComputeSha1(System.Byte[])">
+            <summary>
+            Compute Sha1 hash for input data
+            </summary>
+            <param name="input">input data</param>
+            <returns>the Sha1 hash</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.CreateDesCbcEncryptor(System.Byte[],System.Byte[],System.Security.Cryptography.PaddingMode)">
+            <summary>
+            Create a DES-CBC encryptor
+            </summary>
+            <param name="key">the key</param>
+            <param name="initialVector">the initialization vector</param>
+            <param name="padding">the padding mode</param>
+            <returns>the DES-CBC encryptor</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.CreateDesCbcDecryptor(System.Byte[],System.Byte[],System.Security.Cryptography.PaddingMode)">
+            <summary>
+            Create a DES-CBC decryptor
+            </summary>
+            <param name="key">the key</param>
+            <param name="initialVector">the initialization vector</param>
+            <param name="padding">the padding mode</param>
+            <returns>the DES-CBC decryptor</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.CreateAesCtsCrypto(System.Byte[],System.Byte[])">
+            <summary>
+            Create AES-CTS encryptor/decryptor
+            </summary>
+            <param name="key">the key</param>
+            <param name="initialVector">the initialization vector</param>
+            <returns>the AES-CTS encryptor</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.CreateRc4Encryptor(System.Byte[])">
+            <summary>
+            Create a RC4 encryptor
+            </summary>
+            <param name="key">the key</param>
+            <returns>the RC4 encryptor</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptoUtility.CreateRc4Decryptor(System.Byte[])">
+            <summary>
+            Create a RC4 decryptor
+            </summary>
+            <param name="key">the key</param>
+            <returns>the RC4 decryptor</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesCbcCrypto">
+            <summary>
+            Crypto Class for des-cbc-crc32 and des-cbc-md5
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesCbcCrypto.GetChecksumSize(Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType)">
+            <summary>
+            Get checksum size by encryption type
+            </summary>
+            <param name="encryptionType">encryption type</param>
+            <returns>checksum type</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesCbcCrypto.CalculateChecksum(System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType)">
+            <summary>
+            Caculate checksum according to encryption type
+            </summary>
+            <param name="input">input data</param>
+            <param name="encryptionType">encryption type</param>
+            <returns>the calculated checksum</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesCbcCrypto.GetInitialVector(System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType)">
+            <summary>
+            Get the initial vector for DES-CBC crypto
+            </summary>
+            <param name="key">key</param>
+            <param name="encryptionType">encryption type</param>
+            <returns>the initial vector</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesCbcCrypto.Encrypt(System.Byte[],System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType)">
+            <summary>
+            DES-CBC-MD5 / DES-CBC-CRC32 encryption
+            [RFC 3961, Section 6.2, DES-Based Encryption and Checksum Types]
+             "One generates a random confounder of one block, placing it in 'confounder'; 
+             zeros out the 'checksum' field (of length appropriate to exactly hold the checksum
+             to be computed); adds the necessary padding; calculates the appropriate checksum 
+             over the whole sequence, placing the result in 'checksum'; and then encrypts
+             using the specified encryption type and the appropriate key."
+            </summary>
+            <param name="key">the secret key</param>
+            <param name="plain">the to be encrypted plain data</param>
+            <param name="encryptionType">encryption type</param>
+            <returns>the encrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesCbcCrypto.Encrypt(System.Byte[],System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.GetToBeSignedDataFunc)">
+            <summary>
+            DES-CBC-MD5 / DES-CBC-CRC32 encryption
+            [RFC 3961, Section 6.2, DES-Based Encryption and Checksum Types]
+             "One generates a random confounder of one block, placing it in 'confounder'; 
+             zeros out the 'checksum' field (of length appropriate to exactly hold the checksum
+             to be computed); adds the necessary padding; calculates the appropriate checksum 
+             over the whole sequence, placing the result in 'checksum'; and then encrypts
+             using the specified encryption type and the appropriate key."
+            </summary>
+            <param name="key">the secret key</param>
+            <param name="plain">the to be encrypted plain data</param>
+            <param name="encryptionType">encryption type</param>
+            <param name="getToBeSignedDateCallback">
+            A callback to get to-be-signed data. 
+            The method will use plain-text data directly if this parameter is null.
+            </param>
+            <returns>the encrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesCbcCrypto.Decrypt(System.Byte[],System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType)">
+            <summary>
+            DES-CBC-MD5 / DES-CBC-CRC32 decryption
+            </summary>
+            <param name="key">the secret key</param>
+            <param name="cipher">the encrypted cipher data</param>
+            <param name="encryptionType">encryption type</param>
+            <returns>the decrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesCbcCrypto.Decrypt(System.Byte[],System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.GetToBeSignedDataFunc)">
+            <summary>
+            DES-CBC-MD5 / DES-CBC-CRC32 decryption
+            </summary>
+            <param name="key">the secret key</param>
+            <param name="cipher">the encrypted cipher data</param>
+            <param name="encryptionType">encryption type</param>
+            <param name="getToBeSignedDateCallback">
+            A callback to get to-be-signed data. 
+            The method will use decrypted data directly if this parameter is null.
+            </param>
+            <returns>the decrypted data</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Rc4HmacCrypto">
+            <summary>
+            Crypto Class for rc4-hmac and rc4-hmac-exp
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Rc4HmacCrypto.GetSalt(System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType)">
+            <summary>
+            Caculate salt from key usage number
+            </summary>
+            <param name="usage">key usage number</param>
+            <param name="encryptionType">encryption type</param>
+            <returns>the caculated salt</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Rc4HmacCrypto.GetExpHash(System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType)">
+            <summary>
+            Modify a Md5-Hmac hash to support RC4_HMAC_EXP
+            </summary>
+            <param name="hash">hash data</param>
+            <param name="encryptionType">encryption type</param>
+            <returns>the modified hash data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Rc4HmacCrypto.Encrypt(System.Byte[],System.Byte[],System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType)">
+            <summary>
+            RC4-HMAC / RC4-HMAC-EXP encryption
+            </summary>
+            <param name="key">the secret key</param>
+            <param name="plain">the to be encrypted plain data</param>
+            <param name="usage">key usage number</param>
+            <param name="encryptionType">encryption type</param>
+            <returns>the encrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Rc4HmacCrypto.Encrypt(System.Byte[],System.Byte[],System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.GetToBeSignedDataFunc)">
+            <summary>
+            RC4-HMAC / RC4-HMAC-EXP encryption
+            </summary>
+            <param name="key">the secret key</param>
+            <param name="plain">the to be encrypted plain data</param>
+            <param name="usage">key usage number</param>
+            <param name="encryptionType">encryption type</param>
+            <param name="getToBeSignedDateCallback">
+            A callback to get to-be-signed data. 
+            The method will use plain-text data directly if this parameter is null.
+            </param>
+            <returns>the encrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Rc4HmacCrypto.Decrypt(System.Byte[],System.Byte[],System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType)">
+            <summary>
+            RC4-HMAC / RC4-HMAC-EXP decryption
+            </summary>
+            <param name="key">the secret key</param>
+            <param name="cipher">the encrypted cipher data</param>
+            <param name="usage">key usage number</param>
+            <param name="encryptionType">encryption type</param>
+            <returns>the decrypted data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Rc4HmacCrypto.Decrypt(System.Byte[],System.Byte[],System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.GetToBeSignedDataFunc)">
+            <summary>
+            RC4-HMAC / RC4-HMAC-EXP decryption
+            </summary>
+            <param name="key">the secret key</param>
+            <param name="cipher">the encrypted cipher data</param>
+            <param name="usage">key usage number</param>
+            <param name="encryptionType">encryption type</param>
+            <param name="getToBeSignedDateCallback">
+            A callback to get to-be-signed data. 
+            The method will use decrypted data directly if this parameter is null.
+            </param>
+            <returns>the decrypted data</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Desl">
+            <summary>
+            A implemention of Desl algorithm
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Desl.Encrypt(System.Byte[],System.Byte[])">
+            <summary>
+            Encrypt message with the specified key
+            </summary>
+            <param name="key">the encrypt key</param>
+            <param name="data">the data to be encrypted</param>
+            <returns>the encrypted data in byte array</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DHParam">
+            <summary>
+            Used to calculate parameters used for DH algorithm.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DHParam.ComputeQ(System.Byte[])">
+            <summary>
+            Compute parameter Q
+            Refer to doc RFC 3279 section 2.3.3 
+            </summary>
+            <param name="p">The p parameter</param>
+            <returns>The Q parameter</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DHParam.GetPublicKey(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Compute public key with private key.
+            Refer to doc RFC 3279 section 2.3.3
+            </summary>
+            <param name="baseNum">The base number</param>
+            <param name="privateKey">The private key</param>
+            <param name="prime">The prime</param>
+            <returns>The public key</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DiffieHellman">
+            <summary>
+            Diffie-Hellman key exchange algorithm.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DiffieHellman.GenerateKeyData">
+            <summary>
+            Gets Key exchange data by DH gourp.
+            </summary>
+            <returns>Key data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DiffieHellman.GenerateKey(System.Byte[])">
+            <summary>
+            Generates a key with key exchange data.
+            </summary>
+            <param name="keyData">Key exchange data.</param>
+            <exception cref="T:System.ArgumentNullException">Raised when keyData is null.</exception>
+            <exception cref="T:Microsoft.Protocols.TestTools.StackSdk.StackException">Raised when exponent or prime is not initialized.</exception>
+            <returns>Generated key.</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EcdhEncryptionMode">
+            <summary>
+            The encryption mode used for ECDH key exchange.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EcdhEncryptionMode.ECDH256">
+            <summary>
+            ECPRGF256Random | groupP-256 | secp256r1 in [RFC 5349].
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EcdhEncryptionMode.ECDH384">
+            <summary>
+            ECPRGF384Random | groupP-384 | secp384r1 in [RFC 5349].
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EcdhEncryptionMode.ECDH521">
+            <summary>
+            ECPRGF521Random | groupP-521 | secp521r1 in [RFC 5349].
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam">
+            <summary>
+            Used to calculate parameters used for ECDH algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.mpIntOne">
+            <summary>
+            Represent one in MpInt.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.mpIntTwo">
+            <summary>
+            Represent two in MpInt.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.mpIntThree">
+            <summary>
+            Represent three in MpInt.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.mpIntMinusOne">
+            <summary>
+            Represent minus one in MpInt.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.mpIntZero">
+            <summary>
+            Represent zero in MpInt.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.prime">
+            <summary>
+            Parameter p in T = (p, a, b, G, n, h)
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.parameterA">
+            <summary>
+            Parameter a in T = (p, a, b, G, n, h)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.#ctor(Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EcdhEncryptionMode)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="encryptMode">The Ecdh encryption mode</param>
+            <exception cref="T:System.ArgumentException">Thrown when the encryption mode is not valid.</exception>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.ComputeKey(System.Numerics.BigInteger,System.Numerics.BigInteger[])">
+            <summary>
+            Calculate key for ECDH
+            Refer to doc [SEC1] http://www.secg.org Section 2.2.1
+            </summary>
+            <param name="d">The private key</param>
+            <param name="Q">The remote public key</param>
+            <returns>The key.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.ComputeKey(System.Byte[],System.Byte[])">
+            <summary>
+            Calculate key for ECDH, using formula Q = dG
+            Refer to doc [SEC1] http://www.secg.org Section 2.2.1
+            </summary>
+            <param name="d">The private key</param>
+            <param name="G">The remote public key Q or the parameter G</param>
+            <returns>The local public key or the share key.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.ComputeShareKey(System.Byte[],System.Byte[])">
+            <summary>
+            Calculate key for ECDH
+            Refer to doc [SEC1] http://www.secg.org Section 2.2.1
+            </summary>
+            <param name="d">The private key</param>
+            <param name="Q">The remote public key. The length should be an even number</param>
+            <returns>The share key. The value X direction of the point</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the parameters are not valid.</exception>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.ComputePublicKey(System.Byte[],System.Byte[])">
+            <summary>
+            Calculate key for ECDH
+            Refer to doc [SEC1] http://www.secg.org Section 2.2.1
+            </summary>
+            <param name="d">The private key</param>
+            <param name="G">Parameter G in T = (p, a, b, G, n, h) in uncompressed form without prefix 04,
+            defined in [SEC2]. The length should be an even number</param>
+            <returns>The local public key.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the parameters are not valid.</exception>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.AddPToG(System.Numerics.BigInteger[],System.Numerics.BigInteger[])">
+            <summary>
+            Add point P to G
+            Refer to doc [SEC1] http://www.secg.org, Section 2.2.1
+            </summary>
+            <param name="P">The point P, including Px, Py.</param>
+            <param name="Q">The point Q, including Qx, Qy.</param>
+            <returns>The result after adding P to Q</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.ECDHMod(System.Numerics.BigInteger,System.Numerics.BigInteger)">
+            <summary>
+            Get modulus in ECDH algorithm.
+            </summary>
+            <param name="baseNumber">The base number to calculate.</param>
+            <param name="modulus">The parameter modulus.</param>
+            <returns>The result</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ECDHParam.GetConverse(System.Numerics.BigInteger,System.Numerics.BigInteger)">
+            <summary>
+            Get converse data for multiplication.
+            Refer to Euclid's algorithm
+            </summary>
+            <param name="baseNumber">The base number to calculate.</param>
+            <param name="modulus">The parameter modulus.</param>
+            <returns>The converse data.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the converse data does exist.</exception>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Helper">
+            <summary>
+            Internal used helper class
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Helper.GetLastErrorCodeString">
+            <summary>
+            Get the last error of p-invoke as Hex string
+            </summary>
+            <returns>hex String of error code</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Helper.ConcatenateByteArrays(System.Byte[][])">
+            <summary>
+            Concatenate several byte arrays to one byte array
+            </summary>
+            <param name="data">The byte arrays to be concatenated</param>
+            <returns>The concatenated byte array</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType">
+            <summary>
+            An enum to indicate the AES key size in bits.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType.None">
+            <summary>
+            AES key type not specified
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType.Aes128BitsKey">
+            <summary>
+            128 bits AES key
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType.Aes192BitsKey">
+            <summary>
+            192 bits AES key
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType.Aes256BitsKey">
+            <summary>
+            256 bits AES key
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DerivedKeyType">
+            <summary>
+            Derived Key Types (RFC3961)
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DerivedKeyType.None">
+            <summary>
+            An added value used as the default value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DerivedKeyType.Kc">
+            <summary>
+            Used to derive key to generate mic in Checksum mechanism.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DerivedKeyType.Ke">
+            <summary>
+            Used to derive key to encrypt data.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DerivedKeyType.Ki">
+            <summary>
+            Used to derive key to calculate checksum in Encryption mechanism.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey">
+            <summary>
+            AES Key Generator
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.DEFAULT_ITERATION_COUNT">
+            <summary>
+            Default Interation Count
+            [RFC3962 Section 4, Page 2]
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.KERBEROS_CONSTANT">
+            <summary>
+            ASCII encoding for the string "kerberos"
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.DK(System.Byte[],System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType)">
+            <summary>
+            DK is the key-derivation function described in RFC 3961
+            [RFC 3961 section 5.1 A Key Derivation Function]
+            </summary>
+            <param name="baseKey">the base key</param>
+            <param name="wellKnownConstant">the "well-known constant"</param>
+            <param name="aesKeyType">AES key type which decides key size</param>
+            <returns>the derived key in bytes</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.DR(System.Byte[],System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType)">
+            <summary>
+            DR is the random-octet generation function described in RFC 3961
+            [RFC 3961 section 5.1 A Key Derivation Function]
+            </summary>
+            <param name="baseKey">the base key which is to be derived from</param>
+            <param name="wellKnownConstant">the "well-known constant"</param>
+            <param name="aesKeyType">AES key type which decides key size</param>
+            <returns>the pseudorandom octets</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.RandomToKey(System.Byte[])">
+            <summary>
+            RandomToKey generates a key from a random bitstring of a specific size.
+            All the bits of the input string are assumed to be equally random, 
+            even though the entropy present in the random source may be limited.
+            [RFC 3961, Page 4]
+            
+            For AES, random-to-key function simply returns as what is given
+            [RFC 3961, Page 15]
+            </summary>
+            <param name="random">the random bitstring</param>
+            <returns>the generated key</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.GetWellKnownConstant(System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DerivedKeyType)">
+            <summary>
+            Generate the "well-known constant"
+            [RFC 3961, Page 15]
+            the "well-known constant" used for the DK function is the key usage number, 
+            expressed as four octets in big-endian order, followed by one octet indicated below:
+            Kc = DK(base-key, usage | 0x99); 
+            Ke = DK(base-key, usage | 0xAA);
+            Ki = DK(base-key, usage | 0x55);
+            </summary>
+            <param name="usage">key usage number</param>
+            <param name="derivedKeyType">the derived key type</param>
+            <returns>the "well-known constant"</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.NFold(System.Byte[],System.UInt32)">
+            <summary>
+            N-Fold is an algorithm that takes m input bits and "stretches" them
+            to form N output bits with equal contribution from each input bit to
+            the output, as described in Blumenthal, U. and S. Bellovin, "A Better
+            Key Schedule for DES-Like Ciphers", Proceedings of PRAGOCRYPT '96,1996.
+            </summary>
+            <param name="input">The to be n-folded input data</param>
+            <param name="outputBits">The expected output length in bits</param>
+            <returns>The n-folded data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.CalculateLowestCommonMultiple(System.Int32,System.Int32)">
+            <summary>
+            The LCM function called by N-Fold Algorithm
+            (caculate the Lowest Common Multiple of two integer)
+            </summary>
+            <param name="n">value n</param>
+            <param name="k">value k</param>
+            <returns>the caculated LCM value</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.Rotate13(System.Byte[])">
+            <summary>
+            The ROT13 function called by N-Fold Algorithm
+            (which rotates a string to 13 bits right)
+            </summary>
+            <param name="input">input string</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.OCADD(System.Byte[],System.Byte[])">
+            <summary>
+            The OCADD function called by N-Fold Algorithm
+            (calculate "one's complement addition" between two byte array)
+            </summary>
+            <param name="leftBuffer">one byte array in addition operation</param>
+            <param name="rightBuffer">the other byte array in addition operation</param>
+            <returns>The operation result</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.MakeDerivedKey(System.Byte[],System.Int32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DerivedKeyType,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType)">
+            <summary>
+            Generate a derived key from base key
+            [RFC 3961 Section 5.1 A Key Derivation Function]
+            </summary>
+            <param name="baseKey">the base key</param>
+            <param name="usage">key usage</param>
+            <param name="derivedKeyType">the derived key type</param>
+            <param name="aesKeyType">AES key type which decides key size</param>
+            <returns>the derived key in bytes</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKey.MakeStringToKey(System.String,System.String,System.UInt32,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AesKeyType)">
+            <summary>
+            Generate an encryption key from password and salt
+            [RFC 3962 Section 4 Key Generation from Pass Phrases or Random Data]
+            (The pseudorandom function used by PBKDF2 will be a SHA-1 HMAC of 
+            the passphrase and salt, as described in Appendix B.1 to PKCS#5)
+            </summary>
+            <param name="password">password</param>
+            <param name="salt">salt</param>
+            <param name="iterationCount">interation count</param>
+            <param name="keyType">AES key type which decides key size</param>
+            <returns>the encrypted key in bytes</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesKey">
+            <summary>
+            DES Key Generator
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesKey.weakKeys">
+            <summary>
+            Weak key table
+            (defined in National Bureau of Standards, U.S. Department of Commerce,
+            "Guidelines for implementing and using NBS Data Encryption Standard,"
+            Federal Information Processing Standards Publication 74, Washington, DC, 1981)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesKey.RemoveMSBits(System.Byte[])">
+            <summary>
+            Remove the MSB (Most Significant Bit) in each octet
+            (in big endian mode) and concatenates the result
+            [RFC 3961, Section 6.2, removeMSBits()]
+            </summary>
+            <param name="inputData">input 8 bytes</param>
+            <returns>output 7 bytes</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesKey.Reverse(System.Byte[])">
+            <summary>
+            Treat a 56-bit block as a binary string and reverse it
+            [RFC 3961, Section 6.2, reverse(56bitblock)]
+            </summary>
+            <param name="inputData">input data to be reversed</param>
+            <returns>the reversed data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesKey.AddParityBits(System.Byte[])">
+            <summary>
+            Add DES Parity Bits
+            (Copies a 56-bit block into a 64-bit block, 
+            left shifts content in each octet, and add DES parity bit)
+            [RFC 3961, Section 6.2, add_parity_bits(56bitblock)]
+            </summary>
+            <param name="inputData">the input 56-bit data</param>
+            <returns>the parity-added 64-bit data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesKey.FixParity(System.Byte[])">
+            <summary>
+            Fix parity bits in input data
+            </summary>
+            <param name="inputData">input data</param>
+            <returns>parity-fixed data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesKey.KeyCorrection(System.Byte[])">
+            <summary>
+            The key is corrected when the parity is fixed and 
+            assure the key is not "weak key" or "semi-weak key"
+            [RFC 3961, Section 6.2, key_correction(key))
+            </summary>
+            <param name="key">input key data</param>
+            <returns>the corrected key data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesKey.MitDesStringToKey(System.String,System.String)">
+            <summary>
+            Generate DES key from specified string and salt
+            [RFC 3961, Section 6.2, mit_des_string_to_key(string, salt)]
+            </summary>
+            <param name="password">password in UTF-8</param>
+            <param name="salt">salt in UTF-8</param>
+            <returns>the generated DES key (8 bytes)</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesKey.MakeStringToKey(System.String,System.String)">
+            <summary>
+            Generate an encryption key from password and salt
+            [RFC 3961, Section 6.2, des_string_to_key(string,salt,params)]
+            </summary>
+            <param name="password">password</param>
+            <param name="salt">salt</param>
+            <returns>the encrypted key in bytes</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DesKey.DesRandomToKey(System.Byte[])">
+            <summary>
+            Calculate the des key.
+            [RFC 3961, Section 6.2, des_random_to_key(bitstring)]
+            </summary>
+            <param name="bits">A 56 bits string</param>
+            <returns>The des key</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the input data is null or the length is not 7.
+            </exception>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.KeyGenerator">
+            <summary>
+            Key Generator
+            (called by KilePdu and KileDecoder)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.KeyGenerator.MakeKey(Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType,System.String,System.String)">
+            <summary>
+            Generate key according to password, salt and encryption type
+            </summary>
+            <param name="type">encryption type</param>
+            <param name="password">password</param>
+            <param name="salt">salt</param>
+            <returns>the generated key in bytes</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Rc4Key">
+            <summary>
+            RC4 key generator
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Rc4Key.MakeStringToKey(System.String)">
+            <summary>
+            Derive an RC4 key based on password
+            </summary>
+            <param name="password">user password</param>
+            <returns>the generated RC4 key of 16 bytes</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.SP8001008KeyDerivation">
+            <summary>
+            Key derivation algorithm defined in NIST Special Publication 800-108
+            Recommendation for Key Derivation Using Pseudorandom Functions
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.SP8001008KeyDerivation.CounterModeHmacSha256KeyDerive(System.Byte[],System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Get derived key with counter mode and HMACSHA256.
+            </summary>
+            <param name="key">Key derivation key, a key that is used as an input to a key derivation function to derive keying material.</param>
+            <param name="label">A byte array that identifies the purpose for the derived keying material.</param>
+            <param name="context">A byte array containing the information related to the derived keying material.</param>
+            <param name="derivedKeyLength">Length of derived key, in bits.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.LMHash">
+            <summary>
+            The abstract LM hash class, every LM hash implemention should inherit this class
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.LMHash.Create">
+            <summary>
+            Generate a default lm hash instance
+            </summary>
+            <returns>The default lm hash instance</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.LMHashManaged">
+            <summary>
+            A managed code implemention of Lm hash algorithm
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.LMHashManaged.#ctor">
+            <summary>
+            Initialize LMHashManaged class
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.LMHashManaged.Initialize">
+            <summary>
+            Initialize process of LMHash.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.LMHashManaged.HashCore(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            routes data written to the object into the hash algorithm for computing the hash.
+            </summary>
+            <param name="array">The input to compute the hash code for.</param>
+            <param name="ibStart">The offset into the byte array from which to begin using data.</param>
+            <param name="cbSize">The number of bytes in the byte array to use as data.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.LMHashManaged.HashFinal">
+            <summary>
+            finalizes the hash computation after
+            the last data is processed by the cryptographic stream object.
+            </summary>
+            <returns>The computed hash code.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.LMHashManaged.InternalComputeHash(System.String)">
+            <summary>
+            Compute hash for the password
+            </summary>
+            <param name="password">the password</param>
+            <returns>the computed hash code</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.LMHashManaged.GenerateDesKey(System.Byte[],System.Int32)">
+            <summary>
+            generate des key by insert 0 bit every 7 bits
+            </summary>
+            <param name="password">the password data</param>
+            <param name="offset">the offset from where coverting start</param>
+            <returns>the generated 8-bytes des key</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.MD4">
+            <summary>
+            A abstract class which every MD4 algorithm implementation will inherit.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.MD4.Create">
+            <summary>
+            Generate a default MD4 instance
+            </summary>
+            <returns>a default MD4 instance</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.MD4CryptoServiceProvider">
+            <summary>
+            A MD4 implementation using windows native security api
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.MD4CryptoServiceProvider.#ctor">
+            <summary>
+            Initialize MD4CryptoServiceProvider
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.MD4CryptoServiceProvider.Initialize">
+            <summary>
+            Initialize the hash
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.MD4CryptoServiceProvider.HashCore(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            routes data written to the object into
+            the hash algorithm for computing the hash.
+            </summary>
+            <param name="array">The input to compute the hash code for.</param>
+            <param name="ibStart">The offset into the byte array from which to begin using data.</param>
+            <param name="cbSize">The number of bytes in the byte array to use as data.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.MD4CryptoServiceProvider.HashFinal">
+            <summary>
+            finalizes the hash computation after
+            the last data is processed by the cryptographic stream object.
+            </summary>
+            <returns>The computed hash code.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.MD4CryptoServiceProvider.Dispose(System.Boolean)">
+            <summary>
+            release resources
+            </summary>
+            <param name="disposing">indicate GC or user calling this function</param>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindowSize">
+            <summary>
+            Compressed mode, 8k or 64k
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindowSize.EightKB">
+            <summary>
+            use 8k sliding window
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindowSize.SixtyFourKB">
+            <summary>
+            use 64k sliding window
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.LiteralBitSize">
+            <summary>
+            specify how many bits literal occupies
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.LiteralBitSizeWithoutSymbol">
+            <summary>
+            spicify how many bits literal occupies without its symbol
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.LiteralSymbol">
+            <summary>
+            literal symbol values
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.LiteralAdding">
+            <summary>
+            the value needed to be minused or plused when encoding or decoding literal 
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetBitSize8k">
+            <summary>
+            specify how many bits "offset" occupies when using 8k sliding window.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetBitSizeWithoutSymbol8k">
+            <summary>
+            specify how many bits the data part of "offset" occupies when using 8k sliding window
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetSymbolBitSize8k">
+            <summary>
+            specify how many bits offset's symbol occupies when using 8k sliding window
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetSymbol8k">
+            <summary>
+            offset Symbol value for 8k sliding window
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetAdding8k">
+            <summary>
+            the value need to be minused or plused when encoding or decoding offset for 8k sliding window
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetSymbolBitSize64k">
+            <summary>
+            specify how many bits offset's symbol occupies when using 64k sliding window
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetBitSize64k">
+            <summary>
+            specify how many bits "offset" occupies when using 64k sliding window.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetBitSizeWithoutSymbol64k">
+            <summary>
+            specify how many bits "offset" occupies without its symbol when using 64k sliding window
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetSymbol64k">
+            <summary>
+            offset symbol value for 64k sliding window
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetAdding64k">
+            <summary>
+            the value need to be minused or plused when encoding or decoding offset for 64k sliding window
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.LengthBitSize">
+            <summary>
+            specify how many bits "length" occupies.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.LengthSymbolBitSize">
+            <summary>
+            specify how many bits length's symbol occupies
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.LengthSymbol">
+            <summary>
+            length symbol value
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.LengthBitSizeWithoutSymbol">
+            <summary>
+            specify how many bits "length" occupies without its symbol
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable">
+            <summary>
+            A hash table for fast searching in sliding window.
+            it will establish index for every three characters in slidingWindow
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable.hashTableSize">
+            <summary>
+            3 bytes string has at most 256*256*256 keys
+            choosing 8192 has no special meaning.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable.slidingWindow">
+            <summary>
+            sliding window, for fast access and space saving, we put it as a member of the class
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable.#ctor(Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindow)">
+            <summary>
+            constructor
+            </summary>
+            <param name="slidingWindow">the target sliding window</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable.Update(System.Byte[])">
+            <summary>
+            Update the hash table when some data need to be add to sliding window
+            </summary>
+            <param name="moveInCharacters">the data needed to be add to sliding window</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable.Clear">
+            <summary>
+            Clear the hash table
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable.GetKeyMatchPositions(System.Byte[])">
+            <summary>
+            get the postion where the three bytes string is matched in sliding window
+            </summary>
+            <param name="threeBytesData">three bytes data as a key</param>
+            <returns>the positions where the key matches</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable.ComputeHash(System.Byte[])">
+            <summary>
+            compute hash for three bytes string
+            </summary>
+            <param name="threeBytesData">three bytes data</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable.AddHashes(System.Byte[],System.Int32)">
+            <summary>
+            add hash, value to hash table
+            </summary>
+            <param name="data">the data which will be sliced into some 3 bytes string,
+            and add the postion where it starts to the hash table</param>
+            <param name="hashDataCount">the byte counts which need to 
+            be added to hash table in the sliding window</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable.RemoveHashes(System.Byte[])">
+            <summary>
+            remove values from hash table
+            </summary>
+            <param name="data">data whose index of the sliding window 
+            will be removed</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.HashTable.UpdateAllValues">
+            <summary>
+            modify all values in this hash table, 
+            we only do this when slidingWindow's removedCharactor reaches its limit for 
+            pefermance concern.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor">
+            <summary>
+            Mppc Compressor, has two sliding windows size: 8k or 64k
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.remain">
+            <summary>
+            the remain data needed to be written to outputstream
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.remainBitsCount">
+            <summary>
+            the bit count of valid data in remain
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.hashTable">
+            <summary>
+            to store hash value for the data in sliding window
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.#ctor(Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindowSize)">
+            <summary>
+            constructor with specified sliding window size 
+            </summary>
+            <param name="mode">the mode of compressor, specify the size of sliding window</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.Compress(System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.CompressMode@)">
+            <summary>
+            compress the input data
+            </summary>
+            <param name="input">the input data</param>
+            <param name="compressMode">the compress mode of this compress</param>
+            <returns>compressed data, if the compressed data is larger than input data, the original data
+            is returned</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.CompressCore(System.Byte[])">
+            <summary>
+            Compress the input buffer and write it into output stream.
+            </summary>
+            <param name="input">The buffer needed to be compressed</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.FindMatchInSlidingWindow(System.Byte[],System.Int32)">
+            <summary>
+            find a match in sliding window
+            </summary>
+            <param name="input">the input data</param>
+            <param name="startIndex">the start position of input data,
+            we will start finding from that position</param>
+            <returns>the match found</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.EncodeLiteral(System.Byte)">
+            <summary>
+            Encode literal according to RFC2118
+            </summary>
+            <param name="literal">the literal needed to encoded</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.EncodeOffsetLengthPair(Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.OffsetLengthPair)">
+            <summary>
+            Encode offset and length according to RFC2118
+            </summary>
+            <param name="pair">offset and length pair</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.EncodeOffset(System.Int32)">
+            <summary>
+            Encoding offset according to RFC2118
+            </summary>
+            <param name="offset">offset</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.EncodeLength(System.Int32)">
+            <summary>
+            encoding length according to RFC2118
+            </summary>
+            <param name="length">length</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.GetHighestBitOnePos(System.Int32,System.Int32)">
+            <summary>
+            Get the highest position of bit one
+            </summary>
+            <param name="data"></param>
+            <param name="dataBitsCount">the bits count which data may use</param>
+            <returns>the highest bit one position, start from 1</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.EncodeData(System.UInt32,System.Int32)">
+            <summary>
+            encode data of variable length
+            </summary>
+            <param name="data">the data</param>
+            <param name="dataBitsCount">how many bits the data used</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.Dispose">
+            <summary>
+            release resources
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.Dispose(System.Boolean)">
+            <summary>
+            release resources
+            </summary>
+            <param name="disposing">indicate wheater GC or user call this function</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Compressor.Finalize">
+            <summary>
+            Deconstructor
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor">
+            <summary>
+            a decompressor for mppc
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.#ctor(Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindowSize)">
+            <summary>
+            constructor with mode specified
+            </summary>
+            <param name="mode">indicate which mode are used</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.Decompress(System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.CompressMode)">
+            <summary>
+            Decompress input data
+            </summary>
+            <param name="input">input</param>
+            <param name="compressMode">the compress mode</param>
+            <returns>decompressed data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.DecompressCore(System.Byte[])">
+            <summary>
+            decompress the input compressed data
+            </summary>
+            <param name="input">the input data</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.DecompressFinnal">
+            <summary>
+            fiannal decompress. decode the data in remain
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.DecodeRemain">
+            <summary>
+            decode literal or (offset,length) from ramain
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.DecodeLength">
+            <summary>
+            Decode length from remain
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.DecodeOffset">
+            <summary>
+            Decode offset
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.DecodeOffset64K">
+            <summary>
+            Decode offset when sliding window is 64k
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.DecodeOffset8K">
+            <summary>
+            Decode offset when sliding window is 8k
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.DecodeLiteral">
+            <summary>
+            Decode Literal from remain
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.GetLengthFromRemain(Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.LengthBitSize)">
+            <summary>
+            get length info from remain
+            </summary>
+            <param name="lengthBitCount"></param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.GetOffsetFromRemain8K(Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetBitSize8k,Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetBitSizeWithoutSymbol8k)">
+            <summary>
+            Get the offset when compress mode is 8k
+            </summary>
+            <param name="offsetBitCount">the bits count offset used</param>
+            <param name="actualOffsetBitCount">the bits count offset used without flag</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.GetOffsetFromRemain64K(Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetBitSize64k,Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.OffsetBitSizeWithoutSymbol64k)">
+            <summary>
+            Get the offset when compress mode is 64k
+            </summary>
+            <param name="offsetBitCount">the bits count offset used</param>
+            <param name="actualOffsetBitCount">the bits count offset used without flag</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.GetLiteralFromRemain(Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.LiteralBitSize)">
+            <summary>
+            Get Literal
+            </summary>
+            <param name="literalBitCount">the bits count literal used</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.InitializeAll">
+            <summary>
+            Initialize all field of this class instance
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.Dispose">
+            <summary>
+            release all resource
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.Dispose(System.Boolean)">
+            <summary>
+            release resource
+            </summary>
+            <param name="disposing">indicate GC or user calling this function</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.Finalize">
+            <summary>
+            Deconstructor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.Decompressor.Mode">
+            <summary>
+            the compress mode
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.CompressMode">
+            <summary>
+            compress option of Mpcc compression
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.CompressMode.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.CompressMode.Flush">
+            <summary>
+            Sliding window should be flushed
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.CompressMode.SetToFront">
+            <summary>
+            set sliding window's position to zero
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.CompressMode.Compressed">
+            <summary>
+            indicate the data is compressed
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindow.#ctor(System.Int32)">
+            <summary>
+            constructor
+            </summary>
+            <param name="slidingWindowSize">slidingWindow Size</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindow.Update(System.Byte)">
+            <summary>
+            update the sliding window when a character is being added to it.
+            </summary>
+            <param name="character">the character</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindow.Update(System.Byte[])">
+            <summary>
+            update the sliding window when a sequence of character is being added to it.
+            </summary>
+            <param name="data">the data which will be written to history buffer</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindow.Clear">
+            <summary>
+            clear sliding window
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindow.MoveIndexOneStep(System.Int32@)">
+            <summary>
+            move start Index or end Index by one
+            </summary>
+            <param name="index">the index</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindow.GetMatchedData(System.UInt32,System.UInt32)">
+            <summary>
+            get the data in history buffer refered by offset and length
+            </summary>
+            <param name="offset">mppc offset</param>
+            <param name="length">mppc length</param>
+            <returns>the data gotten</returns>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindow.Count">
+            <summary>
+            the bytes count the sliding window currently has
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindow.MaxCount">
+            <summary>
+            the max bytes count of sliding window
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Compression.Mppc.SlidingWindow.Item(System.Int32)">
+            <summary>
+            Get data in the indexer position
+            </summary>
+            <param name="index">the position</param>
+            <returns>data</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId">
+            <summary>
+            The ALG_ID data type specifies an algorithm identifier. 
+            Parameters of this data type are passed to most of the functions in CryptoAPI.
+            please refer: http://msdn.microsoft.com/en-us/library/aa375549(v=VS.85).aspx
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_3DES">
+            <summary>
+            Triple DES encryption algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_3DES_112">
+            <summary>
+            Two-key triple DES encryption with effective key length equal to 112 bits.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_AES">
+            <summary>
+            Advanced Encryption Standard (AES). This algorithm is supported by the Microsoft AES Cryptographic
+            Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_AES_128">
+            <summary>
+            128 bit AES. This algorithm is supported by the Microsoft AES Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_AES_192">
+            <summary>
+            192 bit AES. This algorithm is supported by the Microsoft AES Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_AES_256">
+            <summary>
+            256 bit AES. This algorithm is supported by the Microsoft AES Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_CYLINK_MEK">
+            <summary>
+            An algorithm to create a 40-bit DES key that has parity bits and zeroed key bits to make its key 
+            length 64 bits. This algorithm is supported by the Microsoft Base Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_DES">
+            <summary>
+            DES encryption algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_DESX">
+            <summary>
+            DESX encryption algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_DH_EPHEM">
+            <summary>
+            Diffie-Hellman ephemeral key exchange algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_DH_SF">
+            <summary>
+            Diffie-Hellman store and forward key exchange algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_DSS_SIGN">
+            <summary>
+            DSA public key signature algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_ECDH">
+            <summary>
+            Elliptic curve Diffie-Hellman key exchange algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_ECDSA">
+            <summary>
+            Elliptic curve digital signature algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_ECMQV">
+            <summary>
+            Elliptic curve Menezes, Qu, and Vanstone (MQV) key exchange algorithm. This algorithm is not supported.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_HASH_REPLACE_OWF">
+            <summary>
+            One way function hashing algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_HUGHES_MD5">
+            <summary>
+            Hughes MD5 hashing algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_HMAC">
+            <summary>
+            HMAC keyed hash algorithm. This algorithm is supported by the Microsoft Base Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_KEA_KEYX">
+            <summary>
+            KEA key exchange algorithm (FORTEZZA). This algorithm is not supported.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_MAC">
+            <summary>
+            MAC keyed hash algorithm. This algorithm is supported by the Microsoft Base Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_MD2">
+            <summary>
+            MD2 hashing algorithm. This algorithm is supported by the Microsoft Base Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_MD4">
+            <summary>
+            MD4 hashing algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_MD5">
+            <summary>
+            MD5 hashing algorithm. This algorithm is supported by the Microsoft Base Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_NO_SIGN">
+            <summary>
+            No signature algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_OID_INFO_CNG_ONLY">
+            <summary>
+            The algorithm is only implemented in CNG. The macro, IS_SPECIAL_OID_INFO_ALGID, can be used to 
+            determine whether a cryptography algorithm is only supported by using the CNG functions.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_OID_INFO_PARAMETERS">
+            <summary>
+            The algorithm is defined in the encoded parameters. The algorithm is only supported by using CNG.
+            The macro, IS_SPECIAL_OID_INFO_ALGID, can be used to determine whether a cryptography algorithm is
+            only supported by using the CNG functions.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_PCT1_MASTER">
+            <summary>
+            Used by the Schannel.dll operations system. This ALG_ID should not be used by applications.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_RC2">
+            <summary>
+            RC2 block encryption algorithm. This algorithm is supported by the Microsoft Base Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_RC4">
+            <summary>
+            RC4 stream encryption algorithm. This algorithm is supported by the Microsoft Base Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_RC5">
+            <summary>
+            RC5 block encryption algorithm.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_RSA_KEYX">
+            <summary>
+            RSA public key exchange algorithm. This algorithm is supported by the Microsoft Base Cryptographic
+            Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_RSA_SIGN">
+            <summary>
+            RSA public key signature algorithm. This algorithm is supported by the Microsoft Base Cryptographic
+            Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SCHANNEL_ENC_KEY">
+            <summary>
+            Used by the Schannel.dll operations system. This ALG_ID should not be used by applications.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SCHANNEL_MAC_KEY">
+            <summary>
+            Used by the Schannel.dll operations system. This ALG_ID should not be used by applications.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SCHANNEL_MASTER_HASH">
+            <summary>
+            Used by the Schannel.dll operations system. This ALG_ID should not be used by applications.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SEAL">
+            <summary>
+            SEAL encryption algorithm. This algorithm is not supported.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SHA">
+            <summary>
+            SHA hashing algorithm. This algorithm is supported by the Microsoft Base Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SHA1">
+            <summary>
+            Same as CALG_SHA. This algorithm is supported by the Microsoft Base Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SHA_256">
+            <summary>
+            256 bit SHA hashing algorithm. This algorithm is supported by Microsoft Enhanced RSA and AES 
+            Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SHA_384">
+            <summary>
+            384 bit SHA hashing algorithm. This algorithm is supported by Microsoft Enhanced RSA and AES 
+            Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SHA_512">
+            <summary>
+            512 bit SHA hashing algorithm. This algorithm is supported by Microsoft Enhanced RSA and AES 
+            Cryptographic Provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SKIPJACK">
+            <summary>
+            Skipjack block encryption algorithm (FORTEZZA). This algorithm is not supported.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SSL2_MASTER">
+            <summary>
+            Used by the Schannel.dll operations system. This ALG_ID should not be used by applications.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SSL3_MASTER">
+            <summary>
+            Used by the Schannel.dll operations system. This ALG_ID should not be used by applications.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_SSL3_SHAMD5">
+            <summary>
+            Used by the Schannel.dll operations system. This ALG_ID should not be used by applications.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_TEK">
+            <summary>
+            TEK (FORTEZZA). This algorithm is not supported.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_TLS1_MASTER">
+            <summary>
+            Used by the Schannel.dll operations system. This ALG_ID should not be used by applications.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId.CALG_TLS1PRF">
+            <summary>
+            Used by the Schannel.dll operations system. This ALG_ID should not be used by applications.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptSignHashFlag">
+            <summary>
+            The flags defined by CryptSignHash function of CryptAPI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptSignHashFlag.None">
+            <summary>
+            No value to set.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptSignHashFlag.NoHashOid">
+            <summary>
+            Used with RSA providers. The hash object identifier (OID) is not placed in the RSA public key encryption. 
+            If this flag is not set, the hash OID in the default signature is as specified in the definition of 
+            DigestInfo in PKCS #1.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptSignHashFlag.Type2Format">
+            <summary>
+            This flag is not used.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptSignHashFlag.X931Format">
+            <summary>
+            Use the RSA signature padding method specified in the ANSI X9.31 standard. 
+            Windows 2000:  CRYPT_X931_FORMAT is not supported.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptRsaSignHashType">
+            <summary>
+            Hash type of RSA signature.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptRsaSignHashType.MD5">
+            <summary>
+            MD5 hash algorithm
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptRsaSignHashType.SHA1">
+            <summary>
+            MD5 hash algorithm
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DhGroupType">
+            <summary>
+            Group types of diffie-hellman key exchange. It extends oakley groups, adding ECP256 and ECP384.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DhGroupType.MODP768Bit">
+            <summary>
+            Default 768-bit MODP group [RFC2412]
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DhGroupType.MODP1024Bit">
+            <summary>
+            Alternate 1024-bit MODP group [RFC2412]
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DhGroupType.MODP2048Bit">
+            <summary>
+            2048-bit MODP group [RFC3526]
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DhGroupType.ECP256">
+            <summary>
+            ECP_256 [ECP]
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DhGroupType.ECP384">
+            <summary>
+            ECP_384 [ECP]
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Oakley">
+            <summary>
+            Oakley class implements Diffie-hellman key exchange algorithm.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Oakley.#ctor(Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.DhGroupType)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="groupType">DH group defined in [RFC2412] and MS-AIPS.</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Oakley.GenerateKeyData">
+            <summary>
+            Gets Key exchange data by DH gourp.
+            </summary>
+            <returns>Key data</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Oakley.GenerateKey(System.Byte[])">
+            <summary>
+            Generates a key with key exchange data.
+            </summary>
+            <param name="keyData">Key exchange data.</param>
+            <exception cref="T:System.ArgumentNullException">Raised when keyData is null.</exception>
+            <exception cref="T:Microsoft.Protocols.TestTools.StackSdk.StackException">Raised when exponent or prime is not initialized.</exception>
+            <returns>Generated key.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Oakley.RandomBigInteger(System.Int32)">
+            <summary>
+            Create a random BigInteger
+            </summary>
+            <param name="bits">The BigInteger bits count</param>
+            <returns>A random BigInteger</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4">
+            <summary>
+            A abstract class which all RC4 Algorithm implemention will inherit.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4.Create">
+            <summary>
+            Generate default RC4 instance
+            </summary>
+            <returns>default RC4 instance</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoServiceProvider">
+            <summary>
+            A RC4 implementation using native windows api
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoServiceProvider.#ctor">
+            <summary>
+            default constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+            <summary>
+            When overridden in a derived class, creates a symmetric encryptor object
+            with the specified System.Security.Cryptography.SymmetricAlgorithm.Key property
+            and initialization vector (System.Security.Cryptography.SymmetricAlgorithm.IV).
+            </summary>
+            <param name="rgbKey">The secret key to use for the symmetric algorithm.</param>
+            <param name="rgbIV">The initialization vector to use for the symmetric algorithm.</param>
+            <returns>A symmetric decryptor object.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+            <summary>
+            When overridden in a derived class, creates a symmetric decryptor object
+            with the specified System.Security.Cryptography.SymmetricAlgorithm.Key property
+            and initialization vector (System.Security.Cryptography.SymmetricAlgorithm.IV).
+            </summary>
+            <param name="rgbKey">The secret key to use for the symmetric algorithm.</param>
+            <param name="rgbIV">The initialization vector to use for the symmetric algorithm.</param>
+            <returns>A symmetric decryptor object.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoServiceProvider.GenerateKey">
+            <summary>
+            When overridden in a derived class, 
+            generates a random key (System.Security.Cryptography.SymmetricAlgorithm.Key)
+            to use for the algorithm.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoServiceProvider.GenerateIV">
+            <summary>
+            RC4 don't support IV
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoServiceProvider.ImportKey(System.Byte[])">
+            <summary>
+            import the key for transform
+            </summary>
+            <param name="importedKey">the imported key</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoServiceProvider.CreateTransformer(System.Byte[])">
+            <summary>
+            Create a transformer to encrypt or decrypt data
+            </summary>
+            <param name="rgbKey">The secret key used for transforming</param>
+            <returns>A symmetric decryptor or encryptor object.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoServiceProvider.Dispose(System.Boolean)">
+            <summary>
+            Release all resources
+            </summary>
+            <param name="disposing">indicate GC or user calling this</param>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoServiceProvider.Key">
+            <summary>
+            Gets or sets the secret key for the symmetric algorithm.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoTransform">
+            <summary>
+            implement RC4 cryptographic transformations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoTransform.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Transforms the specified region of the input byte array and copies the resulting
+            transform to the specified region of the output byte array.
+            </summary>
+            <param name="inputBuffer">The input for which to compute the transform.</param>
+            <param name="inputOffset">The offset into the input byte array from which to begin using data.</param>
+            <param name="inputCount">The number of bytes in the input byte array to use as data.</param>
+            <param name="outputBuffer">The output to which to write the transform.</param>
+            <param name="outputOffset">The offset into the output byte array from which to begin writing data.</param>
+            <returns>The number of bytes written.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoTransform.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Transforms the specified region of the specified byte array.
+            </summary>
+            <param name="inputBuffer">The input for which to compute the transform.</param>
+            <param name="inputOffset">The offset into the byte array from which to begin using data.</param>
+            <param name="inputCount">The number of bytes in the byte array to use as data.</param>
+            <returns>The computed transform.</returns>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoTransform.Dispose">
+            <summary>
+            Release all resources
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoTransform.Dispose(System.Boolean)">
+            <summary>
+            release all resources
+            </summary>
+            <param name="disposing">indicate GC or user calling this function</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoTransform.Finalize">
+            <summary>
+            deconstructor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoTransform.CanReuseTransform">
+            <summary>
+            Gets a value indicating whether the current transform can be reused.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoTransform.CanTransformMultipleBlocks">
+            <summary>
+            Gets a value indicating whether multiple blocks can be transformed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoTransform.InputBlockSize">
+            <summary>
+            Gets the input block size.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.RC4CryptoTransform.OutputBlockSize">
+            <summary>
+            Gets the output block size.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CertificateSigner">
+            <summary>
+            CryptAPI Wrapper of RSA signature.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CertificateSigner.rsaCertificate">
+            <summary>
+            To store certificate used by signature.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CertificateSigner.flags">
+            <summary>
+            Flags
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CertificateSigner.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="certificate">The certificate to sign</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CertificateSigner.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate,Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CryptSignHashFlag)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="certificate">The certificate to sign</param>
+            <param name="flags">Flags</param>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CertificateSigner.SignHash(System.Byte[],Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.AlgId)">
+            <summary>
+            To compute signature
+            </summary>
+            <param name="rgbHash">the hash value to sign</param>
+            <param name="hashType">Hash type</param>
+            <returns>the signature</returns>
+            <exception cref="T:System.ArgumentNullException">If rgbHash is null, this exception will be thrown.</exception>
+            <exception cref="T:System.NullReferenceException">If Certificate is set to null in constructor,
+            this exception will be thrown</exception>
+            <exception cref="T:System.Runtime.InteropServices.SEHException">If Invoking CryptAPI failed, this excetpion will be thrown.</exception>
+        </member>
+        <member name="P:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.CertificateSigner.Flags">
+            <summary>
+            Flags used by CryptSignHash
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.GetToBeSignedDataFunc">
+            <summary>
+            Callback function using in decrypt to get to-be-signed data.
+            </summary>
+            <param name="data">encrypted/decrypted data.</param>
+            <returns>to-be-signed data</returns>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType">
+            <summary>
+            Specify encryption type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.AES256_CTS_HMAC_SHA1_96">
+            <summary>
+            Represent AES256_CTS_HMAC_SHA1_96  encryption type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.AES128_CTS_HMAC_SHA1_96">
+            <summary>
+            Represent AES128_CTS_HMAC_SHA1_96  encryption type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.RC4_HMAC">
+            <summary>
+            Represent RC4_HMAC  encryption type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.RC4_HMAC_EXP">
+            <summary>
+            Represent RC4_HMAC_EXP  encryption type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.DES_CBC_MD5">
+            <summary>
+            Represent DES_CBC_MD5  encryption type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.DES_CBC_CRC">
+            <summary>
+            Represent DES_CBC_CRC  encryption type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.UnusedValue_135">
+            <summary>
+            Represent unused encryption value -135
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.UnusedValue_133">
+            <summary>
+            Represent unused encryption value -133
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.UnusedValue_128">
+            <summary>
+            Represent unused encryption value -128
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.DES_EDE3_CBC">
+            <summary>
+            Represent DES_EDE3_CBC  encryption type in [MS-PKCA].
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.EncryptionType.RC2_CBC">
+            <summary>
+            Represent RC2_CBC  encryption type in [MS-PKCA].
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType">
+            <summary>
+            Specify checksum type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.CRC32">
+            <summary>
+            Represent CRC32  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.rsa_md4">
+            <summary>
+            Represent rsa_md4  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.rsa_md4_des">
+            <summary>
+            Represent rsa_md4_des  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.des_mac">
+            <summary>
+            Represent des_mac  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.des_mac_k">
+            <summary>
+            Represent des_mac_k  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.rsa_md4_des_k">
+            <summary>
+            Represent rsa_md4_des_k  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.rsa_md5">
+            <summary>
+            Represent rsa_md5  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.rsa_md5_des">
+            <summary>
+            Represent rsa_md5_des  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.sha1">
+            <summary>
+            Represent sha1  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.hmac_sha1_96_aes128">
+            <summary>
+            Represent hmac_sha1_96_aes128  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.hmac_sha1_96_aes256">
+            <summary>
+            Represent hmac_sha1_96_aes256  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.hmac_md5_string">
+            <summary>
+            Represent hmac_md5_string  checksum type
+            </summary>
+        </member>
+        <member name="F:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.ChecksumType.ap_authenticator_8003">
+            <summary>
+            The checksum type used in AP request.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Utility">
+            <summary>
+            Utility class encapsulate common code.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Protocols.TestTools.StackSdk.Security.Cryptographic.Utility.LoadBytesLittleEndian(System.Byte[])">
+            <summary>
+            Change little endian byte array to unsigned BigInteger.
+            </summary>
+            <param name="input">input byte array data.</param>
+            <returns>BigInteger data</returns>
+        </member>
+    </members>
+</doc>

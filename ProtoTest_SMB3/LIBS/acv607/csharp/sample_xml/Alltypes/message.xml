@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testType>
+   <utc>2003-09-22T19:05:38-04:00</utc>
+   <utc1>2004-02-29T19:05:38Z</utc1>
+   <gtc>2003-09-22T19:05:38.3141+04:30</gtc>
+   <gtc1>2004-02-29T19:05:38.3141Z</gtc1>
+   <nullval/>
+   <bs3>zero a b c</bs3>
+   <bs1>zero a b c</bs1>
+   <bs0>101010100101010011111110101010000101001011111100101001100101000011111010101001</bs0>
+   <bs2/>
+   <val1>21</val1>
+   <val2>value2</val2>
+   <enum>yes</enum>
+   <real>3.14159E0</real>
+   <nan>NaN</nan>
+   <boolean>true</boolean>
+   <Name>
+      <givenName>John</givenName>
+      <initial>P</initial>
+      <familyName>Smith</familyName>
+   </Name>
+   <seqofEnum>married single divorced children</seqofEnum>
+   <bsseqof1>110011001001100001100100001100001111110 100110000011000011001000011000001111100 011001001100100000101100100100001111010 001100000110000010010000110000001111000</bsseqof1>
+   <bsseqof2>
+      <BIT_STRING>zero1 a1 c1</BIT_STRING>
+      <BIT_STRING>zero1 b1</BIT_STRING>
+      <BIT_STRING>a1 c1</BIT_STRING>
+      <BIT_STRING>b1</BIT_STRING>
+   </bsseqof2>
+   <osseqof1>CC986430FC 9830C860F8 64C82C90F4 306090C0F0</osseqof1>
+   <csseqof1>
+      <IA5String>Objective</IA5String>
+      <IA5String>Systems</IA5String>
+      <IA5String>Inc.</IA5String>
+   </csseqof1>
+   <rseqof>1.0E0 3.14159E0 2.0E-2 0 -INF NaN INF 0</rseqof>
+   <bseqof>false true true false true</bseqof>
+   <iseqof>0 value1 value2 3 4</iseqof>
+   <iseqof1>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19</iseqof1>
+   <iseqof2>1 2 3 4 5</iseqof2>
+   <seqofChoice>
+      <ChoiceType>
+         <e1>1</e1>
+      </ChoiceType>
+      <ChoiceType>
+         <e2>String data</e2>
+      </ChoiceType>
+      <ChoiceType>
+         <e3>
+            <givenName>Art</givenName>
+            <initial>S</initial>
+            <familyName>Bolgar</familyName>
+         </e3>
+      </ChoiceType>
+   </seqofChoice>
+   <children>
+      <ChildInformation>
+         <Name>
+            <givenName>Ralph</givenName>
+            <initial>T</initial>
+            <familyName>Smith</familyName>
+         </Name>
+         <dateOfBirth>19571111</dateOfBirth>
+      </ChildInformation>
+      <ChildInformation>
+         <Name>
+            <givenName>Susan</givenName>
+            <initial>B</initial>
+            <familyName>Jones</familyName>
+         </Name>
+         <dateOfBirth>19590717</dateOfBirth>
+      </ChildInformation>
+   </children>
+</testType>

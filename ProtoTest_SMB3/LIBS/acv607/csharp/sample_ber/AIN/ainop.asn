@@ -1,0 +1,177 @@
+-- This module contains a single AIN operation definition for 
+-- illustration purposes..
+
+AIN-Operation DEFINITIONS ::= BEGIN
+
+callInfoFromResource	OPERATION
+PARAMETER	SEQUENCE {
+	IPReturnBlock	OPTIONAL,
+	Amp1	OPTIONAL,
+	Amp2	OPTIONAL,
+	ExtensionParameter	OPTIONAL
+	}
+RESULT	SEQUENCE {
+	ResourceType	OPTIONAL,
+	StrParameterBlock	OPTIONAL,
+	Amp1	OPTIONAL,
+	Amp2	OPTIONAL,
+	ServiceProviderID	OPTIONAL,
+	ServiceContext	OPTIONAL,
+	ExtensionParameter	OPTIONAL,
+	TSTRCTimer	OPTIONAL
+	}
+ERRORS {	applicationError,
+	failureReport
+	}
+
+::= private: 26116
+-- Family Name is "Caller Interaction"
+
+applicationError	ERROR
+PARAMETER	SEQUENCE{
+	ApplicationErrorString,
+	ExtensionParameter	OPTIONAL
+	}
+::= private: 1
+
+failureReport	ERROR
+PARAMETER	SEQUENCE {
+	FailureCause,
+	FailureCauseData	OPTIONAL,
+	ExtensionParameter 	OPTIONAL
+	}
+::= private: 2
+
+IPReturnBlock ::= [78] IMPLICIT OCTET STRING (SIZE(1..120))
+
+AINDigits ::= OCTET STRING
+
+Amp1 ::= [11] IMPLICIT OCTET STRING (SIZE(6))
+
+Amp2 ::= [109] IMPLICIT SEQUENCE {
+	AmpAINNodeID,
+	[3] IMPLICIT AmpCLogSeqNo	OPTIONAL,
+	[4] IMPLICIT AmpCLogRepInd	OPTIONAL,
+	[5] IMPLICIT AmpCallProgInd	OPTIONAL,
+	[6] IMPLICIT AmpTestReqInd	OPTIONAL,
+	[7] IMPLICIT AmpCLogName	OPTIONAL,
+	[8] IMPLICIT AmpSvcProvID	OPTIONAL
+	}
+AmpAINNodeID ::= CHOICE {
+[1] IMPLICIT SpcID,
+[2] IMPLICIT ISDNDeviceID
+}
+
+SpcID ::= OCTET STRING (SIZE(3))
+-- See Figure 30 of Chapter T1.111.5 of GR-246-CORE, Issue 1 for the
+-- definition of the contents of the SpcID OCTET STRING.
+
+ISDNDeviceID ::= AINDigits
+-- range - 10 digits
+
+AmpCLogSeqNo ::= INTEGER (0..32767)
+-- 0 = sequence number should not be generated; 0 is used to support
+-- asynchronous messages
+
+AmpCLogRepInd ::= ENUMERATED {
+	autoReportOS	(0),
+	requestReport	(1),
+	autoReportISDN	(2)
+
+}
+
+AmpCallProgInd ::= ENUMERATED {
+	callProgressVoiceAnnouncements	(0),
+	callProgressTextMessages	(1)
+	}
+
+AmpTestReqInd ::= INTEGER (0..127)
+
+AmpCLogName ::= OCTET STRING (SIZE(1..10))
+
+AmpSvcProvID ::= CHOICE {
+	Ocn -- see Section ~Xrefparanumonly for encoding
+	}
+
+ExtensionParameter ::= [84] IMPLICIT SEQUENCE {
+	assignmentAuthority 	OBJECT IDENTIFIER,
+	parameters	ANY DEFINED BY assignmentAuthority
+}
+
+ResourceType ::= [45] IMPLICIT INTEGER (0..127)
+
+StrParameterBlock ::= [50] CHOICE {
+[0] IMPLICIT AnnouncementBlock,
+[1] IMPLICIT AnnouncementDigitBlock,
+[2] IMPLICIT FlexParameterBlock
+}
+
+AnnouncementBlock ::= SEQUENCE {
+[1] IMPLICIT UninterAnnounceBlock		OPTIONAL,
+[2] IMPLICIT InterAnnounceBlock 		OPTIONAL
+}
+  
+UninterAnnounceBlock ::= SEQUENCE SIZE(1..10) OF AnnounceElement
+
+InterAnnounceBlock ::= SEQUENCE SIZE(1..10) OF AnnounceElement
+
+AnnounceElement ::= OCTET STRING (SIZE(3..131))
+
+AnnouncementDigitBlock ::= SEQUENCE {
+[0] IMPLICIT MaximumDigits,
+[1] IMPLICIT UninterAnnounceBlock		OPTIONAL,
+[2] IMPLICIT InterAnnounceBlock		OPTIONAL
+}
+
+MaximumDigits ::= INTEGER (0..255)
+-- range: 0-32 is "fixed number of digits" (e.g., 5 means collect 5 digits)
+-- 33-252 is spare
+-- 253 is "normal number of digits"
+-- 254 is "variable number of digits"
+-- 255 is spare
+
+FlexParameterBlock ::= OCTET STRING (SIZE(1..120))
+
+ServiceContext ::= [83] IMPLICIT INTEGER (0..32767)
+
+ServiceProviderID ::=CHOICE {
+	Ocn,
+	MsrID
+	}
+
+Ocn ::= [87] IMPLICIT IA5String (SIZE (4..8))
+
+MsrID ::= [106] IMPLICIT AINDigits  -- range - 10 digits
+--identifies the Message Storage and Retrieval System
+
+TSTRCTimer ::= [900] IMPLICIT INTEGER
+
+ApplicationErrorString ::= [55] IMPLICIT IA5String
+
+FailureCause ::= [32] IMPLICIT ENUMERATED {
+	rateTooHigh	(1),
+	unavailableResources	(2),
+	apTimeout	(3),
+	apBusy	(4),
+	channelsBusy	(13),
+	abort	(14),
+	resourceLimitation	(15),
+	applicationError	(16),
+	securityError	(17),
+	protocolError	(18),
+	timerExpired	(19),
+	temporaryFailure	(20),
+	msridDoesNotMatchUserProfile	(21),
+	segmentationError	(22),
+	ncasDisallowed	(23),
+	controlEncountered	(24),
+	improperCoding	(25),
+	inappropriateCondition	(26),
+	inappropriateUserInterface	(27),
+	inappropriateLegManipulation	(28),
+	callingInterfaceBusy	(29)
+	}
+
+FailureCauseData ::= [112] IMPLICIT OCTET STRING (SIZE(1..5))
+
+END

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C7F08825-D3C9-4DDD-9BA3-06733B1ABE36}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Protocols.TestTools.StackSdk.FileAccessService.Smb3</RootNamespace>
+    <AssemblyName>Microsoft.Protocols.TestTools.StackSdk.FileAccessService.Smb3</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+    <DocumentationFile>bin\Debug\Microsoft.Protocols.TestTools.StackSdk.FileAccessService.Smb3.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Protocols.TestTools.StackSdk">
+      <HintPath>..\TransportStack\bin\Debug\Microsoft.Protocols.TestTools.StackSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Protocols.TestTools.StackSdk.Messages">
+      <HintPath>..\TransportStack\bin\Debug\Microsoft.Protocols.TestTools.StackSdk.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Protocols.TestTools.StackSdk.Security.CryptoLib, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CryptoLib\bin\Debug\Microsoft.Protocols.TestTools.StackSdk.Security.CryptoLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Protocols.TestTools.StackSdk.Security.Sspi">
+      <HintPath>..\Sspi\bin\Debug\Microsoft.Protocols.TestTools.StackSdk.Security.Sspi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Protocols.TestTools.StackSdk.Transport">
+      <HintPath>..\TransportStack\bin\Debug\Microsoft.Protocols.TestTools.StackSdk.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\smb3Client.cs" />
+    <Compile Include="Client\smb3ClientConnection.cs" />
+    <Compile Include="Client\smb3ClientFile.cs" />
+    <Compile Include="Client\smb3ClientGlobalConfig.cs" />
+    <Compile Include="Client\smb3ClientGlobalContext.cs" />
+    <Compile Include="Client\smb3ClientOpen.cs" />
+    <Compile Include="Client\smb3ClientSession.cs" />
+    <Compile Include="Client\smb3ClientTransport.cs" />
+    <Compile Include="Client\smb3ClientTreeConnect.cs" />
+    <Compile Include="Client\smb3OutStandingRequest.cs" />
+    <Compile Include="CredSspCred.cs" />
+    <Compile Include="CustomTypes.cs" />
+    <Compile Include="FsccMessage.cs" />
+    <Compile Include="Packets\smb3CancelRequestPacket.cs" />
+    <Compile Include="Packets\smb3ChangeNotifyRequestPacket.cs" />
+    <Compile Include="Packets\smb3ChangeNotifyResponsePacket.cs" />
+    <Compile Include="Packets\smb3CloseRequestPacket.cs" />
+    <Compile Include="Packets\smb3CloseResponsePacket.cs" />
+    <Compile Include="Packets\smb3CompoundPacket.cs" />
+    <Compile Include="Packets\smb3CreateRequestPacket.cs" />
+    <Compile Include="Packets\smb3CreateResponsePacket.cs" />
+    <Compile Include="Packets\smb3EchoRequestPacket.cs" />
+    <Compile Include="Packets\smb3EchoResponsePacket.cs" />
+    <Compile Include="Packets\smb3ErrorResponsePacket.cs" />
+    <Compile Include="Packets\smb3FlushRequestPacket.cs" />
+    <Compile Include="Packets\smb3FlushResponsePacket.cs" />
+    <Compile Include="Packets\smb3IOCtlRequestPacket.cs" />
+    <Compile Include="Packets\smb3IOCtlResponsePacket.cs" />
+    <Compile Include="Packets\smb3LeaseBreakAckPacket.cs" />
+    <Compile Include="Packets\smb3LeaseBreakNotificationPacket.cs" />
+    <Compile Include="Packets\smb3LeaseBreakResponsePacket.cs" />
+    <Compile Include="Packets\smb3LockRequestPacket.cs" />
+    <Compile Include="Packets\smb3LockResponsePacket.cs" />
+    <Compile Include="Packets\smb3LogOffRequestPacket.cs" />
+    <Compile Include="Packets\smb3LogOffResponsePacket.cs" />
+    <Compile Include="Packets\smb3NegotiateRequestPacket.cs" />
+    <Compile Include="Packets\smb3NegotiateResponsePacket.cs" />
+    <Compile Include="Packets\smb3OpLockBreakAckPacket.cs" />
+    <Compile Include="Packets\smb3OpLockBreakNotificationPacket.cs" />
+    <Compile Include="Packets\smb3OpLockBreakResponsePacket.cs" />
+    <Compile Include="Packets\smb3Packet.cs" />
+    <Compile Include="Packets\smb3QueryDirectoryRequestPacket.cs" />
+    <Compile Include="Packets\smb3QueryDirectoryResponePacket.cs" />
+    <Compile Include="Packets\smb3QueryInfoRequestPacket.cs" />
+    <Compile Include="Packets\smb3QueryInfoResponsePacket.cs" />
+    <Compile Include="Packets\smb3ReadRequestPacket.cs" />
+    <Compile Include="Packets\smb3ReadResponsePacket.cs" />
+    <Compile Include="Packets\smb3SessionSetupRequestPacket.cs" />
+    <Compile Include="Packets\smb3SessionSetupResponsePacket.cs" />
+    <Compile Include="Packets\smb3SetInfoRequestPacket.cs" />
+    <Compile Include="Packets\smb3SetInfoResponsePacket.cs" />
+    <Compile Include="Packets\smb3SinglePacket.cs" />
+    <Compile Include="Packets\smb3StandardPacket.cs" />
+    <Compile Include="Packets\smb3TreeConnectRequestPacket.cs" />
+    <Compile Include="Packets\smb3TreeConnectResponsePacket.cs" />
+    <Compile Include="Packets\smb3TreeDisconnectRequestPacket.cs" />
+    <Compile Include="Packets\smb3TreeDisconnectResponsePacket.cs" />
+    <Compile Include="Packets\smb3WriteRequestPacket.cs" />
+    <Compile Include="Packets\smb3WriteResponsePacket.cs" />
+    <Compile Include="Packets\SmbNegotiateRequestPacket.cs" />
+    <Compile Include="Server\smb3Lease.cs" />
+    <Compile Include="Server\smb3LeaseTable.cs" />
+    <Compile Include="Server\smb3Server.cs" />
+    <Compile Include="Server\smb3ServerConfig.cs" />
+    <Compile Include="Server\smb3ServerConnection.cs" />
+    <Compile Include="Server\smb3ServerContext.cs" />
+    <Compile Include="Server\smb3ServerOpen.cs" />
+    <Compile Include="Server\smb3ServerSession.cs" />
+    <Compile Include="Server\smb3ServerShare.cs" />
+    <Compile Include="Server\smb3ServerTreeConnect.cs" />
+    <Compile Include="Packets\Smb2CryptoInfo.cs" />
+    <Compile Include="smb3Consts.cs" />
+    <Compile Include="smb3Decoder.cs" />
+    <Compile Include="smb3Event.cs" />
+    <Compile Include="smb3Message.cs" />
+    <Compile Include="smb3Utility.cs" />
+    <Compile Include="SmbMessage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{FE653643-6342-4300-871E-683C7BA31494}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileAccessService\FileAccessService.csproj">
+      <Project>{AB191B32-B12D-42CB-976D-CEA2C5BAD8BE}</Project>
+      <Name>FileAccessService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Messages\Messages.csproj">
+      <Project>{75544419-3F4E-4308-A676-165F45C1462E}</Project>
+      <Name>Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MS-NLMP\Nlmp.csproj">
+      <Project>{5E53E71E-52D1-4BF0-99C0-608437EC446C}</Project>
+      <Name>Nlmp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

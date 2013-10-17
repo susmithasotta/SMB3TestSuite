@@ -1,0 +1,39 @@
+!INCLUDE $(INETROOT)\build\sources.all
+
+TARGETNAME                          = Microsoft.Protocols.TestTools.StackSdk.Transport
+TARGETTYPE                          = DYNLINK
+
+MANAGED_CODE                        = 1
+
+REFERENCES                          = \
+                                      $(INFRA_SDK_SOURCE_PATH)\Common\$(O)\Microsoft.Protocols.TestTools.StackSdk.metadata_dll; \
+
+SOURCES                             = \
+                                      IConnection.cs \
+                                      IReceive.cs \
+                                      ReceiveThread.cs \
+                                      TcpClientTransport.cs \
+                                      TcpServerTransport.cs \
+                                      TransportConfig.cs \
+                                      TransportEvent.cs \
+                                      TransportStack.cs \
+                                      Netbios\ClientTransport.cs \
+                                      Netbios\Config.cs \
+                                      Netbios\NativeMethods.cs\
+                                      Netbios\NetBiosTransport.cs \
+                                      Netbios\Receive.cs \
+                                      Netbios\ServerTransport.cs \
+                                      Netbios\Utility.cs \
+                                      Socket\Config.cs \
+                                      Socket\Receive.cs \
+                                      Stream\StreamConfig.cs \
+                                      Stream\StreamReceiver.cs \
+                                      Stream\StreamTransport.cs \
+                                      UdpTransport.cs \
+                                      
+FXCOP_USER_FLAGS                    = $(FXCOP_USER_FLAGS) \
+                                      /directory:$(INFRA_SDK_SOURCE_PATH)\Common\$(O) \
+                                      
+ASSEMBLY_IDENTITY_PUBLIC_KEY_NAME   = petkey
+
+BINPLACE_FLAGS                      = $(BINPLACE_FLAGS) RESIGN_KEYNAME = $(PET_KEY)

@@ -1,0 +1,35 @@
+-- An example of a parameterized type
+
+ParamType DEFINITIONS ::= BEGIN
+
+   -- Parameterized type definition
+
+   SIGNED { ToBeSigned } ::= SEQUENCE {
+      toBeSigned    ToBeSigned,
+      algorithmOID  OBJECT IDENTIFIER, 
+      paramS        Params,
+      signature     BIT STRING
+   } ( CONSTRAINED BY { -- Verify or Sign Certificate -- } )
+
+   IV8 ::= OCTET STRING (SIZE(8))
+
+   Params ::= SEQUENCE {
+      ranInt        INTEGER OPTIONAL,
+      iv8           IV8 OPTIONAL,
+      ...
+   }
+
+   -- Parameterized type reference
+
+   SignedName ::= SIGNED { Name }
+
+   Name ::= [APPLICATION 1] IMPLICIT SEQUENCE {
+      givenName  NameString,
+      initial    NameString (SIZE(1)),
+      familyName NameString,
+      ...
+   }
+
+   NameString ::= VisibleString (FROM("a".."z"|"A".."Z"|"-.")^SIZE(1..64,...))
+
+END

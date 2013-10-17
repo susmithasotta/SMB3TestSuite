@@ -1,0 +1,64 @@
+!INCLUDE $(INETROOT)\build\sources.all
+
+TARGETNAME                            = Microsoft.Protocols.TestTools.StackSdk.Messages
+TARGETTYPE                            = DYNLINK
+
+MANAGED_CODE                          = 1
+
+REFERENCES                            = $(EXTERNALTOOL_REF_PATH)\ASNAPI\asn1rt.dll; \
+
+SOURCES                               = \
+                                        messagecommon\BaseExpression.cs \
+                                        messagecommon\BaseNode.cs \
+                                        messagecommon\BinaryExpression.cs \
+                                        messagecommon\ConditionalExpression.cs \
+                                        messagecommon\DatatypeInfoProvider.cs \
+                                        messagecommon\ExpressionBuilder.cs \
+                                        messagecommon\ExpressionEvaluatorException.cs \
+                                        messagecommon\ExpressionLexer.cs \
+                                        messagecommon\ExpressionNode.cs \
+                                        messagecommon\ExpressionParser.cs \
+                                        messagecommon\ExpressionVisitor.cs \
+                                        messagecommon\FunctionExpression.cs \
+                                        messagecommon\IEvaluationContext.cs \
+                                        messagecommon\IExpression.cs \
+                                        messagecommon\IExpressionVisitor.cs \
+                                        messagecommon\INode.cs \
+                                        messagecommon\IToken.cs \
+                                        messagecommon\ITokenStream.cs \
+                                        messagecommon\MarshallingAttributes.cs \
+                                        messagecommon\MultipleExpressionEvaluator.cs \
+                                        messagecommon\RequirementAttribute.cs \
+                                        messagecommon\SingleExpressionEvaluator.cs \
+                                        messagecommon\Token.cs \
+                                        messagecommon\TokenStream.cs \
+                                        messagecommon\UnaryExpression.cs \
+                                        messagecommon\ValueExpression.cs \
+                                        Channel.cs \
+                                        DefaultRuntimeHost.cs \
+                                        EventQueue.cs \
+                                        IdentifierBinding.cs \
+                                        IRuntimeHost.cs \
+                                        Marshaling.cs \
+                                        MessageAttributes.cs \
+                                        MessageRuntime.Designer.cs \
+                                        MessageRuntimeHelper.cs \
+                                        MessageUtils.cs \
+                                        ObservationQueue.cs \
+                                        RuntimeAppLog.cs \
+                                        RuntimeMarshaler.cs \
+                                        ValidationChannel.cs \
+
+RESOURCES                             = $(O)\MessageRuntime.resources
+
+USER_RESOURCES_FLAGS                  = \
+                                        /res:$(O)\$(NEW_RESOURCES_NAMESPACE).MessageRuntime.resources,$(NEW_RESOURCES_NAMESPACE).MessageRuntime.resources
+
+USER_CS_FLAGS                         = $(USER_CS_FLAGS) /unsafe
+
+ASSEMBLY_IDENTITY_PUBLIC_KEY_NAME     = petkey
+
+BINPLACE_FLAGS                        = $(BINPLACE_FLAGS) --no-postbuild-fxcop RESIGN_KEYNAME = $(PET_KEY)
+
+SUBSTITUTE_CS_COMPILER_NAME           = %URTTARGET_3_5%\csc.exe
+

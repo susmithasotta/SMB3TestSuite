@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FE2070DE-70D1-4E65-9EE6-9D28B5903AC6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Protocols.TestTools.StackSdk.Security.Kile</RootNamespace>
+    <AssemblyName>Microsoft.Protocols.TestTools.StackSdk.Security.Kile</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="asn1rt">
+      <HintPath>..\LIBS\acv607\csharp\asn1rt.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\KerberosClientSecurityContext.cs" />
+    <Compile Include="Client\KileClient.cs" />
+    <Compile Include="Client\KileClientContext.cs" />
+    <Compile Include="Client\KerberosClientSecurityConfig.cs" />
+    <Compile Include="ConstValue.cs" />
+    <Compile Include="Encryption\Checksum\HmacSha1AesChecksum.cs" />
+    <Compile Include="Encryption\Checksum\HmacMd5StringChecksum.cs" />
+    <Compile Include="Encryption\Checksum\UnkeyedChecksum.cs" />
+    <Compile Include="Encryption\Crypto\Rc4HmacCrypto.cs" />
+    <Compile Include="Encryption\KeyGenerator\AesKey.cs" />
+    <Compile Include="Encryption\KeyGenerator\DesKey.cs" />
+    <Compile Include="Encryption\KeyGenerator\Rc4Key.cs" />
+    <Compile Include="Encryption\KeyGenerator\KeyGenerator.cs" />
+    <Compile Include="Encryption\Crypto\AesCtsHmacSha1Crypto.cs" />
+    <Compile Include="Encryption\CryptoUtility.cs" />
+    <Compile Include="Encryption\Crypto\DesCbcCrypto.cs" />
+    <Compile Include="KileConnection.cs" />
+    <Compile Include="KileContext.cs" />
+    <Compile Include="KileRole.cs" />
+    <Compile Include="KileUtility.cs" />
+    <Compile Include="KileDecoder.cs" />
+    <Compile Include="Asn1Code\PA_DATAS.cs" />
+    <Compile Include="Asn1Code\KERB_AD_RESTRICTION_ENTRY.cs" />
+    <Compile Include="Asn1Code\KERB_PA_PAC_REQUEST.cs" />
+    <Compile Include="Asn1Code\LSAP_TOKEN_INFO_INTEGRITY.cs" />
+    <Compile Include="Asn1Code\AD_AND_OR.cs" />
+    <Compile Include="Asn1Code\AD_IF_RELEVANT.cs" />
+    <Compile Include="Asn1Code\AD_KDCIssued.cs" />
+    <Compile Include="Asn1Code\AD_MANDATORY_FOR_KDC.cs" />
+    <Compile Include="Asn1Code\APOptions.cs" />
+    <Compile Include="Asn1Code\AP_REP.cs" />
+    <Compile Include="Asn1Code\AP_REQ.cs" />
+    <Compile Include="Asn1Code\AS_REP.cs" />
+    <Compile Include="Asn1Code\AS_REQ.cs" />
+    <Compile Include="Asn1Code\Authenticator.cs" />
+    <Compile Include="Asn1Code\AuthorizationData.cs" />
+    <Compile Include="Asn1Code\AuthorizationData_element.cs" />
+    <Compile Include="Asn1Code\Checksum.cs" />
+    <Compile Include="Asn1Code\EncAPRepPart.cs" />
+    <Compile Include="Asn1Code\EncASRepPart.cs" />
+    <Compile Include="Asn1Code\EncKDCRepPart.cs" />
+    <Compile Include="Asn1Code\EncKrbCredPart.cs" />
+    <Compile Include="Asn1Code\EncKrbPrivPart.cs" />
+    <Compile Include="Asn1Code\EncryptedData.cs" />
+    <Compile Include="Asn1Code\EncryptionKey.cs" />
+    <Compile Include="Asn1Code\EncTGSRepPart.cs" />
+    <Compile Include="Asn1Code\EncTicketPart.cs" />
+    <Compile Include="Asn1Code\ETYPE_INFO.cs" />
+    <Compile Include="Asn1Code\ETYPE_INFO2.cs" />
+    <Compile Include="Asn1Code\ETYPE_INFO2_ENTRY.cs" />
+    <Compile Include="Asn1Code\ETYPE_INFO_ENTRY.cs" />
+    <Compile Include="Asn1Code\HostAddress.cs" />
+    <Compile Include="Asn1Code\HostAddresses.cs" />
+    <Compile Include="Asn1Code\Int32.cs" />
+    <Compile Include="Asn1Code\KDCOptions.cs" />
+    <Compile Include="Asn1Code\KDC_REP.cs" />
+    <Compile Include="Asn1Code\KDC_REQ.cs" />
+    <Compile Include="Asn1Code\KDC_REQ_BODY.cs" />
+    <Compile Include="Asn1Code\KerberosFlags.cs" />
+    <Compile Include="Asn1Code\KerberosString.cs" />
+    <Compile Include="Asn1Code\KerberosTime.cs" />
+    <Compile Include="Asn1Code\KrbCredInfo.cs" />
+    <Compile Include="Asn1Code\KRB_CRED.cs" />
+    <Compile Include="Asn1Code\KRB_ERROR.cs" />
+    <Compile Include="Asn1Code\KRB_PRIV.cs" />
+    <Compile Include="Asn1Code\KRB_SAFE.cs" />
+    <Compile Include="Asn1Code\KRB_SAFE_BODY.cs" />
+    <Compile Include="Asn1Code\LastReq.cs" />
+    <Compile Include="Asn1Code\LastReq_element.cs" />
+    <Compile Include="Asn1Code\METHOD_DATA.cs" />
+    <Compile Include="Asn1Code\Microseconds.cs" />
+    <Compile Include="Asn1Code\PA_DATA.cs" />
+    <Compile Include="Asn1Code\PA_ENC_TIMESTAMP.cs" />
+    <Compile Include="Asn1Code\PA_ENC_TS_ENC.cs" />
+    <Compile Include="Asn1Code\PA_SVR_REFERRAL_DATA.cs" />
+    <Compile Include="Asn1Code\PrincipalName.cs" />
+    <Compile Include="Asn1Code\Realm.cs" />
+    <Compile Include="Asn1Code\TGS_REP.cs" />
+    <Compile Include="Asn1Code\TGS_REQ.cs" />
+    <Compile Include="Asn1Code\Ticket.cs" />
+    <Compile Include="Asn1Code\TicketFlags.cs" />
+    <Compile Include="Asn1Code\TransitedEncoding.cs" />
+    <Compile Include="Asn1Code\TYPED_DATA.cs" />
+    <Compile Include="Asn1Code\TYPED_DATA_element.cs" />
+    <Compile Include="Asn1Code\UInt32.cs" />
+    <Compile Include="Asn1Code\_KerberosV5Spec2Values.cs" />
+    <Compile Include="Asn1Code\_SeqOfInt32.cs" />
+    <Compile Include="Asn1Code\_SeqOfKerberosString.cs" />
+    <Compile Include="Asn1Code\_SeqOfKrbCredInfo.cs" />
+    <Compile Include="Asn1Code\_SeqOfPA_DATA.cs" />
+    <Compile Include="Asn1Code\_SeqOfTicket.cs" />
+    <Compile Include="Server\KerberosServerSecurityContext.cs" />
+    <Compile Include="Server\KileServer.cs" />
+    <Compile Include="Server\KileServerContext.cs" />
+    <Compile Include="Server\KerberosServerSecurityConfig.cs" />
+    <Compile Include="Types.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{FE653643-6342-4300-871E-683C7BA31494}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CryptoLib\CryptoLib.csproj">
+      <Project>{BF6AFAF0-7592-467F-AD5C-18429D854057}</Project>
+      <Name>CryptoLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sspi\Sspi.csproj">
+      <Project>{D0CB354B-2CD3-49C1-8ECA-2F6EBADBCCEE}</Project>
+      <Name>Sspi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TransportStack\TransportStack.csproj">
+      <Project>{F8CDC462-0754-4BEA-B048-33AC1A5855C4}</Project>
+      <Name>TransportStack</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

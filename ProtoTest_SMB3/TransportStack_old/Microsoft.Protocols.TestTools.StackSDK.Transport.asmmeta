@@ -1,0 +1,558 @@
+.assembly extern 'Microsoft.Protocols.TestTools.StackSdk'
+{
+  .publickeytoken = (0A 02 17 C4 2D 40 7D 5E)
+  .ver corext
+}
+.assembly extern 'System'
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89)
+  .ver clr2.0
+}
+.assembly extern 'mscorlib'
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89)
+  .ver clr2.0
+}
+.assembly 'Microsoft.Protocols.TestTools.StackSdk.Transport'
+{
+  .custom instance void ['mscorlib']'System.Runtime.InteropServices'.'ComVisibleAttribute'::.ctor(bool) = (01 00 00 00 00)
+  .publickey = (00 24 00 00 04 80 00 00 94 00 00 00 06 02 00 00 00 24 00 00 52 53 41 31 00 04 00 00 01 00 01 00 27 21 4B 24 74 FA DB 92 4F FE 05 6B A0 3A A2 C5 8C 86 34 06 56 D2 36 DA 85 76 39 CA 4F 0D AD 6E C0 ED 19 B3 08 B9 B3 40 D7 84 2C 40 80 13 A4 44 64 92 95 E7 65 C9 92 8E 31 38 FB 65 B9 3F 4F BF F3 02 4E 89 53 9A EC FB 55 DB D2 F6 E0 EB B7 BF D2 1F 28 23 97 EF 78 48 E3 2D F1 4B 93 6F 5B 7C 57 75 B5 79 85 C2 F1 BE 90 68 B7 0D 43 6C BA 82 2F 62 FD F6 C6 33 7E B5 8B 12 EB CB 7D 8C FD BC)
+  .hash algorithm 0x00008004
+  .ver corext
+}
+.namespace 'Microsoft.Protocols.TestTools.StackSdk.Transport'
+{
+  .class public sealed 'DecodePacketCallback'
+    extends ['mscorlib']'System'.'MulticastDelegate'
+  {
+    .method public hidebysig specialname 
+      instance void '.ctor'(object 'object', native int 'method')
+      runtime 
+    {
+    }
+    .method public virtual hidebysig newslot 
+      instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket'[] 'Invoke'(object 'endPoint', uint8[] 'messageBytes', [out] int32& 'consumedLength', [out] int32& 'expectedLength')
+      runtime 
+    {
+    }
+    .method public virtual hidebysig newslot 
+      instance class ['mscorlib']'System'.'IAsyncResult' 'BeginInvoke'(object 'endPoint', uint8[] 'messageBytes', [out] int32& 'consumedLength', [out] int32& 'expectedLength', class ['mscorlib']'System'.'AsyncCallback' 'callback', object 'object')
+      runtime 
+    {
+    }
+    .method public virtual hidebysig newslot 
+      instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket'[] 'EndInvoke'([out] int32& 'consumedLength', [out] int32& 'expectedLength', class ['mscorlib']'System'.'IAsyncResult' 'result')
+      runtime 
+    {
+    }
+  }
+  .class public sealed 'EventType'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname int32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'EventType' 'Connected' = int32(0x00000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'EventType' 'Disconnected' = int32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'EventType' 'Exception' = int32(0x00000003)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'EventType' 'ReceivedPacket' = int32(0x00000002)
+  }
+  .class public interface abstract 'IConnection'
+  {
+    .method public virtual hidebysig newslot abstract specialname 
+      instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'ConnectionFilter' 'get_ConnectionFilter'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract specialname 
+      instance void 'set_ConnectionFilter'(class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'ConnectionFilter' 'value')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'UpdateConfig'(class 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig' 'config')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Start'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance object 'Connect'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Disconnect'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Disconnect'(object 'endPoint')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'SendPacket'(class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket' 'packet')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'SendBytes'(uint8[] 'message')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'SendPacket'(object 'endPoint', class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket' 'packet')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'SendBytes'(object 'endpoint', uint8[] 'message')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Release'()
+    {
+    }
+    .property instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'ConnectionFilter' 'ConnectionFilter'()
+    {
+      .get instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'ConnectionFilter' 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'IConnection'::'get_ConnectionFilter'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'IConnection'::'set_ConnectionFilter'(class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'ConnectionFilter')
+    }
+  }
+  .class public interface abstract 'IReceive'
+  {
+    .method public virtual hidebysig newslot abstract 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'ReceiveStatus' 'Receive'(uint8[] 'buffer', [out] int32& 'numBytesReceived', [out] object& 'endPoint')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'Interupt'()
+    {
+    }
+  }
+  .class public 'NetbiosTransportConfig'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig'
+  {
+    .method public hidebysig specialname 
+      instance int32 'get_MaxSessions'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_MaxSessions'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_MaxNames'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_MaxNames'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_RemoteNetbiosName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_RemoteNetbiosName'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_LocalNetbiosName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_LocalNetbiosName'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint8 'get_AdapterIndex'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_AdapterIndex'(uint8 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .property instance uint8 'AdapterIndex'()
+    {
+      .get instance uint8 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'NetbiosTransportConfig'::'get_AdapterIndex'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'NetbiosTransportConfig'::'set_AdapterIndex'(uint8)
+    }
+    .property instance string 'LocalNetbiosName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'NetbiosTransportConfig'::'get_LocalNetbiosName'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'NetbiosTransportConfig'::'set_LocalNetbiosName'(string)
+    }
+    .property instance int32 'MaxNames'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'NetbiosTransportConfig'::'get_MaxNames'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'NetbiosTransportConfig'::'set_MaxNames'(int32)
+    }
+    .property instance int32 'MaxSessions'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'NetbiosTransportConfig'::'get_MaxSessions'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'NetbiosTransportConfig'::'set_MaxSessions'(int32)
+    }
+    .property instance string 'RemoteNetbiosName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'NetbiosTransportConfig'::'get_RemoteNetbiosName'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'NetbiosTransportConfig'::'set_RemoteNetbiosName'(string)
+    }
+  }
+  .class public sealed 'ReceiveStatus'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname int32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'ReceiveStatus' 'Disconnected' = int32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'ReceiveStatus' 'Success' = int32(0x00000000)
+  }
+  .class public sealed 'Role'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname int32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'Role' 'Client' = int32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'Role' 'None' = int32(0x00000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'Role' 'P2P' = int32(0x00000003)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'Role' 'Server' = int32(0x00000002)
+  }
+  .class public 'SocketTransportConfig'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig'
+  {
+    .method public hidebysig specialname 
+      instance int32 'get_MaxConnections'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_MaxConnections'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class ['System']'System.Net'.'IPAddress' 'get_LocalIpAddress'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_LocalIpAddress'(class ['System']'System.Net'.'IPAddress' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_LocalIpPort'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_LocalIpPort'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class ['System']'System.Net'.'IPAddress' 'get_RemoteIpAddress'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_RemoteIpAddress'(class ['System']'System.Net'.'IPAddress' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_RemoteIpPort'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_RemoteIpPort'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .property instance class ['System']'System.Net'.'IPAddress' 'LocalIpAddress'()
+    {
+      .get instance class ['System']'System.Net'.'IPAddress' 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'SocketTransportConfig'::'get_LocalIpAddress'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'SocketTransportConfig'::'set_LocalIpAddress'(class ['System']'System.Net'.'IPAddress')
+    }
+    .property instance int32 'LocalIpPort'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'SocketTransportConfig'::'get_LocalIpPort'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'SocketTransportConfig'::'set_LocalIpPort'(int32)
+    }
+    .property instance int32 'MaxConnections'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'SocketTransportConfig'::'get_MaxConnections'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'SocketTransportConfig'::'set_MaxConnections'(int32)
+    }
+    .property instance class ['System']'System.Net'.'IPAddress' 'RemoteIpAddress'()
+    {
+      .get instance class ['System']'System.Net'.'IPAddress' 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'SocketTransportConfig'::'get_RemoteIpAddress'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'SocketTransportConfig'::'set_RemoteIpAddress'(class ['System']'System.Net'.'IPAddress')
+    }
+    .property instance int32 'RemoteIpPort'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'SocketTransportConfig'::'get_RemoteIpPort'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'SocketTransportConfig'::'set_RemoteIpPort'(int32)
+    }
+  }
+  .class public sealed 'StackTransportType'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname int32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StackTransportType' 'Netbios' = int32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StackTransportType' 'None' = int32(0x00000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StackTransportType' 'Stream' = int32(0x00000003)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StackTransportType' 'Tcp' = int32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StackTransportType' 'Udp' = int32(0x00000002)
+  }
+  .class public 'StreamConfig'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig'
+  {
+    .method public hidebysig specialname 
+      instance class ['mscorlib']'System.IO'.'Stream' 'get_Stream'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Stream'(class ['mscorlib']'System.IO'.'Stream' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .property instance class ['mscorlib']'System.IO'.'Stream' 'Stream'()
+    {
+      .get instance class ['mscorlib']'System.IO'.'Stream' 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StreamConfig'::'get_Stream'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StreamConfig'::'set_Stream'(class ['mscorlib']'System.IO'.'Stream')
+    }
+  }
+  .class public abstract 'TransportConfig'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'Role' 'get_Role'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Role'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'Role' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StackTransportType' 'get_Type'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Type'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StackTransportType' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_BufferSize'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_BufferSize'(int32 'value')
+    {
+      ret
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .property instance int32 'BufferSize'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig'::'get_BufferSize'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig'::'set_BufferSize'(int32)
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'Role' 'Role'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'Role' 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig'::'get_Role'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig'::'set_Role'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'Role')
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StackTransportType' 'Type'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StackTransportType' 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig'::'get_Type'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig'::'set_Type'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'StackTransportType')
+    }
+  }
+  .class public 'TransportEvent'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'EventType' 'get_EventType'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance object 'get_EndPoint'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance object 'get_EventObject'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'EventType' 'type', object 'endPoint', object 'detail')
+    {
+      ret
+    }
+    .property instance object 'EndPoint'()
+    {
+      .get instance object 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportEvent'::'get_EndPoint'()
+    }
+    .property instance object 'EventObject'()
+    {
+      .get instance object 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportEvent'::'get_EventObject'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'EventType' 'EventType'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'EventType' 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportEvent'::'get_EventType'()
+    }
+  }
+  .class public 'TransportStack'
+    extends ['mscorlib']'System'.'Object'
+    implements ['mscorlib']'System'.'IDisposable'
+  {
+    .method public virtual hidebysig newslot specialname 
+      instance bool 'get_IsDataAvailable'()
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot specialname 
+      instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'PacketFilter' 'get_PacketFilter'()
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot specialname 
+      instance void 'set_PacketFilter'(class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'PacketFilter' 'value')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot specialname 
+      instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'ConnectionFilter' 'get_ConnectionFilter'()
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot specialname 
+      instance void 'set_ConnectionFilter'(class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'ConnectionFilter' 'value')
+    {
+      ret
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig' 'transportConfig', class 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'DecodePacketCallback' 'decodePacketCallback')
+    {
+      ret
+    }
+    .method public final virtual hidebysig newslot 
+      instance void 'Dispose'()
+    {
+      ret
+    }
+    .method family virtual hidebysig newslot 
+      instance void 'Dispose'(bool 'disposing')
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance void 'Finalize'()
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance void 'AddEvent'(class 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportEvent' 'transportEvent')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance void 'UpdateConfig'(class 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportConfig' 'config')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance void 'Start'()
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance object 'Connect'()
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance void 'Disconnect'()
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance void 'Disconnect'(object 'endPoint')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance void 'SendPacket'(class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket' 'packet')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance void 'SendBytes'(uint8[] 'message')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance void 'SendPacket'(object 'endPoint', class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket' 'packet')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance void 'SendBytes'(object 'endpoint', uint8[] 'message')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportEvent' 'ExpectTransportEvent'(valuetype ['mscorlib']'System'.'TimeSpan' 'timeout')
+    {
+      ret
+    }
+    .property instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'ConnectionFilter' 'ConnectionFilter'()
+    {
+      .get instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'ConnectionFilter' 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportStack'::'get_ConnectionFilter'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportStack'::'set_ConnectionFilter'(class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'ConnectionFilter')
+    }
+    .property instance bool 'IsDataAvailable'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportStack'::'get_IsDataAvailable'()
+    }
+    .property instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'PacketFilter' 'PacketFilter'()
+    {
+      .get instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'PacketFilter' 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportStack'::'get_PacketFilter'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Transport'.'TransportStack'::'set_PacketFilter'(class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'PacketFilter')
+    }
+  }
+}
+

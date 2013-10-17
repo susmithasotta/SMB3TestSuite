@@ -1,0 +1,65 @@
+Test DEFINITIONS ::= BEGIN
+EXPORTS;
+
+EnumType ::= ENUMERATED {
+   married(0), single(1), divorced(100), children(1000)
+}
+
+BS3 ::= BIT STRING { zero(0), a(1), b(3), c(5) }
+
+ChoiceType ::= CHOICE {
+   e1 INTEGER,
+   e2 IA5String,
+   e3 Name
+}
+
+TestType ::= [APPLICATION 0] IMPLICIT SEQUENCE {
+   utc          UTCTime,
+   utc1         UTCTime,
+   gtc          GeneralizedTime,
+   gtc1         GeneralizedTime,
+   nullval      NULL OPTIONAL,
+   bs3          BS3 OPTIONAL,
+   bs1          BIT STRING { zero(0), a(1), b(3), c(5) },
+   bs0          BIT STRING,
+   bs2          BIT STRING,
+   val1         INTEGER { value3 (22) } (0..MAX),
+   val2         INTEGER { value2 (22) } (0..MAX),
+   enum         ENUMERATED { yes(1), no(0) },
+   real         REAL,
+   nan          REAL,
+   boolean      BOOLEAN OPTIONAL,
+
+   -- Unnamed element
+		Name,
+
+   -- Different cases of SEQUENCE OF
+   seqofEnum    SEQUENCE OF EnumType,
+   bsseqof1     SEQUENCE OF BIT STRING,
+   bsseqof2     SEQUENCE OF BIT STRING { zero1(0), a1(1), b1(3), c1(5) } OPTIONAL,
+   osseqof1     SEQUENCE OF OCTET STRING OPTIONAL,
+   csseqof1     SEQUENCE OF IA5String,
+   rseqof       SEQUENCE OF REAL,
+   bseqof       SEQUENCE OF BOOLEAN,
+   iseqof       SEQUENCE OF INTEGER { value1 (1), value2 (2) } (0..10),
+   iseqof1      SEQUENCE OF INTEGER,
+   iseqof2      SEQUENCE (SIZE (1..10)) OF INTEGER,
+   seqofChoice  SEQUENCE OF ChoiceType,
+   children	SEQUENCE OF ChildInformation
+
+}
+
+ChildInformation ::= SET {
+   Name,
+   dateOfBirth [0] Date
+}
+
+Name ::= [APPLICATION 1] IMPLICIT SEQUENCE {
+   givenName	IA5String,
+   initial	IA5String,
+   familyName	IA5String
+}
+
+Date ::= IA5String
+
+END

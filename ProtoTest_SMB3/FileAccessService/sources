@@ -1,0 +1,32 @@
+ENABLE_CSXMLDOCS                  = 1
+CSXMLDOCS_DIR                     = $(INETROOT)\$(INFRASTRUCTURE_DROP)\ProtoSDK\bin\XMLdocs
+
+!INCLUDE $(INETROOT)\build\sources.all
+
+TARGETNAME                        = Microsoft.Protocols.TestTools.StackSdk.FileAccessService
+TARGETTYPE                        = DYNLINK
+
+MANAGED_CODE                      = 1
+
+REFERENCES                        = $(INFRA_SDK_SOURCE_PATH)\Common\$(O)\Microsoft.Protocols.TestTools.StackSdk.metadata_dll; 
+
+SOURCES                           = \
+                                    CommonMessages.cs \
+                                    Connection.cs \
+                                    FileAccessCollection.cs \
+                                    FileServiceClientTransport.cs \
+                                    FileServiceServerTransport.cs \
+                                    Open.cs \
+                                    Session.cs \
+                                    Share.cs \
+                                    SmbFamilyPacket.cs \
+                                    TreeConnect.cs \
+                                    Types.cs \
+
+
+ASSEMBLY_IDENTITY_PUBLIC_KEY_NAME = petkey
+
+FXCOP_USER_FLAGS                  = $(FXCOP_USER_FLAGS) \
+                                    /directory:$(INFRA_SDK_SOURCE_PATH)\Common\$(O) \
+                                    
+BINPLACE_FLAGS                    = $(BINPLACE_FLAGS) RESIGN_KEYNAME = $(PET_KEY)

@@ -1,0 +1,1938 @@
+.assembly extern 'Microsoft.Protocols.TestTools.StackSdk'
+{
+  .publickeytoken = (0A 02 17 C4 2D 40 7D 5E)
+  .ver corext
+}
+.assembly extern 'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'
+{
+  .publickeytoken = (0A 02 17 C4 2D 40 7D 5E)
+  .ver corext
+}
+.assembly extern 'mscorlib'
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89)
+  .ver clr2.0
+}
+.assembly 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'
+{
+  .custom instance void ['mscorlib']'System.Runtime.InteropServices'.'ComVisibleAttribute'::.ctor(bool) = (01 00 00 00 00)
+  .publickey = (00 24 00 00 04 80 00 00 94 00 00 00 06 02 00 00 00 24 00 00 52 53 41 31 00 04 00 00 01 00 01 00 27 21 4B 24 74 FA DB 92 4F FE 05 6B A0 3A A2 C5 8C 86 34 06 56 D2 36 DA 85 76 39 CA 4F 0D AD 6E C0 ED 19 B3 08 B9 B3 40 D7 84 2C 40 80 13 A4 44 64 92 95 E7 65 C9 92 8E 31 38 FB 65 B9 3F 4F BF F3 02 4E 89 53 9A EC FB 55 DB D2 F6 E0 EB B7 BF D2 1F 28 23 97 EF 78 48 E3 2D F1 4B 93 6F 5B 7C 57 75 B5 79 85 C2 F1 BE 90 68 B7 0D 43 6C BA 82 2F 62 FD F6 C6 33 7E B5 8B 12 EB CB 7D 8C FD BC)
+  .hash algorithm 0x00008004
+  .ver corext
+}
+.namespace 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'
+{
+  .class public sequential sealed 'AUTHENTICATE_MESSAGE'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MESSAGE_FIELDS' 'LmChallengeResponseFields'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MESSAGE_FIELDS' 'NtChallengeResponseFields'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MESSAGE_FIELDS' 'DomainNameFields'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MESSAGE_FIELDS' 'UserNameFields'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MESSAGE_FIELDS' 'WorkstationFields'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MESSAGE_FIELDS' 'EncryptedRandomSessionKeyFields'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NegotiateFlags'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'Version'
+    .field public uint8[] 'MIC'
+    .field public uint8[] 'DomainName'
+    .field public uint8[] 'UserName'
+    .field public uint8[] 'Workstation'
+    .field public uint8[] 'LmChallengeResponse'
+    .field public uint8[] 'NtChallengeResponse'
+    .field public uint8[] 'EncryptedRandomSessionKey'
+  }
+  .class public sequential sealed 'AV_PAIR'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'AvId'
+    .field public uint16 'AvLen'
+    .field public uint8[] 'Value'
+  }
+  .class public sealed 'AV_PAIR_IDs'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint16 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsAvRestrictions' = uint16(0x0008)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsvAvDnsComputerName' = uint16(0x0003)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsvAvDnsDomainName' = uint16(0x0004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsvAvDnsTreeName' = uint16(0x0005)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsvAvEOL' = uint16(0x0000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsvAvFlags' = uint16(0x0006)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsvAvNbComputerName' = uint16(0x0001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsvAvNbDomainName' = uint16(0x0002)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsvAvTargetName' = uint16(0x0009)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsvAvTimestamp' = uint16(0x0007)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'MsvChannelBindings' = uint16(0x000A)
+  }
+  .class public sequential sealed 'CHALLENGE_MESSAGE'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MESSAGE_FIELDS' 'TargetNameFields'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NegotiateFlags'
+    .field public uint64 'ServerChallenge'
+    .field public uint64 'Reserved'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MESSAGE_FIELDS' 'TargetInfoFields'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'Version'
+    .field public uint8[] 'TargetName'
+    .field public uint8[] 'TargetInfo'
+  }
+  .class public sealed 'ExtendedSignatureVersion_Values'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'ExtendedSignatureVersion_Values' 'V1' = uint32(0x00000001)
+  }
+  .class public sealed 'HiRespType_Values'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint8 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'HiRespType_Values' 'V1' = uint8(0x01)
+  }
+  .class public sequential sealed 'LM_RESPONSE'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint8[] 'Response'
+  }
+  .class public sequential sealed 'LMv2_RESPONSE'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint8[] 'Response'
+    .field public uint64 'ChallengeFromClient'
+  }
+  .class public sequential sealed 'MESSAGE_FIELDS'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint16 'Len'
+    .field public uint16 'MaxLen'
+    .field public uint32 'BufferOffset'
+  }
+  .class public sealed 'MessageType_Values'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MessageType_Values' 'AUTHENTICATE' = uint32(0x00000003)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MessageType_Values' 'CHALLENGE' = uint32(0x00000002)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MessageType_Values' 'NEGOTIATE' = uint32(0x00000001)
+  }
+  .class public sequential sealed 'NEGOTIATE_MESSAGE'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NegotiateFlags'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MESSAGE_FIELDS' 'DomainNameFields'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MESSAGE_FIELDS' 'WorkstationFields'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'Version'
+    .field public uint8[] 'DomainName'
+    .field public uint8[] 'WorkstationName'
+  }
+  .class public sequential sealed 'NLMP_HEADER'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint8[] 'Signature'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'MessageType_Values' 'MessageType'
+  }
+  .class public sequential sealed 'NTLMSSP_MESSAGE_SIGNATURE'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'SignatureVersion_Values' 'Version'
+    .field public uint32 'RandomPad'
+    .field public uint32 'Checksum'
+    .field public uint32 'SeqNum'
+  }
+  .class public sequential sealed 'NTLMSSP_MESSAGE_SIGNATURE_Extended'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'ExtendedSignatureVersion_Values' 'Version'
+    .field public uint64 'Checksum'
+    .field public uint32 'SeqNum'
+  }
+  .class public sequential sealed 'NTLMv1_RESPONSE'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint8[] 'Response'
+  }
+  .class public sequential sealed 'NTLMv2_CLIENT_CHALLENGE'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'RespType_Values' 'RespType'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'HiRespType_Values' 'HiRespType'
+    .field public uint16 'Reserved1'
+    .field public uint32 'Reserved2'
+    .field public uint64 'TimeStamp'
+    .field public uint64 'ChallengeFromClient'
+    .field public uint32 'Reserved3'
+    .field public uint8[] 'AvPairs'
+  }
+  .class public sequential sealed 'NTLMv2_RESPONSE'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint8[] 'Response'
+    .field public uint8[] 'NTLMv2_CLIENT_CHALLENGE'
+  }
+  .class public sealed 'NegotiateTypes'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .custom instance void ['mscorlib']'System'.'FlagsAttribute'::.ctor() = (01 00 00 00)
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_128' = uint32(0x20000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_56' = uint32(0x80000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_ALWAYS_SIGN' = uint32(0x00008000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_ANONYMOUS' = uint32(0x00000800)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_DATAGRAM' = uint32(0x00000040)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_EXTENDED_SESSIONSECURITY' = uint32(0x00080000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_IDENTIFY' = uint32(0x00100000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_KEY_EXCH' = uint32(0x40000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_LM_KEY' = uint32(0x00000080)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_NTLM' = uint32(0x00000200)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_NT_ONLY' = uint32(0x00000400)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_OEM_DOMAIN_SUPPLIED' = uint32(0x00001000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_OEM_WORKSTATION_SUPPLIED' = uint32(0x00002000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_SEAL' = uint32(0x00000020)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_SIGN' = uint32(0x00000010)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_TARGET_INFO' = uint32(0x00800000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_UNICODE' = uint32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_NEGOTIATE_VERSION' = uint32(0x02000000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_REQUEST_NON_NT_SESSION_KEY' = uint32(0x00400000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_REQUEST_TARGET' = uint32(0x00000004)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_TARGET_TYPE_DOMAIN' = uint32(0x00010000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_TARGET_TYPE_SERVER' = uint32(0x00020000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLMSSP_TARGET_TYPE_SHARE' = uint32(0x00040000)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NTLM_NEGOTIATE_OEM' = uint32(0x00000002)
+  }
+  .class public 'NlmpAuthenticatePacket'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket'
+  {
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AUTHENTICATE_MESSAGE' 'get_Payload'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Payload'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AUTHENTICATE_MESSAGE' 'value')
+    {
+      ret
+    }
+    .method family virtual hidebysig specialname 
+      instance int32 'get_PayLoadLength'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpAuthenticatePacket' 'stackPacket')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(uint8[] 'packetBytes')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket' 'Clone'()
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance uint8[] 'WriteStructToBytes'()
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance bool 'ReadStructFromBytes'(uint8[] 'packetBytes', int32 'start')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'SetVersion'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'version')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'SetNegotiateFlags'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetDomainName'(string 'domainName')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetUserName'(string 'userName')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetWorkstation'(string 'workstation')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetLmChallengeResponse'(uint8[] 'lmChallengeResponse')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetNtChallengeResponse'(uint8[] 'ntChallengeResponse')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetEncryptedRandomSessionKey'(uint8[] 'encryptedRandomSessionKey')
+    {
+      ret
+    }
+    .property instance int32 'PayLoadLength'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpAuthenticatePacket'::'get_PayLoadLength'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AUTHENTICATE_MESSAGE' 'Payload'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AUTHENTICATE_MESSAGE' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpAuthenticatePacket'::'get_Payload'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpAuthenticatePacket'::'set_Payload'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AUTHENTICATE_MESSAGE')
+    }
+  }
+  .class public 'NlmpChallengePacket'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket'
+  {
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'CHALLENGE_MESSAGE' 'get_Payload'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Payload'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'CHALLENGE_MESSAGE' 'value')
+    {
+      ret
+    }
+    .method family virtual hidebysig specialname 
+      instance int32 'get_PayLoadLength'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpChallengePacket' 'stackPacket')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(uint8[] 'packetBytes')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket' 'Clone'()
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance uint8[] 'WriteStructToBytes'()
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance bool 'ReadStructFromBytes'(uint8[] 'packetBytes', int32 'start')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'SetVersion'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'version')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'SetNegotiateFlags'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetServerChallenge'(uint64 'serverChallenge')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetTargetName'(string 'targetName')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetTargetInfo'(uint8[] 'targetInfoBytes')
+    {
+      ret
+    }
+    .property instance int32 'PayLoadLength'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpChallengePacket'::'get_PayLoadLength'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'CHALLENGE_MESSAGE' 'Payload'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'CHALLENGE_MESSAGE' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpChallengePacket'::'get_Payload'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpChallengePacket'::'set_Payload'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'CHALLENGE_MESSAGE')
+    }
+  }
+  .class public 'NlmpClient'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientConfig' 'get_Config'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Config'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientConfig' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext' 'get_Context'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Context'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientConfig' 'config')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpNegotiatePacket' 'CreateNegotiatePacket'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'version', string 'domainName', string 'workstationName')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpAuthenticatePacket' 'CreateAuthenticatePacket'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'version', uint8[] 'lmChallengeResponse', uint8[] 'ntChallengeResponse', string 'domainName', string 'userName', string 'workstation', uint8[] 'encryptedRandomSessionKey')
+    {
+      ret
+    }
+    .property instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientConfig' 'Config'()
+    {
+      .get instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientConfig' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClient'::'get_Config'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClient'::'set_Config'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientConfig')
+    }
+    .property instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext' 'Context'()
+    {
+      .get instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClient'::'get_Context'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClient'::'set_Context'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext')
+    }
+  }
+  .class public 'NlmpClientConfig'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'get_Version'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Version'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'nlmpVersion')
+    {
+      ret
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'Version'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientConfig'::'get_Version'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientConfig'::'set_Version'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion')
+    }
+  }
+  .class public 'NlmpClientContext'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'
+  {
+    .method public hidebysig specialname 
+      instance bool 'get_IsClientBlocked'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_IsClientBlocked'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'get_ClientConfigFlags'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ClientConfigFlags'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Integrity'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ReplayDetect'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_SequenceDetect'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Confidentiality'(bool 'value')
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance void 'set_Datagram'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Identify'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance object 'get_ClientChannelBindingsUnhashed'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ClientChannelBindingsUnhashed'(object 'value')
+    {
+      ret
+    }
+    .property instance object 'ClientChannelBindingsUnhashed'()
+    {
+      .get instance object 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'get_ClientChannelBindingsUnhashed'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'set_ClientChannelBindingsUnhashed'(object)
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'ClientConfigFlags'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'get_ClientConfigFlags'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'set_ClientConfigFlags'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes')
+    }
+    .property instance bool 'Confidentiality'()
+    {
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'set_Confidentiality'(bool)
+    }
+    .property instance bool 'Datagram'()
+    {
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'set_Datagram'(bool)
+    }
+    .property instance bool 'Identify'()
+    {
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'set_Identify'(bool)
+    }
+    .property instance bool 'Integrity'()
+    {
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'set_Integrity'(bool)
+    }
+    .property instance bool 'IsClientBlocked'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'get_IsClientBlocked'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'set_IsClientBlocked'(bool)
+    }
+    .property instance bool 'ReplayDetect'()
+    {
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'set_ReplayDetect'(bool)
+    }
+    .property instance bool 'SequenceDetect'()
+    {
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext'::'set_SequenceDetect'(bool)
+    }
+  }
+  .class public 'NlmpClientCredential'
+    extends ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential'
+  {
+    .method public hidebysig specialname 
+      instance string 'get_TargetName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(string 'targetName')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(string 'targetName', string 'domain', string 'userName', string 'password')
+    {
+      ret
+    }
+    .property instance string 'TargetName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential'::'get_TargetName'()
+    }
+  }
+  .class public 'NlmpClientSecurityConfig'
+    extends ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityConfig'
+  {
+    .method public hidebysig specialname 
+      instance string 'get_DomainName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_AccountName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_Password'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_TargetName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'AccountCredential' 'account', string 'target')
+    {
+      ret
+    }
+    .property instance string 'AccountName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityConfig'::'get_AccountName'()
+    }
+    .property instance string 'DomainName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityConfig'::'get_DomainName'()
+    }
+    .property instance string 'Password'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityConfig'::'get_Password'()
+    }
+    .property instance string 'TargetName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityConfig'::'get_TargetName'()
+    }
+  }
+  .class public 'NlmpClientSecurityContext'
+    extends ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ClientSecurityContext'
+  {
+    .method public hidebysig specialname 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'get_Credential'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Credential'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext' 'get_Context'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'get_Version'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Version'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'value')
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance bool 'get_NeedContinueProcessing'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint8[] 'get_SessionKey'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint8[] 'get_Token'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint32 'get_SequenceNumber'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance void 'set_SequenceNumber'(uint32 'value')
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'get_PackageType'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'get_ContextSizes'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'credential')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Initialize'(uint8[] 'serverToken')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Encrypt'(class ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance bool 'Decrypt'(class ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Sign'(class ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance bool 'Verify'(class ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public hidebysig 
+      instance void 'GetSecurityToken'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'ntlmVersion', bool 'isUnicode', string 'domainName', string 'userName', string 'password', uint64 'serverTime', uint64 'serverChallenge', [out] uint8[]& 'implicitNtlmSessionKey', [out] uint8[]& 'caseInsensitivePassword', [out] uint8[]& 'caseSensitivePassword')
+    {
+      ret
+    }
+    .property instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext' 'Context'()
+    {
+      .get instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientContext' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'get_Context'()
+    }
+    .property instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'ContextSizes'()
+    {
+      .get instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'get_ContextSizes'()
+    }
+    .property instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'Credential'()
+    {
+      .get instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'get_Credential'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'set_Credential'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential')
+    }
+    .property instance bool 'NeedContinueProcessing'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'get_NeedContinueProcessing'()
+    }
+    .property instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'PackageType'()
+    {
+      .get instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'get_PackageType'()
+    }
+    .property instance uint32 'SequenceNumber'()
+    {
+      .get instance uint32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'get_SequenceNumber'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'set_SequenceNumber'(uint32)
+    }
+    .property instance uint8[] 'SessionKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'get_SessionKey'()
+    }
+    .property instance uint8[] 'Token'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'get_Token'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'Version'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'get_Version'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientSecurityContext'::'set_Version'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion')
+    }
+  }
+  .class public abstract 'NlmpContext'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance int32 'get_ClientHandle'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_ServerHandle'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint8[] 'get_SessionBaseKey'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_SessionBaseKey'(uint8[] 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint8[] 'get_ExportedSessionKey'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ExportedSessionKey'(uint8[] 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'get_NegFlg'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NegFlg'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_User'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_User'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_UserDom'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_UserDom'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_NoLMResponseNTLMv1'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NoLMResponseNTLMv1'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_ClientBlocked'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ClientBlocked'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string[] 'get_ClientBlockExceptions'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ClientBlockExceptions'(string[] 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_ClientRequire128bitEncryption'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ClientRequire128bitEncryption'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_MaxLifetime'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_MaxLifetime'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint8[] 'get_ClientSigningKey'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ClientSigningKey'(uint8[] 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint8[] 'get_ClientSealingKey'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ClientSealingKey'(uint8[] 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_SeqNum'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_SeqNum'(int32 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint8[] 'get_ServerSigningKey'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ServerSigningKey'(uint8[] 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance uint8[] 'get_ServerSealingKey'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ServerSealingKey'(uint8[] 'value')
+    {
+      ret
+    }
+    .method public virtual hidebysig newslot abstract specialname 
+      instance void 'set_Datagram'(bool 'value')
+    {
+    }
+    .method public hidebysig specialname 
+      instance string 'get_ClientSuppliedTargetName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ClientSuppliedTargetName'(string 'value')
+    {
+      ret
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .property instance string[] 'ClientBlockExceptions'()
+    {
+      .get instance string[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ClientBlockExceptions'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_ClientBlockExceptions'(string[])
+    }
+    .property instance bool 'ClientBlocked'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ClientBlocked'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_ClientBlocked'(bool)
+    }
+    .property instance int32 'ClientHandle'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ClientHandle'()
+    }
+    .property instance bool 'ClientRequire128bitEncryption'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ClientRequire128bitEncryption'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_ClientRequire128bitEncryption'(bool)
+    }
+    .property instance uint8[] 'ClientSealingKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ClientSealingKey'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_ClientSealingKey'(uint8[])
+    }
+    .property instance uint8[] 'ClientSigningKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ClientSigningKey'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_ClientSigningKey'(uint8[])
+    }
+    .property instance string 'ClientSuppliedTargetName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ClientSuppliedTargetName'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_ClientSuppliedTargetName'(string)
+    }
+    .property instance bool 'Datagram'()
+    {
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_Datagram'(bool)
+    }
+    .property instance uint8[] 'ExportedSessionKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ExportedSessionKey'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_ExportedSessionKey'(uint8[])
+    }
+    .property instance int32 'MaxLifetime'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_MaxLifetime'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_MaxLifetime'(int32)
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NegFlg'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_NegFlg'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_NegFlg'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes')
+    }
+    .property instance bool 'NoLMResponseNTLMv1'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_NoLMResponseNTLMv1'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_NoLMResponseNTLMv1'(bool)
+    }
+    .property instance int32 'SeqNum'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_SeqNum'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_SeqNum'(int32)
+    }
+    .property instance int32 'ServerHandle'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ServerHandle'()
+    }
+    .property instance uint8[] 'ServerSealingKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ServerSealingKey'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_ServerSealingKey'(uint8[])
+    }
+    .property instance uint8[] 'ServerSigningKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_ServerSigningKey'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_ServerSigningKey'(uint8[])
+    }
+    .property instance uint8[] 'SessionBaseKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_SessionBaseKey'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_SessionBaseKey'(uint8[])
+    }
+    .property instance string 'User'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_User'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_User'(string)
+    }
+    .property instance string 'UserDom'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'get_UserDom'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'::'set_UserDom'(string)
+    }
+  }
+  .class public 'NlmpEmptyPacket'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket'
+  {
+    .method family virtual hidebysig specialname 
+      instance int32 'get_PayLoadLength'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpEmptyPacket' 'stackPacket')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(uint8[] 'packetBytes')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket' 'Clone'()
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance uint8[] 'WriteStructToBytes'()
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance bool 'ReadStructFromBytes'(uint8[] 'packetBytes', int32 'start')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'SetVersion'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'version')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'SetNegotiateFlags'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags')
+    {
+      ret
+    }
+    .property instance int32 'PayLoadLength'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpEmptyPacket'::'get_PayLoadLength'()
+    }
+  }
+  .class public 'NlmpNegotiatePacket'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket'
+  {
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NEGOTIATE_MESSAGE' 'get_Payload'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Payload'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NEGOTIATE_MESSAGE' 'value')
+    {
+      ret
+    }
+    .method family virtual hidebysig specialname 
+      instance int32 'get_PayLoadLength'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpNegotiatePacket' 'stackPacket')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(uint8[] 'packetBytes')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket' 'Clone'()
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetDomainName'(string 'domainName')
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance void 'SetWorkstationName'(string 'workstationName')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'SetVersion'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'version')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'SetNegotiateFlags'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags')
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance uint8[] 'WriteStructToBytes'()
+    {
+      ret
+    }
+    .method family virtual hidebysig 
+      instance bool 'ReadStructFromBytes'(uint8[] 'packetBytes', int32 'start')
+    {
+      ret
+    }
+    .property instance int32 'PayLoadLength'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpNegotiatePacket'::'get_PayLoadLength'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NEGOTIATE_MESSAGE' 'Payload'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NEGOTIATE_MESSAGE' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpNegotiatePacket'::'get_Payload'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpNegotiatePacket'::'set_Payload'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NEGOTIATE_MESSAGE')
+    }
+  }
+  .class public abstract 'NlmpPacket'
+    extends ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket'
+  {
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NLMP_HEADER' 'get_Header'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Header'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NLMP_HEADER' 'value')
+    {
+      ret
+    }
+    .method family hidebysig specialname 
+      instance int32 'get_HeaderLength'()
+    {
+      ret
+    }
+    .method family virtual hidebysig newslot abstract specialname 
+      instance int32 'get_PayLoadLength'()
+    {
+    }
+    .method public hidebysig specialname 
+      instance int32 'get_Length'()
+    {
+      ret
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket' 'nlmpPacket')
+    {
+      ret
+    }
+    .method family hidebysig specialname 
+      instance void '.ctor'(uint8[] 'packetBytes')
+    {
+      ret
+    }
+    .method public virtual hidebysig abstract 
+      instance class ['Microsoft.Protocols.TestTools.StackSdk']'Microsoft.Protocols.TestTools.StackSdk'.'StackPacket' 'Clone'()
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'SetVersion'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'version')
+    {
+    }
+    .method public virtual hidebysig newslot abstract 
+      instance void 'SetNegotiateFlags'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags')
+    {
+    }
+    .method family virtual hidebysig newslot abstract 
+      instance uint8[] 'WriteStructToBytes'()
+    {
+    }
+    .method public virtual hidebysig 
+      instance uint8[] 'ToBytes'()
+    {
+      ret
+    }
+    .method family virtual hidebysig newslot abstract 
+      instance bool 'ReadStructFromBytes'(uint8[] 'packetBytes', int32 'start')
+    {
+    }
+    .field family valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NLMP_HEADER' 'header'
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NLMP_HEADER' 'Header'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NLMP_HEADER' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket'::'get_Header'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket'::'set_Header'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NLMP_HEADER')
+    }
+    .property instance int32 'HeaderLength'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket'::'get_HeaderLength'()
+    }
+    .property instance int32 'Length'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket'::'get_Length'()
+    }
+    .property instance int32 'PayLoadLength'()
+    {
+      .get instance int32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket'::'get_PayLoadLength'()
+    }
+  }
+  .class public 'NlmpServer'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public hidebysig specialname 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext' 'get_Context'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_Context'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'()
+    {
+      ret
+    }
+    .method public hidebysig 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpChallengePacket' 'CreateChallengePacket'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'version', uint64 'serverChallenge', string 'targetName', class ['mscorlib']'System.Collections.Generic'.'ICollection`1'<valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR'> 'targetInfo')
+    {
+      ret
+    }
+    .property instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext' 'Context'()
+    {
+      .get instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServer'::'get_Context'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServer'::'set_Context'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext')
+    }
+  }
+  .class public 'NlmpServerContext'
+    extends 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpContext'
+  {
+    .method public hidebysig specialname 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'get_ClientCredential'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ClientCredential'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_IsDomainJoined'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_IsDomainJoined'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'get_CfgFlg'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_CfgFlg'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_DnsDomainName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_DnsDomainName'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_DnsForestName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_DnsForestName'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_DnsMachineName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_DnsMachineName'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_NbDomainName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NbDomainName'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_NbMachineName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_NbMachineName'(string 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_ServerBlock'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ServerBlock'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_ServerRequire128bitEncryption'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ServerRequire128bitEncryption'(bool 'value')
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance void 'set_Datagram'(bool 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance object 'get_ServerChannelBindingsUnhashed'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ServerChannelBindingsUnhashed'(object 'value')
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_ApplicationRequiresCBT'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void 'set_ApplicationRequiresCBT'(bool 'value')
+    {
+      ret
+    }
+    .property instance bool 'ApplicationRequiresCBT'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_ApplicationRequiresCBT'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_ApplicationRequiresCBT'(bool)
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'CfgFlg'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_CfgFlg'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_CfgFlg'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes')
+    }
+    .property instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'ClientCredential'()
+    {
+      .get instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_ClientCredential'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_ClientCredential'(class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential')
+    }
+    .property instance bool 'Datagram'()
+    {
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_Datagram'(bool)
+    }
+    .property instance string 'DnsDomainName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_DnsDomainName'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_DnsDomainName'(string)
+    }
+    .property instance string 'DnsForestName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_DnsForestName'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_DnsForestName'(string)
+    }
+    .property instance string 'DnsMachineName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_DnsMachineName'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_DnsMachineName'(string)
+    }
+    .property instance bool 'IsDomainJoined'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_IsDomainJoined'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_IsDomainJoined'(bool)
+    }
+    .property instance string 'NbDomainName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_NbDomainName'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_NbDomainName'(string)
+    }
+    .property instance string 'NbMachineName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_NbMachineName'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_NbMachineName'(string)
+    }
+    .property instance bool 'ServerBlock'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_ServerBlock'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_ServerBlock'(bool)
+    }
+    .property instance object 'ServerChannelBindingsUnhashed'()
+    {
+      .get instance object 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_ServerChannelBindingsUnhashed'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_ServerChannelBindingsUnhashed'(object)
+    }
+    .property instance bool 'ServerRequire128bitEncryption'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'get_ServerRequire128bitEncryption'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext'::'set_ServerRequire128bitEncryption'(bool)
+    }
+  }
+  .class public 'NlmpServerSecurityConfig'
+    extends ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityConfig'
+  {
+    .method public hidebysig specialname 
+      instance string 'get_DomainName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_AccountName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_Password'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_TargetName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_NetbiosDomainName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance string 'get_NetbiosMachineName'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance bool 'get_IsDomainJoined'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'get_NegotiateFlags'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'flags', class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'clientCredential', bool 'isDomainJoined', string 'netbiosDomainName', string 'netbiosMachineName')
+    {
+      ret
+    }
+    .property instance string 'AccountName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityConfig'::'get_AccountName'()
+    }
+    .property instance string 'DomainName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityConfig'::'get_DomainName'()
+    }
+    .property instance bool 'IsDomainJoined'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityConfig'::'get_IsDomainJoined'()
+    }
+    .property instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'NegotiateFlags'()
+    {
+      .get instance valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityConfig'::'get_NegotiateFlags'()
+    }
+    .property instance string 'NetbiosDomainName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityConfig'::'get_NetbiosDomainName'()
+    }
+    .property instance string 'NetbiosMachineName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityConfig'::'get_NetbiosMachineName'()
+    }
+    .property instance string 'Password'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityConfig'::'get_Password'()
+    }
+    .property instance string 'TargetName'()
+    {
+      .get instance string 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityConfig'::'get_TargetName'()
+    }
+  }
+  .class public 'NlmpServerSecurityContext'
+    extends ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'ServerSecurityContext'
+  {
+    .method public hidebysig specialname 
+      instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext' 'get_Context'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance bool 'get_NeedContinueProcessing'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint8[] 'get_SessionKey'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint8[] 'get_Token'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance uint32 'get_SequenceNumber'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance void 'set_SequenceNumber'(uint32 'value')
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'get_PackageType'()
+    {
+      ret
+    }
+    .method public virtual hidebysig specialname 
+      instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'get_ContextSizes'()
+    {
+      ret
+    }
+    .method public hidebysig specialname 
+      instance void '.ctor'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'flags', class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpClientCredential' 'clientCredential', bool 'isDomainJoined', string 'netbiosDomainName', string 'netbiosMachineName')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Accept'(uint8[] 'inToken')
+    {
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Encrypt'(class ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance bool 'Decrypt'(class ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance void 'Sign'(class ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public virtual hidebysig 
+      instance bool 'Verify'(class ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityBuffer'[] 'securityBuffers')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .property instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext' 'Context'()
+    {
+      .get instance class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerContext' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityContext'::'get_Context'()
+    }
+    .property instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'ContextSizes'()
+    {
+      .get instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageContextSizes' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityContext'::'get_ContextSizes'()
+    }
+    .property instance bool 'NeedContinueProcessing'()
+    {
+      .get instance bool 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityContext'::'get_NeedContinueProcessing'()
+    }
+    .property instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'PackageType'()
+    {
+      .get instance valuetype ['Microsoft.Protocols.TestTools.StackSdk.Security.Sspi']'Microsoft.Protocols.TestTools.StackSdk.Security.Sspi'.'SecurityPackageType' 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityContext'::'get_PackageType'()
+    }
+    .property instance uint32 'SequenceNumber'()
+    {
+      .get instance uint32 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityContext'::'get_SequenceNumber'()
+      .set instance void 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityContext'::'set_SequenceNumber'(uint32)
+    }
+    .property instance uint8[] 'SessionKey'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityContext'::'get_SessionKey'()
+    }
+    .property instance uint8[] 'Token'()
+    {
+      .get instance uint8[] 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpServerSecurityContext'::'get_Token'()
+    }
+  }
+  .class public abstract sealed 'NlmpUtility'
+    extends ['mscorlib']'System'.'Object'
+  {
+    .method public static hidebysig 
+      void 'AddAVPair'(class ['mscorlib']'System.Collections.Generic'.'ICollection`1'<valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR'> 'avPairs', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR_IDs' 'avId', uint16 'avLen', uint8[] 'value')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      string 'ConcatenationOf'(string[] 'strs')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'ConcatenationOf'(uint8[][] 'bytes')
+    {
+      .param [1]
+      .custom instance void ['mscorlib']'System'.'ParamArrayAttribute'::.ctor() = (01 00 00 00)
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'Nonce'(int32 'size')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'Unicode'(string 'str')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      string 'UpperCase'(string 'str')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'Z'(int32 'size')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint64 'CurrentTime'()
+    {
+      ret
+    }
+    .method public static hidebysig 
+      valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION' 'GetVersion'()
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint64 'GetTime'(class ['mscorlib']'System.Collections.Generic'.'ICollection`1'<valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR'> 'challengeTargetInfo')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'GetResponseKeyLm'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', string 'domain', string 'userName', string 'password')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'LmGetKey'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', string 'domain', string 'userName', string 'password')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'LmOWF'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', string 'domain', string 'userName', string 'password')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'GetResponseKeyNt'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', string 'domain', string 'userName', string 'password')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'NtGetKey'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', string 'domain', string 'userName', string 'password')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'NtOWF'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', string 'domain', string 'userName', string 'password')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      void 'ComputeResponse'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', uint8[] 'responseKeyNT', uint8[] 'responseKeyLM', uint64 'serverChallenge', uint64 'clientChallenge', uint64 'time', uint8[] 'serverName', [out] uint8[]& 'ntChallengeResponse', [out] uint8[]& 'lmChallengeResponse', [out] uint8[]& 'sessionBaseKey')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      void 'ComputeResponseV1'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', uint8[] 'responseKeyNT', uint8[] 'responseKeyLM', uint64 'serverChallenge', uint64 'clientChallenge', [out] uint8[]& 'ntChallengeResponse', [out] uint8[]& 'lmChallengeResponse', [out] uint8[]& 'sessionBaseKey')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      void 'ComputeResponseV2'(uint8[] 'responseKeyNT', uint8[] 'responseKeyLM', uint64 'serverChallenge', uint64 'clientChallenge', uint64 'time', uint8[] 'serverName', [out] uint8[]& 'ntChallengeResponse', [out] uint8[]& 'lmChallengeResponse', [out] uint8[]& 'sessionBaseKey')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      void 'GetEncryptedRandomSessionKey'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', uint8[] 'sessionBaseKey', uint8[] 'lmChallengeResponse', uint8[] 'responseKeyLM', uint64 'serverChallenge', [out] uint8[]& 'encryptedRandomSessionKey', [out] uint8[]& 'keyExchangeKey', [out] uint8[]& 'exportedSessionKey')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'GetMic'(uint8[] 'exportedSessionKey', class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpNegotiatePacket' 'negotiate', class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpChallengePacket' 'challenge', class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpAuthenticatePacket' 'authenticate')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'KXKey'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', uint8[] 'sessionBaseKey', uint8[] 'lmChallengeResponse', uint64 'serverChallenge', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', uint8[] 'responseKeyLM')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'SealKey'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', uint8[] 'randomSessionKey', string 'mode')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'SignKey'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', uint8[] 'randomSessionKey', string 'mode')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'Sign'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', int32 'handle', uint8[] 'signingKey', int32& 'seqNum', uint8[] 'message')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      void 'Seal'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', int32 'handle', uint8[] 'signingKey', int32& 'seqNum', uint8[] 'message', [out] uint8[]& 'sealedMessage', [out] uint8[]& 'signature')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      void 'UnSeal'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', int32 'handle', uint8[] 'signingKey', int32& 'seqNum', uint8[] 'sealedMessage', [out] uint8[]& 'message', [out] uint8[]& 'signature')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'Mac'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version', valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NegotiateTypes' 'negotiateFlags', int32 'handle', uint8[] 'signingKey', int32& 'seqNum', uint8[] 'message')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      class 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpPacket' 'DecodePacket'(uint8[] 'nlmpPacketBytesData')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      bool 'IsNtlmV2'(valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'version')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'AvPairCollectionGetBytes'(class ['mscorlib']'System.Collections.Generic'.'ICollection`1'<valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'AV_PAIR'> 'avPairs')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'StringGetBytes'(string 'data', bool 'isUnicode')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'RC4'(int32 'handle', uint8[] 'data')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'RC4'(uint8[] 'key', uint8[] 'data')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      void 'RC4Init'(int32 'handle', uint8[] 'key')
+    {
+      ret
+    }
+    .method public static hidebysig 
+      uint8[] 'DESL'(uint8[] 'key', uint8[] 'data')
+    {
+      ret
+    }
+  }
+  .class public sealed 'NlmpVersion'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname int32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'v1' = int32(0x00000001)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'NlmpVersion' 'v2' = int32(0x00000002)
+  }
+  .class public sealed 'RespType_Values'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint8 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'RespType_Values' 'V1' = uint8(0x01)
+  }
+  .class public sequential sealed 'Restriction_Encoding'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint32 'Size'
+    .field public uint32 'Z4'
+    .field public uint32 'IntegrityLevel'
+    .field public uint32 'SubjectIntegrityLevel'
+    .field public uint8[] 'MachineID'
+  }
+  .class public sealed 'SignatureVersion_Values'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint32 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'SignatureVersion_Values' 'V1' = uint32(0x00000001)
+  }
+  .class public sequential sealed 'VERSION'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_MAJOR' 'ProductMajorVersion'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_MINOR' 'ProductMinorVersion'
+    .field public uint16 'ProductBuild'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_Reserved' 'Reserved'
+    .field public valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_REVERSION' 'NTLMRevisionCurrent'
+  }
+  .class public sealed 'VERSION_MAJOR'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint8 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_MAJOR' 'WINDOWS_MAJOR_VERSION_5' = uint8(0x05)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_MAJOR' 'WINDOWS_MAJOR_VERSION_6' = uint8(0x06)
+  }
+  .class public sealed 'VERSION_MINOR'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint8 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_MINOR' 'WINDOWS_MINOR_VERSION_0' = uint8(0x00)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_MINOR' 'WINDOWS_MINOR_VERSION_1' = uint8(0x01)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_MINOR' 'WINDOWS_MINOR_VERSION_2' = uint8(0x02)
+  }
+  .class public sealed 'VERSION_REVERSION'
+    extends ['mscorlib']'System'.'Enum'
+  {
+    .field public rtspecialname specialname uint8 'value__'
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_REVERSION' 'NTLMSSP_REVISION_W2K3' = uint8(0x0F)
+    .field static public literal valuetype 'Microsoft.Protocols.TestTools.StackSdk.Security.Nlmp'.'VERSION_REVERSION' 'NTLMSSP_REVISION_W2K3_RC1' = uint8(0x0A)
+  }
+  .class public sequential sealed 'VERSION_Reserved'
+    extends ['mscorlib']'System'.'ValueType'
+  {
+    .field public uint8 'Reserved1'
+    .field public uint8 'Reserved2'
+    .field public uint8 'Reserved3'
+  }
+}
+

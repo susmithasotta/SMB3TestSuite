@@ -1,0 +1,3 @@
+c:\tsdev\infrastructure\src\protosdk\cryptolib\
+c:\tsdev\infrastructure\src\protosdk\common\objd\i386\
+c:\tsdev\public\ext\sdk\clr\netfx40rtm\

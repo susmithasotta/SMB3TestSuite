@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aliasAddressList>
+   <AliasAddress>
+      <e164>#39047752,937</e164>
+   </AliasAddress>
+   <AliasAddress>
+      <h323-ID>TESTSTRING</h323-ID>
+   </AliasAddress>
+   <AliasAddress>
+      <aNull/>
+   </AliasAddress>
+   <AliasAddress>
+      <url-ID>http://www.obj-sys.com</url-ID>
+   </AliasAddress>
+   <AliasAddress>
+      <transportID>
+         <TransportAddress>Truck</TransportAddress>
+         <INTEGER>111</INTEGER>
+      </transportID>
+   </AliasAddress>
+   <AliasAddress>
+      <email-ID>objective@obj-sys.com</email-ID>
+   </AliasAddress>
+   <AliasAddress>
+      <partyNumber>555</partyNumber>
+   </AliasAddress>
+   <AliasAddress>
+      <boolVal>true</boolVal>
+   </AliasAddress>
+   <AliasAddress>
+      <enumVal>two</enumVal>
+   </AliasAddress>
+</aliasAddressList>
